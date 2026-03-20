@@ -1,0 +1,16 @@
+# Copy to wrangler.toml and fill in KV namespace id.
+# Deploy: npx wrangler deploy
+# Secrets: npx wrangler secret put ADMIN_TOKEN
+
+name = "openedux-visit"
+main = "workers/visit.js"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "VISIT_KV"
+id = "YOUR_KV_NAMESPACE_ID"
+
+# Optional: route only API paths (Wrangler v3). Often easier to set in the dashboard.
+# routes = [
+#   { pattern = "www.openedux.ai/api/*", zone_name = "openedux.ai" },
+# ]

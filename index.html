@@ -1,40 +1,239 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 适配移动端，关键 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to openedux</title>
+    <title>OpenEdux — Precise learning, Brighter Creation</title>
+    <meta name="description" content="OpenEdux: precise learning, brighter creation.">
+    <meta name="theme-color" content="#FAF7F2">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.openedux.ai/">
+    <meta property="og:title" content="OpenEdux">
+    <meta property="og:description" content="Precise learning, Brighter Creation">
+    <meta property="og:image" content="https://www.openedux.ai/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenEdux">
+    <meta name="twitter:description" content="Precise learning, Brighter Creation">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        /* 全局样式，让页面居中、美观 */
+        :root {
+            --bg-base: #faf7f2;
+            --bg-mid: #f3eee6;
+            --bg-radial: #ebe4d8;
+            --text: #2a2622;
+            --text-muted: rgba(42, 38, 34, 0.48);
+            --accent: #8c6a4a;
+            --noise-opacity: 0.035;
+            --footer-border: rgba(42, 38, 34, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-base: #1c1a17;
+                --bg-mid: #24211d;
+                --bg-radial: #2e2924;
+                --text: #f2ece4;
+                --text-muted: rgba(242, 236, 228, 0.45);
+                --accent: #c4a882;
+                --noise-opacity: 0.04;
+                --footer-border: rgba(242, 236, 228, 0.1);
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            min-height: 100vh;
-            /* 背景可自定义，这里用浅灰+渐变 */
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            /* 让宣传语居中显示 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Microsoft YaHei", sans-serif;
+
+        html, body {
+            min-height: 100%;
         }
-        /* 宣传语样式 */
-        .slogan {
-            font-size: clamp(2rem, 5vw, 4rem); /* 自适应字体大小 */
-            color: #2c3e50;
+
+        body {
+            font-family: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-radial), transparent 55%),
+                radial-gradient(ellipse 90% 60% at 100% 100%, var(--bg-mid), transparent 50%),
+                radial-gradient(ellipse 70% 50% at 0% 80%, var(--bg-mid), transparent 45%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+        }
+
+        /* subtle grain */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: var(--noise-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            font-weight: 700;
-            /* 可选：加阴影增强视觉效果 */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            max-width: 38rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wordmark {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(0.7rem, 1.2vw, 0.8125rem);
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: clamp(1.75rem, 5vw, 2.75rem);
+        }
+
+        .slogan {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-weight: 500;
+            font-size: clamp(1.85rem, 5.5vw, 3rem);
+            line-height: 1.22;
+            letter-spacing: -0.02em;
+            font-variation-settings: "SOFT" 50, "WONK" 0.9;
+        }
+
+        .slogan-line {
+            display: block;
+        }
+
+        .slogan-line + .slogan-line {
+            margin-top: 0.35em;
+        }
+
+        .rule {
+            width: 2.5rem;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.45;
+            margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+            padding-top: 2.5rem;
+            width: 100%;
+            max-width: 38rem;
+            text-align: center;
+            border-top: 1px solid var(--footer-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-domain {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        .privacy {
+            margin-top: 0.75rem;
+        }
+
+        .privacy a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .privacy a:hover,
+        .privacy a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .privacy-note {
+            font-size: 0.6875rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            max-width: 28rem;
+            margin: 0 auto 0.5rem;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 <body>
-    <!-- 网站sologn -->
-    <div class="slogan">Precise learning, Brighter Creation</div>
+    <main>
+        <p class="wordmark" aria-hidden="true">OpenEdux</p>
+        <h1 class="slogan">
+            <span class="slogan-line">Precise learning,</span>
+            <span class="slogan-line">Brighter Creation</span>
+        </h1>
+        <span class="visually-hidden">OpenEdux tagline: precise learning, brighter creation.</span>
+        <div class="rule" aria-hidden="true"></div>
+    </main>
+
+    <footer>
+        <p class="footer-domain">www.openedux.ai</p>
+        <p id="privacy" class="privacy-note" tabindex="-1">
+            Visits may be counted; IP and basic technical data may be logged for traffic analysis
+            per our providers' policies.
+        </p>
+        <p class="privacy">
+            <a href="#privacy">Privacy</a>
+        </p>
+    </footer>
+
+    <!--
+      Plan B (optional): set data-visit-endpoint on <html> after routing /api/visit to the Worker
+      on the same hostname, e.g. data-visit-endpoint="/api/visit"
+    -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var endpoint = root.getAttribute("data-visit-endpoint");
+            if (!endpoint) return;
+
+            try {
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(endpoint, new Blob([], { type: "text/plain" }));
+                } else {
+                    fetch(endpoint, { method: "POST", keepalive: true, credentials: "same-origin" });
+                }
+            } catch (e) {
+                /* ignore */
+            }
+        })();
+    </script>
+
+    <!-- Plan A (optional): Cloudflare Web Analytics — replace TOKEN; remove comment wrappers to enable
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "YOUR_BEACON_TOKEN"}'></script>
+    -->
 </body>
 </html>
