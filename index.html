@@ -11,7 +11,8 @@
     <meta property="og:url" content="https://www.openedux.ai/">
     <meta property="og:title" content="OpenEdux">
     <meta property="og:description" content="Precise learning, Brighter Creation">
-    <meta property="og:image" content="https://www.openedux.ai/og-image.png">
+    <meta property="og:image" content="https://www.openedux.ai/logo-capybara.png">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="OpenEdux">
     <meta name="twitter:description" content="Precise learning, Brighter Creation">
@@ -92,6 +93,26 @@
             max-width: 38rem;
             position: relative;
             z-index: 1;
+        }
+
+        .brand-logo {
+            width: clamp(5.25rem, 26vw, 7.75rem);
+            height: auto;
+            display: block;
+            margin: 0 auto clamp(1rem, 3vw, 1.5rem);
+            border-radius: 12%;
+            box-shadow:
+                0 0.08em 0.35em rgba(42, 38, 34, 0.07),
+                0 0 0 1px rgba(42, 38, 34, 0.05);
+            opacity: 0.94;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .brand-logo {
+                box-shadow:
+                    0 0.08em 0.4em rgba(0, 0, 0, 0.35),
+                    0 0 0 1px rgba(242, 236, 228, 0.08);
+            }
         }
 
         .wordmark {
@@ -189,7 +210,16 @@
 </head>
 <body>
     <main>
-        <p class="wordmark" aria-hidden="true">OpenEdux</p>
+        <img
+            class="brand-logo"
+            src="logo-capybara.png"
+            width="320"
+            height="178"
+            alt="Illustration of a capybara in loose ink-wash style"
+            decoding="async"
+            fetchpriority="high"
+        >
+        <p class="wordmark">OpenEdux</p>
         <h1 class="slogan">
             <span class="slogan-line">Precise learning,</span>
             <span class="slogan-line">Brighter Creation</span>
