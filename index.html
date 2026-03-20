@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 适配移动端，关键 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的品牌/宣传语</title>
+    <style>
+        /* 全局样式，让页面居中、美观 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            /* 背景可自定义，这里用浅灰+渐变 */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            /* 让宣传语居中显示 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        /* 宣传语样式 */
+        .slogan {
+            font-size: clamp(2rem, 5vw, 4rem); /* 自适应字体大小 */
+            color: #2c3e50;
+            text-align: center;
+            font-weight: 700;
+            /* 可选：加阴影增强视觉效果 */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 替换成你的宣传语 -->
+    <div class="slogan">AI改变世界，创新引领未来</div>
+</body>
+</html>
