@@ -92,13 +92,8 @@
         }
 
         .site-nav {
-            flex-shrink: 0;
-            width: 100%;
-            max-width: 38rem;
+            margin-top: clamp(1.5rem, 4vw, 2.25rem);
             text-align: center;
-            padding-bottom: clamp(0.35rem, 1.5vw, 0.75rem);
-            position: relative;
-            z-index: 1;
         }
 
         .site-nav a {
@@ -243,9 +238,6 @@
     </style>
 </head>
 <body>
-    <nav class="site-nav" aria-label="Primary">
-        <a href="https://learn.shareai.run" target="_blank" rel="noopener noreferrer">Claude 入门课程</a>
-    </nav>
     <main>
         <img
             class="brand-logo"
@@ -262,6 +254,9 @@
             <span class="slogan-line">Brighter Creation</span>
         </h1>
         <span class="visually-hidden">OpenEdux tagline: precise learning, brighter creation.</span>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="https://learn.shareai.run" target="_blank" rel="noopener noreferrer">Claude 入门课程</a>
+        </nav>
         <div class="rule" aria-hidden="true"></div>
     </main>
 
