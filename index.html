@@ -119,7 +119,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            max-width: 38rem;
+            max-width: 65rem;
             position: relative;
             z-index: 1;
         }
@@ -185,7 +185,7 @@
             margin-top: auto;
             padding-top: 2.5rem;
             width: 100%;
-            max-width: 38rem;
+            max-width: 65rem;
             text-align: center;
             border-top: 1px solid var(--footer-border);
             padding-bottom: 0.5rem;
@@ -235,6 +235,55 @@
             white-space: nowrap;
             border: 0;
         }
+
+        .learning-theories {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1.5rem, 3vw, 2rem);
+            margin-top: clamp(1.75rem, 4vw, 2.5rem);
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .learning-theories {
+                flex-direction: row;
+                gap: clamp(1.5rem, 3vw, 2.5rem);
+            }
+        }
+
+        .theory-card {
+            background: var(--bg-mid);
+            padding: clamp(1.5rem, 3.5vw, 2.25rem);
+            border-radius: 1.25rem;
+            box-shadow:
+                0 0.08em 0.35em rgba(42, 38, 34, 0.05),
+                0 0 0 1px rgba(42, 38, 34, 0.03);
+            text-align: left;
+            flex: 1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .theory-card {
+                box-shadow:
+                    0 0.08em 0.4em rgba(0, 0, 0, 0.25),
+                    0 0 0 1px rgba(242, 236, 228, 0.06);
+            }
+        }
+
+        .theory-title {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .theory-description {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.6;
+            color: var(--text);
+        }
     </style>
 </head>
 <body>
@@ -257,6 +306,22 @@
         <nav class="site-nav" aria-label="Primary">
             <a target="_blank" rel="noopener noreferrer">In Dev · Launching Soon</a>
         </nav>
+
+        <section class="learning-theories">
+            <div class="theory-card">
+                <h3 class="theory-title">Behaviorist Learning Theory</h3>
+                <p class="theory-description">Emphasizes the connection between stimulus and response, shaping learning behaviors through reinforcement and punishment, focusing on observable external behavioral changes.</p>
+            </div>
+            <div class="theory-card">
+                <h3 class="theory-title">Cognitivist Learning Theory</h3>
+                <p class="theory-description">Focuses on learners' internal psychological processes and cognitive structures, emphasizing information processing, memory, problem-solving, and active knowledge construction.</p>
+            </div>
+            <div class="theory-card">
+                <h3 class="theory-title">Bloom's Mastery Learning Theory</h3>
+                <p class="theory-description">Believes that with sufficient time and appropriate instruction, the vast majority of students can master any learning content, emphasizing personalization and feedback.</p>
+            </div>
+        </section>
+
         <div class="rule" aria-hidden="true"></div>
     </main>
 
