@@ -261,6 +261,53 @@
             color: var(--text-muted);
         }
         
+        .subscribe-section {
+            width: 100%;
+            max-width: 42rem;
+            margin: clamp(5rem, 8vw, 7rem) auto;
+            text-align: center;
+        }
+
+        .subscribe-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .subscribe-title {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .subscribe-button {
+            display: inline-block;
+            padding: 0.9rem 1.4rem;
+            border-radius: 999px;
+            background: var(--text);
+            color: var(--bg-base);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .subscribe-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
         .rule {
             width: 2.5rem;
             height: 1px;
@@ -395,7 +442,12 @@
         <nav class="site-nav" aria-label="Primary">
             <a href="blog.html">Articles</a>
             <span style="margin: 0 0.5rem; color: var(--text-muted);">·</span>
-            <a>Notes</a>
+            <a
+               href="https://openedux.substack.com"
+               target="_blank"
+               rel="noopener noreferrer">
+               Subscribe
+            </a>
             <span style="margin: 0 0.5rem; color: var(--text-muted);">·</span>
             <a href="about.html">About</a>
         </nav>
@@ -449,6 +501,29 @@
         </section>
 
         <div class="rule" aria-hidden="true"></div>
+
+        <section class="subscribe-section">
+            <p class="subscribe-label">Subscribe</p>
+
+            <h2 class="subscribe-title">
+                Notes on AI-assisted work, learning, and modern knowledge systems.
+            </h2>
+
+            <p class="subscribe-text">
+                Occasional writing about AI workflows, productivity, cognition,
+                and building calmer systems for modern work.
+            </p>
+
+            <a
+                class="subscribe-button"
+                href="https://openedux.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Join the newsletter
+            </a>
+        </section>
+
     </main>
 
     <footer>
