@@ -117,11 +117,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             text-align: center;
             max-width: 65rem;
             position: relative;
             z-index: 1;
+            padding-top: 5rem;
         }
 
         .brand-logo {
@@ -195,7 +196,7 @@
             font-size: clamp(1.5rem, 3vw, 2.2rem);
             line-height: 1.3;
             font-weight: 500;
-            max-width: 18ch;
+            max-width: 12ch;
         }
         
         .article-grid {
@@ -220,10 +221,7 @@
                 0 0 0 1px rgba(42, 38, 34, 0.03);
         }
         
-        .article-card:hover {
-            transform: translateY(-2px);
-        }
-        
+
         .article-meta {
             font-size: 0.75rem;
             letter-spacing: 0.08em;
@@ -386,13 +384,16 @@
         </h1>
         <span class="visually-hidden">OpenEdux tagline: Building smarter systems for learning and productivity with AI..</span>
         <nav class="site-nav" aria-label="Primary">
-            <a href="blog.html">Blog</a>
+            <a href="blog.html">Articles</a>
             <span style="margin: 0 0.5rem; color: var(--text-muted);">·</span>
-            <a target="_blank" rel="noopener noreferrer">In Dev · Launching Soon</a>
+            <a>Notes</a>
+            <span style="margin: 0 0.5rem; color: var(--text-muted);">·</span>
+            <a>About</a>
         </nav>
         
         <section class="content-section">
             <div class="section-header">
+                <p class="section-description">Recently updated workflows, notes, and experiments.</p>
                 <p class="section-label">Latest Articles</p>
                 <h2 class="section-title">Thoughts, workflows, and systems for modern AI-assisted work.</h2>
             </div>
