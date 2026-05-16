@@ -16,68 +16,154 @@
     <style>
 
         :root {
-            --bg: #f7f9fc;
+            --bg-base: #f7f9fc;
+            --bg-mid: #eef2f7;
+            --bg-radial: #e7edf5;
             --card: #eef2f7;
+
             --text: #1f2328;
-            --muted: rgba(31,35,40,0.55);
+            --text-muted: rgba(31, 35, 40, 0.52);
+
             --accent: #6b84a3;
+
+            --noise-opacity: 0.025;
+            --border: rgba(31, 35, 40, 0.06);
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            :root {
+                --bg-base: #16181d;
+                --bg-mid: #1f232a;
+                --bg-radial: #252b35;
+                --card: #1f232a;
+
+                --text: #edf2f7;
+                --text-muted: rgba(237, 242, 247, 0.5);
+
+                --accent: #8ba3c7;
+
+                --noise-opacity: 0.03;
+                --border: rgba(237, 242, 247, 0.08);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 3rem 1.5rem;
-            background: var(--bg);
+            font-family: "Source Sans 3", sans-serif;
             color: var(--text);
 
-            font-family: "Source Sans 3", sans-serif;
+            background-color: var(--bg-base);
+
+            background-image:
+                radial-gradient(
+                    ellipse 120% 80% at 50% -20%,
+                    var(--bg-radial),
+                    transparent 55%
+                );
+
+            min-height: 100vh;
+
+            padding: clamp(1.5rem, 4vw, 3rem);
+
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: var(--noise-opacity);
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
         .container {
-            max-width: 760px;
+            max-width: 720px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topbar {
+            margin-bottom: 3rem;
         }
 
         .back {
-            font-size: 0.9rem;
-            color: var(--muted);
+            font-family: "Fraunces", serif;
+            font-size: 0.8125rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
             text-decoration: none;
         }
 
         .back:hover {
-            color: var(--accent);
+            opacity: 0.7;
         }
 
         h1 {
             font-family: "Fraunces", serif;
-            font-size: 2.2rem;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
             margin-top: 2rem;
             margin-bottom: 1rem;
         }
 
         .intro {
-            color: var(--muted);
+            color: var(--text-muted);
             line-height: 1.8;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
+            max-width: 36rem;
         }
 
         .note-group {
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         .note-date {
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
+            font-weight: 500;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .note-card {
             background: var(--card);
-            padding: 1.25rem 1.5rem;
-            border-radius: 1rem;
+            padding: 1.5rem 1.75rem;
+            border-radius: 1.25rem;
             margin-bottom: 1rem;
-            line-height: 1.8;
+            line-height: 1.75;
+            border: 1px solid var(--border);
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .note-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
     </style>
@@ -87,9 +173,11 @@
 
     <div class="container">
 
-        <a class="back" href="index.html">
-            ← Back
-        </a>
+        <div class="topbar">
+            <a class="back" href="index.html">
+                ← OpenEdux
+            </a>
+        </div>
 
         <h1>Notes</h1>
 
@@ -130,6 +218,10 @@
             </div>
 
         </div>
+
+        <footer>
+            www.openedux.ai
+        </footer>
 
     </div>
 
