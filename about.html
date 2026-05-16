@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — OpenEdux</title>
+    <meta name="description" content="About OpenEdux — Exploring practical AI systems for modern work and learning.">
+    <meta name="theme-color" content="#FAF7F2">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.openedux.ai/about">
+    <meta property="og:title" content="About OpenEdux">
+    <meta property="og:description" content="Exploring practical AI systems for modern work and learning.">
+    <meta property="og:image" content="https://www.openedux.ai/logo-capybara.png">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About OpenEdux">
+    <meta name="twitter:description" content="Exploring practical AI systems for modern work and learning.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #faf7f2;
+            --bg-mid: #f3eee6;
+            --bg-radial: #ebe4d8;
+            --text: #2a2622;
+            --text-muted: rgba(42, 38, 34, 0.48);
+            --accent: #8c6a4a;
+            --noise-opacity: 0.035;
+            --footer-border: rgba(42, 38, 34, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-base: #1c1a17;
+                --bg-mid: #24211d;
+                --bg-radial: #2e2924;
+                --text: #f2ece4;
+                --text-muted: rgba(242, 236, 228, 0.45);
+                --accent: #c4a882;
+                --noise-opacity: 0.04;
+                --footer-border: rgba(242, 236, 228, 0.1);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-radial), transparent 55%),
+                radial-gradient(ellipse 90% 60% at 100% 100%, var(--bg-mid), transparent 50%),
+                radial-gradient(ellipse 70% 50% at 0% 80%, var(--bg-mid), transparent 45%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: var(--noise-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 65rem;
+            margin: 0 auto;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .header-logo-img {
+            width: 2.5rem;
+            height: auto;
+            border-radius: 12%;
+            opacity: 0.94;
+        }
+
+        .header-logo-text {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        main {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 65rem;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            max-width: 40rem;
+            margin-top: clamp(3rem, 6vw, 5rem);
+        }
+
+        .about-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .about-title {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 500;
+            line-height: 1.35;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            font-family: "Source Sans 3", system-ui, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            margin-top: clamp(3rem, 6vw, 4rem);
+            padding-top: 2.5rem;
+            width: 100%;
+            max-width: 65rem;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border-top: 1px solid var(--footer-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-domain {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        .privacy {
+            margin-top: 0.75rem;
+        }
+
+        .privacy a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .privacy a:hover,
+        .privacy a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .header-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="index.html" class="header-logo">
+                <img class="header-logo-img" src="logo-capybara.png" width="80" height="44" alt="OpenEdux logo">
+                <span class="header-logo-text">OpenEdux</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Articles</a>
+                <a>Notes</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <p class="about-label">About</p>
+
+            <h1 class="about-title">
+                Exploring practical AI systems for modern work and learning.
+            </h1>
+
+            <p class="about-text">
+                I'm a mid-career manager with a technical background working in a global enterprise environment.
+                Over the years, I've become increasingly interested in how AI can reduce cognitive load,
+                improve decision-making, and create more sustainable ways of working and learning.
+            </p>
+
+            <p class="about-text">
+                OpenEdux is a long-term exploration of AI-assisted workflows, knowledge systems,
+                productivity design, and modern learning methods — built from real-world work pressure,
+                experimentation, and curiosity.
+            </p>
+
+            <p class="about-text">
+                This site is where I document thoughts, systems, experiments, and small improvements
+                that help make work and life a little more manageable in the age of AI.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-domain">www.openedux.ai</p>
+        <p class="privacy">
+            <a href="index.html#privacy">Privacy</a>
+        </p>
+    </footer>
+</body>
+</html>
