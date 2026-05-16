@@ -200,6 +200,38 @@
             color: var(--text-muted);
         }
         
+        .about-section {
+            width: 100%;
+            max-width: 40rem;
+            margin-top: clamp(3rem, 6vw, 5rem);
+            text-align: left;
+        }
+
+        .about-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .about-title {
+            font-family: "Fraunces", Georgia, serif;
+            font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.35;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text {
+            font-family: "Source Sans 3", system-ui, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
         .article-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -447,6 +479,32 @@
         
             </div>
         </section>
+
+        <section class="about-section">
+            <p class="about-label">About</p>
+
+            <h2 class="about-title">
+                Exploring practical AI systems for modern work and learning.
+            </h2>
+
+            <p class="about-text">
+                I'm a mid-career manager with a technical background working in a global enterprise environment.
+                Over the years, I've become increasingly interested in how AI can reduce cognitive load,
+                improve decision-making, and create more sustainable ways of working and learning.
+            </p>
+
+            <p class="about-text">
+                OpenEdux is a long-term exploration of AI-assisted workflows, knowledge systems,
+                productivity design, and modern learning methods — built from real-world work pressure,
+                experimentation, and curiosity.
+            </p>
+
+            <p class="about-text">
+                This site is where I document thoughts, systems, experiments, and small improvements
+                that help make work and life a little more manageable in the age of AI.
+            </p>
+        </section>
+
         <div class="rule" aria-hidden="true"></div>
     </main>
 
