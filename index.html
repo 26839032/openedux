@@ -31,26 +31,32 @@
 
     <style>
         :root {
-            --bg-base: #faf7f2;
-            --bg-mid: #f3eee6;
-            --bg-radial: #ebe4d8;
-            --text: #2a2622;
-            --text-muted: rgba(42, 38, 34, 0.48);
-            --accent: #8c6a4a;
-            --noise-opacity: 0.035;
-            --footer-border: rgba(42, 38, 34, 0.08);
+            --bg-base: #f7f9fc;
+            --bg-mid: #eef2f7;
+            --bg-radial: #e7edf5;
+
+            --text: #1f2328;
+            --text-muted: rgba(31, 35, 40, 0.52);
+
+            --accent: #6b84a3;
+
+            --noise-opacity: 0.025;
+            --footer-border: rgba(31, 35, 40, 0.08);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-base: #1c1a17;
-                --bg-mid: #24211d;
-                --bg-radial: #2e2924;
-                --text: #f2ece4;
-                --text-muted: rgba(242, 236, 228, 0.45);
-                --accent: #c4a882;
-                --noise-opacity: 0.04;
-                --footer-border: rgba(242, 236, 228, 0.1);
+                --bg-base: #16181d;
+                --bg-mid: #1f232a;
+                --bg-radial: #252b35;
+
+                --text: #edf2f7;
+                --text-muted: rgba(237, 242, 247, 0.5);
+
+                --accent: #8ba3c7;
+
+                --noise-opacity: 0.03;
+                --footer-border: rgba(237, 242, 247, 0.08);
             }
         }
 
@@ -174,22 +180,17 @@
         
         .content-section {
             width: 100%;
-            margin-top: clamp(2.5rem, 5vw, 4rem);
+            margin-top: clamp(2rem, 4vw, 3rem);
             text-align: left;
         }
 
-        .section-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text-muted);
-            max-width: 36rem;
-        }
         
         
         .article-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         @media (min-width: 768px) {
@@ -198,6 +199,12 @@
             }
         }
         
+        .article-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
         .article-card {
             background: var(--bg-mid);
             border-radius: 1.25rem;
@@ -211,10 +218,11 @@
         }
 
         .article-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
+
             box-shadow:
-                0 0.2em 0.8em rgba(42, 38, 34, 0.08),
-                0 0 0 1px rgba(42, 38, 34, 0.04);
+                0 0.15em 0.5em rgba(31, 35, 40, 0.06),
+                0 0 0 1px rgba(31, 35, 40, 0.03);
         }
 
         .article-meta {
@@ -292,14 +300,6 @@
         .subscribe-button:hover {
             opacity: 0.9;
             transform: translateY(-1px);
-        }
-
-        .rule {
-            width: 2.5rem;
-            height: 1px;
-            background: var(--accent);
-            opacity: 0.45;
-            margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
         }
 
         footer {
@@ -439,33 +439,42 @@
         </nav>
         
         <section class="content-section">
-            <p class="section-description">Recently updated workflows, notes, and experiments.</p>
         
             <div class="article-grid">
         
-                <article class="article-card">
-                    <p class="article-meta">Essay · May 2026</p>
-                    <h3 class="article-title">
-                        <a href="https://openedux.substack.com/p/why-i-started-openedux" target="_blank" rel="noopener noreferrer">
+                <a
+                   class="article-card-link"
+                   href="https://openedux.substack.com/p/why-i-started-openedux"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                >
+                    <article class="article-card">
+                        <p class="article-meta">Essay · May 2026</p>
+                        <h3 class="article-title">
                             Why I Started OpenEdux
-                        </a>
-                    </h3>
-                    <p class="article-description">
-                        Notes on AI-assisted work, knowledge systems, and building calmer workflows in modern life.
-                    </p>
-                </article>
+                        </h3>
+                        <p class="article-description">
+                            Notes on AI-assisted work, knowledge systems, and building calmer workflows in modern life.
+                        </p>
+                    </article>
+                </a>
         
-                <article class="article-card">
-                    <p class="article-meta">Systems · May 2026</p>
-                    <h3 class="article-title">
-                        <a href="https://openedux.substack.com/p/my-ai-assisted-workflow-for-deep" target="_blank" rel="noopener noreferrer">
+                <a
+                   class="article-card-link"
+                   href="https://openedux.substack.com/p/my-ai-assisted-workflow-for-deep"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                >
+                    <article class="article-card">
+                        <p class="article-meta">Systems · May 2026</p>
+                        <h3 class="article-title">
                             My AI-assisted workflow for deep work
-                        </a>
-                    </h3>
-                    <p class="article-description">
-                        Using AI to reduce cognitive load and protect space for focused thinking.
-                    </p>
-                </article>
+                        </h3>
+                        <p class="article-description">
+                            Using AI to reduce cognitive load and protect space for focused thinking.
+                        </p>
+                    </article>
+                </a>
         
                 <article class="article-card">
                     <p class="article-meta">Notes · Coming Soon</p>
@@ -482,7 +491,6 @@
             </div>
         </section>
 
-        <div class="rule" aria-hidden="true"></div>
 
         <section class="subscribe-section">
             <p class="subscribe-label">Subscribe</p>
