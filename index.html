@@ -200,12 +200,16 @@
         }
         
         .article-card-link {
-            display: block;
+            display: flex;
+            height: 100%;
             text-decoration: none;
             color: inherit;
         }
 
         .article-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             background: var(--bg-mid);
             border-radius: 1.25rem;
             padding: 1.5rem;
