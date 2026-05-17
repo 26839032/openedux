@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My AI-assisted workflow for deep work — OpenEdux</title>
+    <meta name="description" content="Building calmer systems for deep work in an increasingly noisy world.">
+    <meta name="theme-color" content="#f7f9fc">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.openedux.ai/my-ai-assisted-workflow-for-deep-work">
+    <meta property="og:title" content="My AI-assisted workflow for deep work">
+    <meta property="og:description" content="Building calmer systems for deep work in an increasingly noisy world.">
+    <meta property="og:image" content="https://www.openedux.ai/logo-capybara.png">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My AI-assisted workflow for deep work">
+    <meta name="twitter:description" content="Building calmer systems for deep work in an increasingly noisy world.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #f7f9fc;
+            --bg-mid: #eef2f7;
+            --bg-radial: #e7edf5;
+            --text: #1f2328;
+            --text-muted: rgba(31, 35, 40, 0.52);
+            --accent: #6b84a3;
+            --noise-opacity: 0.025;
+            --footer-border: rgba(31, 35, 40, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-base: #16181d;
+                --bg-mid: #1f232a;
+                --bg-radial: #252b35;
+                --text: #edf2f7;
+                --text-muted: rgba(237, 242, 247, 0.5);
+                --accent: #8ba3c7;
+                --noise-opacity: 0.03;
+                --footer-border: rgba(237, 242, 247, 0.08);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-radial), transparent 55%),
+                radial-gradient(ellipse 90% 60% at 100% 100%, var(--bg-mid), transparent 50%),
+                radial-gradient(ellipse 70% 50% at 0% 80%, var(--bg-mid), transparent 45%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: var(--noise-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 65rem;
+            margin: 0 auto;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .header-logo-img {
+            width: 2.5rem;
+            height: auto;
+            border-radius: 12%;
+            opacity: 0.94;
+        }
+
+        .header-logo-text {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        main {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .back-to-writing {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            transition: color 0.2s ease;
+        }
+
+        .back-to-writing:hover,
+        .back-to-writing:focus-visible {
+            color: var(--accent);
+        }
+
+        .article-header {
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .article-date {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .article-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(107, 132, 163, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .article-tag {
+                background: rgba(139, 163, 199, 0.15);
+            }
+        }
+
+        .article-title {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .article-excerpt {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .article-content {
+            font-size: clamp(1rem, 1.75vw, 1.125rem);
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .article-content h3 {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin: clamp(2rem, 4vw, 2.5rem) 0 0.75rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            margin-top: clamp(3rem, 6vw, 4rem);
+            padding-top: 2.5rem;
+            width: 100%;
+            max-width: 65rem;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border-top: 1px solid var(--footer-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-domain {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        .privacy {
+            margin-top: 0.75rem;
+        }
+
+        .privacy a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .privacy a:hover,
+        .privacy a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .header-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="index.html" class="header-logo">
+                <img class="header-logo-img" src="logo-capybara.png" width="80" height="44" alt="OpenEdux logo">
+                <span class="header-logo-text">OpenEdux</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="writing.html">Writing</a>
+                <a href="notes.html">Notes</a>
+                <a href="signals.html">Signals</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="writing.html" class="back-to-writing">
+            ← Writing
+        </a>
+
+        <article>
+            <header class="article-header">
+                <div class="article-meta">
+                    <time class="article-date">May 17, 2026</time>
+                    <span class="article-tag">Workflow</span>
+                    <span class="article-tag">Deep Work</span>
+                    <span class="article-tag">AI</span>
+                </div>
+                <h1 class="article-title">My AI-assisted workflow for deep work</h1>
+                <p class="article-excerpt">Building calmer systems for deep work in an increasingly noisy world.</p>
+            </header>
+
+            <div class="article-content">
+                <p>Modern work is noisy by default.</p>
+
+                <p>Most days are fragmented into meetings, messages, dashboards, emails, documents, and constant context switching. Even when there is time available, uninterrupted attention has become surprisingly difficult to protect.</p>
+
+                <p>For a long time, I treated AI as another productivity tool.</p>
+
+                <p>Now I think of it differently.</p>
+
+                <p>I increasingly use AI as a cognitive support layer — something that helps reduce mental friction before deep work even begins.</p>
+
+                <p>This post is not about "10x productivity."<br>
+                It is simply the workflow I've been quietly refining to create more space for focused thinking.</p>
+
+                <h2>The real problem is cognitive residue</h2>
+
+                <p>The hardest part of deep work is often not the work itself.</p>
+
+                <p>It is the lingering mental residue from everything else:</p>
+
+                <p>unfinished conversations</p>
+
+                <p>fragmented notes</p>
+
+                <p>open loops</p>
+
+                <p>inbox anxiety</p>
+
+                <p>half-processed information</p>
+
+                <p>decision fatigue</p>
+
+                <p>Even after blocking time on the calendar, my attention was still scattered.</p>
+
+                <p>I realized I did not need more information.</p>
+
+                <p>I needed better cognitive cleanup.</p>
+
+                <h2>Where AI became genuinely useful</h2>
+
+                <p>Most AI discussions focus on generation:<br>
+                writing faster, coding faster, producing more.</p>
+
+                <p>But the most valuable use case for me has been reduction.</p>
+
+                <p>Reducing:</p>
+
+                <p>noise</p>
+
+                <p>repetition</p>
+
+                <p>switching costs</p>
+
+                <p>information overload</p>
+
+                <p>unnecessary mental effort</p>
+
+                <p>AI became useful when it started helping me protect attention instead of consuming it.</p>
+
+                <h2>Separation of storage and computation</h2>
+
+                <p>In some ways, I've started thinking about AI through the lens of "separation of storage and computation."</p>
+
+                <p>For years, modern knowledge work forced the human brain to function as both:</p>
+
+                <p>long-term storage</p>
+
+                <p>and active processing</p>
+
+                <p>We try to remember everything:<br>
+                meeting fragments, decisions, documents, open loops, unfinished thoughts.</p>
+
+                <p>But the brain is not optimized for infinite background storage.</p>
+
+                <p>AI changes this balance.</p>
+
+                <p>More and more, I use external systems to hold information, organize context, and reduce memory burden — so that my own attention can be used more selectively for judgment, prioritization, creativity, and decision-making.</p>
+
+                <p>The value is not simply efficiency.</p>
+
+                <p>It is preserving mental energy for the things that matter most.</p>
+
+                <h2>My current workflow</h2>
+
+                <p>The workflow itself is intentionally lightweight.</p>
+
+                <h3>1. Capture first, organize later</h3>
+
+                <p>Throughout the day, I dump fragmented thoughts into simple notes without worrying about structure.</p>
+
+                <p>Meeting fragments.<br>
+                Ideas.<br>
+                Questions.<br>
+                Half-finished tasks.<br>
+                Research snippets.</p>
+
+                <p>The goal is not clarity.<br>
+                The goal is removing cognitive pressure.</p>
+
+                <p>Later, AI helps summarize, group, and restructure these fragments into something usable.</p>
+
+                <p>This dramatically reduces the mental cost of keeping everything in working memory.</p>
+
+                <h3>2. Use AI to preprocess information</h3>
+
+                <p>Before starting focused work, I often use AI to compress complexity:</p>
+
+                <p>summarize long documents</p>
+
+                <p>extract key decisions</p>
+
+                <p>compare alternatives</p>
+
+                <p>identify missing context</p>
+
+                <p>rewrite unclear notes</p>
+
+                <p>create structured outlines</p>
+
+                <p>This is important.</p>
+
+                <p>Deep work should happen on clarified information, not raw chaos.</p>
+
+                <p>AI helps me arrive at the starting line with less cognitive clutter.</p>
+
+                <h3>3. Protect creation from consumption</h3>
+
+                <p>One mistake I made early was mixing AI exploration with actual work.</p>
+
+                <p>Opening AI tools constantly throughout the day created another stream of distraction.</p>
+
+                <p>Now I separate:</p>
+
+                <p>exploration mode</p>
+
+                <p>execution mode</p>
+
+                <p>During deep work sessions, I try to interact with fewer tools, fewer tabs, and fewer decisions.</p>
+
+                <p>The objective is calm concentration, not constant stimulation.</p>
+
+                <h3>4. Build reusable systems</h3>
+
+                <p>Anything repeated multiple times becomes a candidate for systemization.</p>
+
+                <p>Templates.<br>
+                Writing structures.<br>
+                Meeting summaries.<br>
+                Research formats.<br>
+                Decision frameworks.</p>
+
+                <p>AI is especially effective when paired with repeatable workflows.</p>
+
+                <p>The goal is not automation for its own sake.</p>
+
+                <p>The goal is reducing unnecessary cognitive load.</p>
+
+                <h2>What changed most</h2>
+
+                <p>The biggest improvement was not speed.</p>
+
+                <p>It was clarity.</p>
+
+                <p>I feel less fragmented entering important work.<br>
+                Less mentally exhausted after information-heavy days.<br>
+                Less trapped in constant context reloading.</p>
+
+                <p>There is still pressure.<br>
+                Still complexity.<br>
+                Still noise.</p>
+
+                <p>But the work feels more sustainable now.</p>
+
+                <p>And perhaps more importantly, recovering mental space also creates room for other parts of life:<br>
+                time with family,<br>
+                slower thinking,<br>
+                better conversations,<br>
+                and moments that are easier to fully be present for.</p>
+
+                <p>I do not think AI will eliminate deep work.</p>
+
+                <p>But I do think it can help us build calmer systems — where human attention is spent less on carrying information, and more on understanding, deciding, creating, and living.</p>
+
+                <p>For me, that has been one of the most meaningful shifts so far.</p>
+
+                <p>— OpenEdux</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p class="footer-domain">www.openedux.ai</p>
+        <p class="privacy">
+            <a href="index.html#privacy">Privacy</a>
+        </p>
+    </footer>
+</body>
+</html>
