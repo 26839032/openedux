@@ -325,6 +325,17 @@
             color: var(--text-muted);
         }
 
+        .footer-email {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-email:hover {
+            color: var(--accent);
+        }
+
         .privacy {
             margin-top: 0.75rem;
         }
@@ -537,6 +548,7 @@
 
     <footer>
         <p class="footer-domain">www.openedux.ai</p>
+        <p><a class="footer-email" href="mailto:openedux@gmail.com">openedux@gmail.com</a></p>
         <p id="privacy" class="privacy-note" tabindex="-1">
             This site uses analytics to understand traffic. No personal data is sold or shared beyond our service providers (Google Analytics).
         </p>
