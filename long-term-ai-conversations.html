@@ -304,6 +304,69 @@
         .footer-email:hover {
             color: var(--accent);
         }
+
+        /* Like button */
+        .like-section {
+            margin-top: clamp(2.5rem, 5vw, 3.5rem);
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--footer-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .like-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.875rem 0.375rem 0.75rem;
+            font-family: "Source Sans 3", sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: transparent;
+            border: 1px solid var(--footer-border);
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .like-btn:hover,
+        .like-btn:focus-visible {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(107, 132, 163, 0.06);
+        }
+
+        .like-btn.liked {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(107, 132, 163, 0.1);
+            cursor: default;
+        }
+
+        .like-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .like-btn svg {
+            flex-shrink: 0;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .like-btn.liked {
+                background: rgba(139, 163, 199, 0.12);
+            }
+            .like-btn:hover,
+            .like-btn:focus-visible {
+                background: rgba(139, 163, 199, 0.08);
+            }
+        }
+
+    }
     </style>
 </head>
 <body>
@@ -514,6 +577,14 @@
 
                 <p>The rest of it, I'm still trying to figure out myself.</p>
             </div>
+            <div class="like-section">
+                <button id="like-btn" class="like-btn" aria-label="Like this article">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 22V11M2 13v7a2 2 0 0 0 2 2h11.6a2 2 0 0 0 1.9-1.4l2.4-7.2A2 2 0 0 0 18 9h-5.5V4a2 2 0 0 0-2-2l-2 6H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                    <span id="like-count">—</span>
+                </button>
+            </div>
         </article>
     </main>
 
@@ -524,5 +595,58 @@
             <a href="index.html#privacy">Privacy</a>
         </p>
     </footer>
+<script>
+(function() {
+    var slug = location.pathname.replace(/\.html$/, '').replace(/^\//, '');
+    var btn = document.getElementById('like-btn');
+    var countEl = document.getElementById('like-count');
+
+    var localLiked = localStorage.getItem('liked_' + slug);
+    if (localLiked) {
+        btn.classList.add('liked');
+        btn.disabled = true;
+    }
+
+    fetch('/api/like?article=' + encodeURIComponent(slug))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            countEl.textContent = data.likes;
+            if (data.already_liked) {
+                btn.classList.add('liked');
+                btn.disabled = true;
+                localStorage.setItem('liked_' + slug, '1');
+            }
+        })
+        .catch(function() {
+            countEl.textContent = '?';
+        });
+
+    btn.addEventListener('click', function() {
+        if (btn.classList.contains('liked') || btn.disabled) return;
+
+        btn.disabled = true;
+        fetch('/api/like', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ article: slug })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(result) {
+            if (result.likes !== null && result.likes !== undefined) {
+                countEl.textContent = result.likes;
+            }
+            if (!result.already_liked) {
+                btn.classList.add('liked');
+                localStorage.setItem('liked_' + slug, '1');
+            } else {
+                btn.classList.add('liked');
+            }
+        })
+        .catch(function() {
+            btn.disabled = false;
+        });
+    });
+})();
+</script>
 </body>
 </html>
