@@ -607,7 +607,7 @@
         btn.disabled = true;
     }
 
-    fetch('/api/like?article=' + encodeURIComponent(slug))
+    fetch('https://openedux-visit.26839032.workers.dev/api/like?article=' + encodeURIComponent(slug))
         .then(function(r) { return r.json(); })
         .then(function(data) {
             countEl.textContent = data.likes;
@@ -625,7 +625,7 @@
         if (btn.classList.contains('liked') || btn.disabled) return;
 
         btn.disabled = true;
-        fetch('/api/like', {
+        fetch('https://openedux-visit.26839032.workers.dev/api/like', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ article: slug })
