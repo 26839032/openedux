@@ -208,6 +208,21 @@
             animation: drift 8s ease-in-out infinite;
         }
 
+        .node-date {
+            display: block;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-top: 0.6rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .node:hover .node-date {
+            opacity: 1;
+        }
+
         .node:hover {
 
             transform: translateY(-6px);
@@ -362,30 +377,37 @@
 
         <div class="node bright" style="top:120px; left:120px;">
             Not every path needs a destination.
+            <span class="node-date">May 2025</span>
         </div>
 
         <div class="node dim" style="top:220px; left:420px;">
             Today felt heavy.
+            <span class="node-date">Sep 2025</span>
         </div>
 
         <div class="node" style="top:430px; left:720px;">
             AI changes cognition itself.
+            <span class="node-date">Nov 2025</span>
         </div>
 
         <div class="node bright" style="top:600px; left:180px;">
             Maybe freedom is reclaimed time.
+            <span class="node-date">Jan 2026</span>
         </div>
 
         <div class="node dim" style="top:760px; left:560px;">
             Signals everywhere.
+            <span class="node-date">Mar 2026</span>
         </div>
 
         <div class="node" style="top:940px; left:280px;">
             The map is unfinished.
+            <span class="node-date">Apr 2026</span>
         </div>
 
         <div class="node bright" style="top:1050px; left:760px;">
             One more step.
+            <span class="node-date">May 2026</span>
         </div>
 
     </section>
