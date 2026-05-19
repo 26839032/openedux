@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Signals / Self — OpenEdux</title>
+
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --bg: #09111b;
+            --bg-soft: #101927;
+            --bg-fog: #172233;
+
+            --text: #d9e3ee;
+            --text-muted: rgba(217, 227, 238, 0.55);
+
+            --accent: #8aa4c7;
+            --line: rgba(138, 164, 199, 0.16);
+
+            --glow: rgba(138, 164, 199, 0.18);
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            font-family: "Source Sans 3", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(circle at top, #132033 0%, transparent 45%),
+                radial-gradient(circle at bottom right, #111b29 0%, transparent 35%),
+                var(--bg);
+
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+
+            background-size: 120px 120px;
+
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        main {
+
+            width: 100%;
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding:
+                clamp(3rem, 8vw, 6rem)
+                clamp(1.5rem, 4vw, 3rem)
+                8rem;
+        }
+
+        .back-link {
+
+            display: inline-block;
+
+            color: var(--text-muted);
+
+            text-decoration: none;
+
+            margin-bottom: 5rem;
+
+            font-size: 0.95rem;
+
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+
+            max-width: 720px;
+
+            margin-bottom: 8rem;
+        }
+
+        .eyebrow {
+
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+
+            color: var(--accent);
+
+            font-size: 0.72rem;
+
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+
+            font-family: "Fraunces", serif;
+
+            font-size: clamp(2.6rem, 8vw, 5.2rem);
+
+            line-height: 1.05;
+
+            letter-spacing: -0.04em;
+
+            font-weight: 500;
+
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+
+            max-width: 42rem;
+
+            line-height: 1.9;
+
+            font-size: 1.08rem;
+
+            color: var(--text-muted);
+        }
+
+        .maze {
+
+            position: relative;
+
+            min-height: 1200px;
+
+            margin-bottom: 8rem;
+        }
+
+        .maze::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(circle at center,
+                rgba(255,255,255,0.03),
+                transparent 70%);
+
+            pointer-events: none;
+        }
+
+        .node {
+
+            position: absolute;
+
+            max-width: 220px;
+
+            padding: 1rem 1.1rem;
+
+            background: rgba(255,255,255,0.03);
+
+            border: 1px solid rgba(255,255,255,0.04);
+
+            backdrop-filter: blur(12px);
+
+            border-radius: 18px;
+
+            color: var(--text);
+
+            line-height: 1.6;
+
+            font-size: 0.96rem;
+
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.02),
+                0 10px 40px rgba(0,0,0,0.18);
+
+            transition:
+                transform 0.4s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+
+            animation: drift 8s ease-in-out infinite;
+        }
+
+        .node:hover {
+
+            transform: translateY(-6px);
+
+            border-color: rgba(138, 164, 199, 0.3);
+
+            box-shadow:
+                0 0 24px rgba(138, 164, 199, 0.15);
+        }
+
+        .node.dim {
+            opacity: 0.55;
+        }
+
+        .node.bright {
+
+            background: rgba(138, 164, 199, 0.06);
+
+            border-color: rgba(138, 164, 199, 0.12);
+        }
+
+        @keyframes drift {
+
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .line {
+
+            position: absolute;
+
+            background: var(--line);
+
+            transform-origin: left center;
+
+            height: 1px;
+        }
+
+        .reflection {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+        .reflection p {
+
+            font-family: "Fraunces", serif;
+
+            font-size: clamp(1.3rem, 3vw, 2rem);
+
+            line-height: 1.8;
+
+            color: rgba(217, 227, 238, 0.75);
+        }
+
+        footer {
+
+            margin-top: 8rem;
+
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-size: 0.82rem;
+
+            letter-spacing: 0.08em;
+
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+
+            .maze {
+
+                min-height: auto;
+
+                display: flex;
+
+                flex-direction: column;
+
+                gap: 1rem;
+            }
+
+            .node,
+            .line {
+
+                position: relative !important;
+
+                top: auto !important;
+                left: auto !important;
+
+                width: 100%;
+                max-width: 100%;
+
+                transform: none !important;
+            }
+
+            .line {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<main>
+
+    <a class="back-link" href="signals.html">
+        ← Back to Signals
+    </a>
+
+    <section class="hero">
+
+        <p class="eyebrow">
+            Signals / Self
+        </p>
+
+        <h1>
+            Still wandering through the maze.
+        </h1>
+
+        <p>
+            Between work, cognition, AI, memory, pressure, and time,
+            I continue searching for clarity.
+            Some signals are external.
+            Others only appear in silence.
+            This page is a small map of unfinished thoughts,
+            drifting slowly through modern life.
+        </p>
+
+    </section>
+
+    <section class="maze">
+
+        <div class="line" style="top:180px; left:220px; width:180px; transform:rotate(12deg);"></div>
+        <div class="line" style="top:420px; left:540px; width:150px; transform:rotate(-18deg);"></div>
+        <div class="line" style="top:760px; left:320px; width:220px; transform:rotate(8deg);"></div>
+
+        <div class="node bright" style="top:120px; left:120px;">
+            Not every path needs a destination.
+        </div>
+
+        <div class="node dim" style="top:220px; left:420px;">
+            Today felt heavy.
+        </div>
+
+        <div class="node" style="top:430px; left:720px;">
+            AI changes cognition itself.
+        </div>
+
+        <div class="node bright" style="top:600px; left:180px;">
+            Maybe freedom is reclaimed time.
+        </div>
+
+        <div class="node dim" style="top:760px; left:560px;">
+            Signals everywhere.
+        </div>
+
+        <div class="node" style="top:940px; left:280px;">
+            The map is unfinished.
+        </div>
+
+        <div class="node bright" style="top:1050px; left:760px;">
+            One more step.
+        </div>
+
+    </section>
+
+    <section class="reflection">
+
+        <p>
+            We move through life without ever seeing the full map.
+            <br><br>
+            Sometimes the signal is weak.
+            <br><br>
+            Sometimes wandering is the path itself.
+        </p>
+
+    </section>
+
+    <footer>
+        OpenEdux — Signals / Self
+    </footer>
+
+</main>
+
+</body>
+</html>
