@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Signals — OpenEdux</title>
+
+    <link rel="icon" href="logo-capybara.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b1118;
+            --bg-soft: #101923;
+            --bg-card: rgba(255,255,255,0.03);
+
+            --text: #e7edf5;
+            --text-muted: rgba(231,237,245,0.58);
+
+            --accent: #9bb7d6;
+            --line: rgba(255,255,255,0.08);
+
+            --glow: rgba(155,183,214,0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Source Sans 3", sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(90,120,180,0.18), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(120,160,220,0.08), transparent 30%),
+                var(--bg);
+
+            color: var(--text);
+
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                radial-gradient(rgba(255,255,255,0.22) 1px, transparent 1px);
+
+            background-size: 120px 120px;
+
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1200px;
+
+            margin: 0 auto;
+            padding:
+                clamp(2rem, 5vw, 4rem)
+                clamp(1.5rem, 4vw, 3rem)
+                8rem;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        /* nav */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 6rem;
+        }
+
+        .brand {
+            font-family: "Fraunces", serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+
+            transition: 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        /* hero */
+
+        .hero {
+            padding-top: 2rem;
+            padding-bottom: 8rem;
+
+            position: relative;
+        }
+
+        .hero-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.72rem;
+
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: "Fraunces", serif;
+
+            font-size: clamp(2.2rem, 6vw, 5rem);
+            line-height: 1.04;
+
+            letter-spacing: -0.05em;
+
+            max-width: 10ch;
+
+            margin-bottom: 2rem;
+        }
+
+        .hero-subtitle {
+            max-width: 42rem;
+
+            color: var(--text-muted);
+
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .hero-small {
+            margin-top: 2rem;
+
+            color: rgba(255,255,255,0.35);
+
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        /* maze */
+
+        .maze-section {
+            position: relative;
+
+            padding-top: 2rem;
+            padding-bottom: 10rem;
+        }
+
+        .section-heading {
+            font-family: "Fraunces", serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .section-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+
+            max-width: 40rem;
+            margin-bottom: 5rem;
+        }
+
+        .maze {
+            position: relative;
+
+            min-height: 950px;
+        }
+
+        .maze-line {
+            position: absolute;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255,255,255,0.08),
+                transparent
+            );
+
+            height: 1px;
+            transform-origin: left center;
+        }
+
+        .signal-node {
+            position: absolute;
+
+            width: 180px;
+
+            padding: 1rem 1rem 1rem 1.2rem;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.03);
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            backdrop-filter: blur(8px);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .signal-node::before {
+            content: "";
+
+            position: absolute;
+            top: -7px;
+            left: 18px;
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 999px;
+
+            background: #d8e7ff;
+
+            box-shadow:
+                0 0 12px rgba(180,220,255,0.8),
+                0 0 30px rgba(180,220,255,0.25);
+        }
+
+        .signal-node:hover {
+            transform: translateY(-4px);
+
+            border-color: rgba(255,255,255,0.14);
+
+            box-shadow:
+                0 0 30px rgba(120,160,220,0.12);
+        }
+
+        .signal-node.dim {
+            opacity: 0.55;
+        }
+
+        .signal-node.bright {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .node-time {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,0.38);
+
+            margin-bottom: 0.7rem;
+        }
+
+        .node-text {
+            line-height: 1.7;
+            color: rgba(255,255,255,0.82);
+        }
+
+        /* external signals */
+
+        .signals-grid-section {
+            padding-top: 2rem;
+            padding-bottom: 8rem;
+        }
+
+        .signals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .signal-card {
+            background: var(--bg-card);
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            border-radius: 22px;
+
+            padding: 1.5rem;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .signal-card:hover {
+            transform: translateY(-4px);
+
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .signal-category {
+            color: var(--accent);
+
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+
+            margin-bottom: 1rem;
+        }
+
+        .signal-observation {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+
+            color: rgba(255,255,255,0.88);
+        }
+
+        .signal-footer {
+            display: flex;
+            justify-content: space-between;
+
+            color: rgba(255,255,255,0.38);
+
+            font-size: 0.82rem;
+        }
+
+        /* footer */
+
+        footer {
+            padding-top: 5rem;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+
+            text-align: center;
+        }
+
+        .footer-line {
+            font-family: "Fraunces", serif;
+
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+
+            color: rgba(255,255,255,0.72);
+
+            letter-spacing: -0.02em;
+        }
+
+        .footer-small {
+            margin-top: 1rem;
+
+            color: rgba(255,255,255,0.35);
+
+            font-size: 0.9rem;
+        }
+
+        /* responsive */
+
+        @media (max-width: 900px) {
+
+            .signals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .maze {
+                min-height: auto;
+
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            .maze-line {
+                display: none;
+            }
+
+            .signal-node {
+                position: relative !important;
+                width: 100%;
+                left: auto !important;
+                top: auto !important;
+            }
+
+            .topbar {
+                margin-bottom: 4rem;
+            }
+
+            .hero {
+                padding-bottom: 5rem;
+            }
+        }
+
+        /* floating stars */
+
+        .star {
+            position: fixed;
+
+            width: 2px;
+            height: 2px;
+
+            border-radius: 999px;
+
+            background: rgba(255,255,255,0.8);
+
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.15;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+
+            100% {
+                opacity: 0.15;
+                transform: scale(1);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="star" style="top:12%;left:18%;animation-delay:0s;"></div>
+    <div class="star" style="top:30%;left:82%;animation-delay:1s;"></div>
+    <div class="star" style="top:68%;left:20%;animation-delay:2s;"></div>
+    <div class="star" style="top:78%;left:72%;animation-delay:3s;"></div>
+    <div class="star" style="top:48%;left:58%;animation-delay:1.5s;"></div>
+
+    <main>
+
+        <header class="topbar">
+
+            <a href="index.html" class="brand">
+                OpenEdux
+            </a>
+
+            <nav class="nav">
+                <a href="https://openedux.substack.com" target="_blank">
+                    Writing
+                </a>
+
+                <a href="signals.html">
+                    Signals
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+            </nav>
+
+        </header>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <p class="hero-label">
+                Personal Signal Space
+            </p>
+
+            <h1 class="hero-title">
+                Still wandering through the maze of signals.
+            </h1>
+
+            <p class="hero-subtitle">
+                Observing fragments of AI, cognition, markets, biology,
+                infrastructure, energy, and modern life —
+                not to predict the future perfectly,
+                but to slowly understand where humanity may be heading.
+            </p>
+
+            <p class="hero-small">
+                Some paths are slow. Some paths are uncertain.
+                The map is still unfinished.
+            </p>
+
+        </section>
+
+        <!-- MAZE -->
+
+        <section class="maze-section">
+
+            <h2 class="section-heading">
+                The Maze
+            </h2>
+
+            <p class="section-text">
+                A long wandering through work, cognition, systems, pressure,
+                curiosity, uncertainty, and quiet hope.
+                Not every signal becomes truth.
+                Not every path leads somewhere meaningful.
+                But over time, patterns begin to emerge.
+            </p>
+
+            <div class="maze">
+
+                <!-- lines -->
+
+                <div class="maze-line"
+                     style="width:260px;top:90px;left:180px;transform:rotate(18deg);"></div>
+
+                <div class="maze-line"
+                     style="width:220px;top:260px;left:460px;transform:rotate(-12deg);"></div>
+
+                <div class="maze-line"
+                     style="width:280px;top:430px;left:260px;transform:rotate(16deg);"></div>
+
+                <div class="maze-line"
+                     style="width:200px;top:650px;left:620px;transform:rotate(-22deg);"></div>
+
+                <!-- nodes -->
+
+                <div class="signal-node bright"
+                     style="top:40px;left:40px;">
+
+                    <div class="node-time">
+                        Earlier
+                    </div>
+
+                    <div class="node-text">
+                        Not every path needs a destination.
+                    </div>
+
+                </div>
+
+                <div class="signal-node"
+                     style="top:160px;left:360px;">
+
+                    <div class="node-time">
+                        Observation
+                    </div>
+
+                    <div class="node-text">
+                        AI is beginning to reshape cognition itself.
+                    </div>
+
+                </div>
+
+                <div class="signal-node dim"
+                     style="top:320px;left:720px;">
+
+                    <div class="node-time">
+                        Late Night
+                    </div>
+
+                    <div class="node-text">
+                        Today felt heavy.
+                    </div>
+
+                </div>
+
+                <div class="signal-node bright"
+                     style="top:420px;left:220px;">
+
+                    <div class="node-time">
+                        Reflection
+                    </div>
+
+                    <div class="node-text">
+                        Maybe freedom is reclaimed time.
+                    </div>
+
+                </div>
+
+                <div class="signal-node"
+                     style="top:600px;left:520px;">
+
+                    <div class="node-time">
+                        Signal
+                    </div>
+
+                    <div class="node-text">
+                        Attention may become the most valuable currency.
+                    </div>
+
+                </div>
+
+                <div class="signal-node dim"
+                     style="top:760px;left:120px;">
+
+                    <div class="node-time">
+                        Ongoing
+                    </div>
+
+                    <div class="node-text">
+                        Still building slowly.
+                    </div>
+
+                </div>
+
+                <div class="signal-node bright"
+                     style="top:760px;left:760px;">
+
+                    <div class="node-time">
+                        Unknown
+                    </div>
+
+                    <div class="node-text">
+                        One day, digital souls may travel farther than bodies.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- EXTERNAL SIGNALS -->
+
+        <section class="signals-grid-section">
+
+            <h2 class="section-heading">
+                External Signals
+            </h2>
+
+            <p class="section-text">
+                Quiet observations from the changing world.
+            </p>
+
+            <div class="signals-grid">
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        AI
+                    </div>
+
+                    <div class="signal-observation">
+                        AI agents are beginning to replace workflow layers,
+                        not just isolated tasks.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>↑ Emerging</span>
+                    </div>
+
+                </div>
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        Energy
+                    </div>
+
+                    <div class="signal-observation">
+                        Data center expansion may reshape global energy priorities.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>↑ Structural</span>
+                    </div>
+
+                </div>
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        Space
+                    </div>
+
+                    <div class="signal-observation">
+                        Humanity still looks toward the stars
+                        while struggling to understand itself.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>∞ Long-term</span>
+                    </div>
+
+                </div>
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        Markets
+                    </div>
+
+                    <div class="signal-observation">
+                        Oil volatility remains deeply connected
+                        to geopolitics and infrastructure.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>→ Ongoing</span>
+                    </div>
+
+                </div>
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        Biology
+                    </div>
+
+                    <div class="signal-observation">
+                        Future medicine may become increasingly predictive
+                        instead of reactive.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>↑ Emerging</span>
+                    </div>
+
+                </div>
+
+                <div class="signal-card">
+
+                    <div class="signal-category">
+                        Cognition
+                    </div>
+
+                    <div class="signal-observation">
+                        The ability to think clearly may become
+                        a competitive advantage in the AI era.
+                    </div>
+
+                    <div class="signal-footer">
+                        <span>May 2026</span>
+                        <span>Core Signal</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+
+            <p class="footer-line">
+                Some signals only appear over time.
+            </p>
+
+            <p class="footer-small">
+                We are all moving through the maze.
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
