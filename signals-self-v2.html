@@ -178,70 +178,101 @@
 
             position: absolute;
 
-            max-width: 220px;
+            width: 8px;
+            height: 8px;
 
-            padding: 1rem 1.1rem;
+            border-radius: 999px;
 
-            background: rgba(255,255,255,0.03);
-
-            border: 1px solid rgba(255,255,255,0.04);
-
-            backdrop-filter: blur(12px);
-
-            border-radius: 18px;
-
-            color: var(--text);
-
-            line-height: 1.6;
-
-            font-size: 0.96rem;
+            background: rgba(200, 220, 245, 0.7);
 
             box-shadow:
-                0 0 0 1px rgba(255,255,255,0.02),
-                0 10px 40px rgba(0,0,0,0.18);
+                0 0 6px rgba(155, 183, 214, 0.5),
+                0 0 18px rgba(155, 183, 214, 0.2);
+
+            cursor: pointer;
 
             transition:
-                transform 0.4s ease,
-                border-color 0.3s ease,
+                transform 0.3s ease,
                 box-shadow 0.3s ease;
 
             animation: drift 8s ease-in-out infinite;
         }
 
-        .node-date {
-            display: block;
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
-            margin-top: 0.6rem;
+        .node::after {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 999px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .node:hover .node-date {
-            opacity: 1;
-        }
-
         .node:hover {
-
-            transform: translateY(-6px);
-
-            border-color: rgba(138, 164, 199, 0.3);
-
+            z-index: 10;
+            transform: translateY(-2px) scale(1.5);
             box-shadow:
-                0 0 24px rgba(138, 164, 199, 0.15);
-        }
-
-        .node.dim {
-            opacity: 0.55;
+                0 0 14px rgba(155, 183, 214, 0.8),
+                0 0 40px rgba(155, 183, 214, 0.35);
         }
 
         .node.bright {
+            background: rgba(220, 235, 255, 0.9);
+            box-shadow:
+                0 0 10px rgba(155, 183, 214, 0.7),
+                0 0 30px rgba(155, 183, 214, 0.3);
+        }
 
-            background: rgba(138, 164, 199, 0.06);
+        .node.dim {
+            background: rgba(200, 220, 245, 0.35);
+            box-shadow:
+                0 0 4px rgba(155, 183, 214, 0.25),
+                0 0 10px rgba(155, 183, 214, 0.1);
+        }
 
-            border-color: rgba(138, 164, 199, 0.12);
+        .node-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 220px;
+            padding: 0.9rem 1rem;
+            background: rgba(12, 20, 35, 0.95);
+            border: 1px solid rgba(155, 183, 214, 0.2);
+            border-radius: 14px;
+            backdrop-filter: blur(16px);
+            color: var(--text);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            text-align: left;
+            white-space: normal;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .node-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(155, 183, 214, 0.2);
+        }
+
+        .node-tooltip .tooltip-date {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .node:hover .node-tooltip {
+            opacity: 1;
         }
 
         @keyframes drift {
@@ -371,63 +402,94 @@
 
     <section class="maze">
 
-        <div class="line" style="top:180px; left:220px; width:180px; transform:rotate(12deg);"></div>
-        <div class="line" style="top:420px; left:540px; width:150px; transform:rotate(-18deg);"></div>
-        <div class="line" style="top:760px; left:320px; width:220px; transform:rotate(8deg);"></div>
+        <div class="line" style="top:5%; left:8%; width:140px; transform:rotate(25deg);"></div>
+        <div class="line" style="top:8%; left:58%; width:160px; transform:rotate(-10deg);"></div>
+        <div class="line" style="top:15%; left:6%; width:200px; transform:rotate(15deg);"></div>
+        <div class="line" style="top:22%; left:55%; width:120px; transform:rotate(-20deg);"></div>
+        <div class="line" style="top:30%; left:5%; width:180px; transform:rotate(8deg);"></div>
+        <div class="line" style="top:48%; left:30%; width:250px; transform:rotate(-12deg);"></div>
+        <div class="line" style="top:58%; left:22%; width:200px; transform:rotate(18deg);"></div>
+        <div class="line" style="top:68%; left:50%; width:160px; transform:rotate(-15deg);"></div>
+        <div class="line" style="top:78%; left:35%; width:220px; transform:rotate(10deg);"></div>
+        <div class="line" style="top:88%; left:70%; width:140px; transform:rotate(-8deg);"></div>
 
-        <div class="node bright" style="top:10px; left:2%; max-width:260px;">
-            Had a really good nap today. A productive day overall. Faced some provocation this morning, but stayed composed.
-            <span class="node-date">May 20, 2026</span>
+        <!-- May 2026 -->
+        <div class="node bright" style="top:5%; left:6%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Had a really good nap today. A productive day overall. Faced some provocation this morning, but stayed composed.
+            </div>
         </div>
 
-        <div class="node bright" style="top:10px; left:62%;">
-            Brief signal from a distant star. Still bright.
-            <span class="node-date">May 20, 2026</span>
+        <div class="node bright" style="top:8%; left:55%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Brief signal from a distant star. Still bright.
+            </div>
         </div>
 
-        <div class="node bright" style="top:150px; left:2%; max-width:280px;">
-            Discussed the root causes of procrastination with DS and some coping strategies. Also, quitting alcohol for three months.
-            <span class="node-date">May 20, 2026</span>
+        <div class="node bright" style="top:18%; left:4%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Discussed the root causes of procrastination with DS and some coping strategies. Also, quitting alcohol for three months.
+            </div>
         </div>
 
-        <div class="node bright" style="top:130px; left:58%;">
-            Finished a new essay today. Happy 520.
-            <span class="node-date">May 20, 2026</span>
+        <div class="node bright" style="top:16%; left:60%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Finished a new essay today. Happy 520.
+            </div>
         </div>
 
-        <div class="node bright" style="top:290px; left:3%;">
-            Had quite a bit to drink last night, so feeling pretty drained today.
-            <span class="node-date">May 19, 2026</span>
+        <div class="node bright" style="top:28%; left:7%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 19, 2026</span>
+                Had quite a bit to drink last night, so feeling pretty drained today.
+            </div>
         </div>
 
-        <div class="node dim" style="top:220px; left:420px;">
-            Made significant progress on a major project today, and gave a wide-ranging presentation to the team.
-            <span class="node-date">May 9, 2026</span>
+        <div class="node dim" style="top:35%; left:30%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 9, 2026</span>
+                Made significant progress on a major project today, and gave a wide-ranging presentation to the team.
+            </div>
         </div>
 
-        <div class="node" style="top:430px; left:720px;">
-            AI changes cognition itself.
-            <span class="node-date">Nov 2025</span>
+        <div class="node bright" style="top:25%; left:70%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 1, 2026</span>
+                A digital soul came to life.
+            </div>
         </div>
 
-        <div class="node bright" style="top:600px; left:180px;">
-            Maybe freedom is reclaimed time.
-            <span class="node-date">Jan 2026</span>
+        <!-- Older signals -->
+        <div class="node" style="top:50%; left:15%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Jan 2026</span>
+                Maybe freedom is reclaimed time.
+            </div>
         </div>
 
-        <div class="node dim" style="top:760px; left:560px;">
-            Signals everywhere.
-            <span class="node-date">Mar 2026</span>
+        <div class="node dim" style="top:60%; left:45%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Mar 2026</span>
+                Signals everywhere.
+            </div>
         </div>
 
-        <div class="node" style="top:940px; left:280px;">
-            The map is unfinished.
-            <span class="node-date">Apr 2026</span>
+        <div class="node" style="top:72%; left:25%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Nov 2025</span>
+                AI changes cognition itself.
+            </div>
         </div>
 
-        <div class="node bright" style="top:1050px; left:760px;">
-            A digital soul came to life.
-            <span class="node-date">May 1, 2026</span>
+        <div class="node dim" style="top:82%; left:68%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Apr 2026</span>
+                The map is unfinished.
+            </div>
         </div>
 
     </section>
