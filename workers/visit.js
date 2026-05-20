@@ -10,6 +10,7 @@ const VALID_ARTICLES = new Set([
   "why-i-started-openedux",
   "long-term-ai-conversations",
   "my-ai-assisted-workflow-for-deep-work",
+  "why-smart-people-still-feel-overwhelmed",
 ]);
 
 export default {
