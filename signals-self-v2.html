@@ -195,7 +195,21 @@
                 transform 0.3s ease,
                 box-shadow 0.3s ease;
 
-            animation: drift 8s ease-in-out infinite;
+            animation:
+                drift var(--drift-dur, 8s) ease-in-out infinite,
+                twinkle var(--twinkle-dur, 3s) ease-in-out infinite;
+            animation-delay:
+                0s,
+                var(--twinkle-delay, 0s);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(155, 183, 214, 0.3), 0 0 12px rgba(155, 183, 214, 0.1); }
+            20% { opacity: 1; box-shadow: 0 0 10px rgba(155, 183, 214, 0.7), 0 0 30px rgba(155, 183, 214, 0.3); }
+            35% { opacity: 0.6; box-shadow: 0 0 5px rgba(155, 183, 214, 0.4), 0 0 16px rgba(155, 183, 214, 0.15); }
+            55% { opacity: 0.95; box-shadow: 0 0 8px rgba(155, 183, 214, 0.6), 0 0 24px rgba(155, 183, 214, 0.25); }
+            75% { opacity: 0.4; box-shadow: 0 0 3px rgba(155, 183, 214, 0.2), 0 0 8px rgba(155, 183, 214, 0.08); }
+            90% { opacity: 0.85; box-shadow: 0 0 7px rgba(155, 183, 214, 0.5), 0 0 20px rgba(155, 183, 214, 0.2); }
         }
 
         .node::after {
@@ -526,9 +540,10 @@
     var canvas = document.getElementById('constellation-canvas');
     if (!canvas) return;
 
+    var maze = document.querySelector('.maze');
+    var nodes = maze.querySelectorAll('.node');
+
     function draw() {
-        var maze = document.querySelector('.maze');
-        var nodes = maze.querySelectorAll('.node');
         var rect = maze.getBoundingClientRect();
         var dpr = window.devicePixelRatio || 1;
 
@@ -569,6 +584,13 @@
             }
         }
     }
+
+    // Random twinkle parameters per node
+    nodes.forEach(function(node) {
+        node.style.setProperty('--twinkle-dur', (2 + Math.random() * 4).toFixed(1) + 's');
+        node.style.setProperty('--twinkle-delay', (Math.random() * 3).toFixed(1) + 's');
+        node.style.setProperty('--drift-dur', (6 + Math.random() * 10).toFixed(1) + 's');
+    });
 
     draw();
     window.addEventListener('resize', draw);
