@@ -107,72 +107,67 @@
 
         .node {
             position: absolute;
-            width: 8px; height: 8px; border-radius: 999px;
-            background: rgba(190, 215, 240, 0.7);
+            width: calc(4px + 6px * var(--dp, 0.5));
+            height: calc(4px + 6px * var(--dp, 0.5));
+            border-radius: 999px;
+            background: rgba(190, 215, 240, calc(0.3 + 0.7 * var(--dp, 0.5)));
             box-shadow:
-                0 0 6px rgba(155, 185, 220, 0.5),
-                0 0 18px rgba(155, 185, 220, 0.2);
+                0 0 calc(4px + 8px * var(--dp, 0.5)) rgba(155, 185, 220, calc(0.3 + 0.5 * var(--dp, 0.5))),
+                0 0 calc(12px + 24px * var(--dp, 0.5)) rgba(155, 185, 220, calc(0.1 + 0.25 * var(--dp, 0.5)));
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation:
-                drift var(--drift-dur, 8s) ease-in-out infinite,
-                twinkle var(--twinkle-dur, 3s) ease-in-out infinite;
-            animation-delay: 0s, var(--twinkle-delay, 0s);
+            animation: drift calc(12s + 8s * (1 - var(--dp, 0.5))) ease-in-out infinite;
+            animation-delay: calc(-1s * var(--dp, 0.5) * 6);
+            opacity: 0;
+            animation-name: drift, fadeStaggerIn;
+            animation-duration: calc(12s + 8s * (1 - var(--dp, 0.5))), 0.8s;
+            animation-delay: calc(-1s * var(--dp, 0.5) * 6), var(--fade-delay, 0s);
+            animation-fill-mode: none, forwards;
+            animation-timing-function: ease-in-out, ease-out;
+        }
+
+        .node.dead {
+            --dp: 0.08;
+            cursor: default;
+            pointer-events: none;
+            animation: drift 25s ease-in-out infinite, fadeStaggerIn 0.8s ease-out forwards;
+            animation-delay: calc(-1s * 0.08 * 6), var(--fade-delay, 0s);
+            animation-fill-mode: none, forwards;
         }
 
         .node:hover {
             z-index: 10;
-            transform: translateY(-2px) scale(1.5);
+            transform: translateY(-2px) scale(1.6);
             box-shadow:
-                0 0 14px rgba(155, 185, 220, 0.8),
-                0 0 40px rgba(155, 185, 220, 0.35);
+                0 0 calc(12px + 16px * var(--dp, 0.5)) rgba(155, 185, 220, 0.9),
+                0 0 calc(30px + 40px * var(--dp, 0.5)) rgba(155, 185, 220, 0.45);
         }
 
         .node::before {
             content: "";
-            position: absolute; inset: -8px; border-radius: 999px;
+            position: absolute;
+            inset: calc(-6px - 4px * var(--dp, 0.5));
+            border-radius: 999px;
             border: 1px solid rgba(155, 185, 220, 0.3);
-            opacity: 0; transform: scale(0.6);
+            opacity: 0;
+            transform: scale(0.6);
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .node:hover::before { opacity: 1; transform: scale(1); }
 
-        .node.bright {
-            background: rgba(210, 230, 250, 0.9);
-            box-shadow: 0 0 10px rgba(180, 210, 250, 0.7), 0 0 30px rgba(180, 210, 250, 0.3);
-        }
-
-        .node.dim {
-            background: rgba(190, 215, 240, 0.5);
-            box-shadow: 0 0 5px rgba(155, 185, 220, 0.35), 0 0 14px rgba(155, 185, 220, 0.15);
-        }
-
-        /* Dead nodes — walls in the maze, no interaction */
-        .node.dead {
-            background: rgba(190, 215, 240, 0.12);
-            box-shadow: 0 0 2px rgba(155, 185, 220, 0.1);
-            cursor: default;
-            pointer-events: none;
-            animation: drift 20s ease-in-out infinite;
-        }
-
         .node.dead:hover { transform: none; box-shadow: none; }
         .node.dead::before { display: none; }
         .node.dead .node-tooltip { display: none; }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(155, 185, 220, 0.3), 0 0 12px rgba(155, 185, 220, 0.1); }
-            20% { opacity: 1; box-shadow: 0 0 10px rgba(155, 185, 220, 0.7), 0 0 30px rgba(155, 185, 220, 0.3); }
-            35% { opacity: 0.6; box-shadow: 0 0 5px rgba(155, 185, 220, 0.4), 0 0 16px rgba(155, 185, 220, 0.15); }
-            55% { opacity: 0.95; box-shadow: 0 0 8px rgba(155, 185, 220, 0.6), 0 0 24px rgba(155, 185, 220, 0.25); }
-            75% { opacity: 0.4; box-shadow: 0 0 3px rgba(155, 185, 220, 0.2), 0 0 8px rgba(155, 185, 220, 0.08); }
-            90% { opacity: 0.85; box-shadow: 0 0 7px rgba(155, 185, 220, 0.5), 0 0 20px rgba(155, 185, 220, 0.2); }
+        @keyframes fadeStaggerIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes drift {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(calc(-4px - 6px * var(--dp, 0.5))); }
             100% { transform: translateY(0px); }
         }
 
@@ -400,11 +395,34 @@
     var canvas = document.getElementById('constellation-canvas');
     if (!canvas) return;
 
-    // Random twinkle per node
-    nodes.forEach(function(node) {
-        node.style.setProperty('--twinkle-dur', (2 + Math.random() * 4).toFixed(1) + 's');
-        node.style.setProperty('--twinkle-delay', (Math.random() * 3).toFixed(1) + 's');
-        node.style.setProperty('--drift-dur', (6 + Math.random() * 10).toFixed(1) + 's');
+    // Depth: computed from date — newer = closer to surface = higher --dp
+    // Date mapping: May 2026=0.95, Apr 2026=0.75, Mar 2026=0.6, Jan 2026=0.45, Nov 2025=0.25
+    var dateDepths = {
+        'May 20, 2026': 0.95, 'May 19, 2026': 0.85, 'May 9, 2026': 0.7,
+        'May 1, 2026': 0.55, 'Jan 2026': 0.4, 'Mar 2026': 0.3,
+        'Nov 2025': 0.2, 'Apr 2026': 0.15
+    };
+
+    var allNodes = maze.querySelectorAll('.node');
+    var fadeOrder = 0;
+    allNodes.forEach(function(node) {
+        // Find date in tooltip
+        var dateEl = node.querySelector('.tooltip-date');
+        var date = dateEl ? dateEl.textContent.trim() : '';
+        var dp = dateDepths[date] || 0.5;
+        node.style.setProperty('--dp', dp.toFixed(2));
+
+        // Staggered fade-in: live nodes first, then dead nodes
+        if (!node.classList.contains('dead')) {
+            node.style.setProperty('--fade-delay', ((0.3 + fadeOrder * 0.15)).toFixed(2) + 's');
+            fadeOrder++;
+        }
+    });
+
+    // Dead nodes fade in last, all at once
+    var deadNodes = maze.querySelectorAll('.node.dead');
+    deadNodes.forEach(function(node) {
+        node.style.setProperty('--fade-delay', '2.2s');
     });
 
     function draw() {
