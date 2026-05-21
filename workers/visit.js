@@ -11,6 +11,7 @@ const VALID_ARTICLES = new Set([
   "long-term-ai-conversations",
   "my-ai-assisted-workflow-for-deep-work",
   "why-smart-people-still-feel-overwhelmed",
+  "why-you-keep-forgetting-your-new-year-wishes",
 ]);
 
 export default {
