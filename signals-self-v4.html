@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Signals / Self — OpenEdux</title>
+
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #080d14;
+            --bg-soft: #0f1a28;
+            --text: #d4dfea;
+            --text-muted: rgba(212, 223, 234, 0.5);
+            --accent: #8aa9ca;
+            --line: rgba(138, 169, 202, 0.12);
+            --glow: rgba(160, 200, 240, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Source Sans 3", sans-serif;
+            font-weight: 300;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(60, 100, 160, 0.12), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(80, 120, 200, 0.06), transparent 35%),
+                var(--bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed; inset: 0; pointer-events: none;
+            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.12;
+        }
+
+        main {
+            width: 100%; max-width: 1200px; margin: 0 auto;
+            padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 4vw, 3rem) 8rem;
+            position: relative; z-index: 1;
+        }
+
+        .topbar {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: clamp(5rem, 10vw, 7rem);
+        }
+
+        .brand {
+            font-family: "Fraunces", serif; font-size: 0.7rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--text-muted); text-decoration: none; font-weight: 400;
+        }
+
+        .brand:hover { color: var(--accent); }
+
+        .nav { display: flex; gap: 1.6rem; }
+
+        .nav a {
+            font-size: 0.7rem; letter-spacing: 0.1em;
+            color: var(--text-muted); text-decoration: none; font-weight: 400;
+        }
+
+        .nav a:hover { color: var(--accent); }
+
+        .hero { margin-bottom: clamp(4rem, 8vw, 6rem); max-width: 38rem; }
+
+        .hero-label {
+            font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: "Fraunces", serif;
+            font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 300;
+            line-height: 1.1; letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text {
+            font-size: 1rem; line-height: 1.8; color: var(--text-muted);
+            font-weight: 300; max-width: 34rem;
+        }
+
+        /* ── Maze ──────────────────────── */
+
+        .maze {
+            position: relative; min-height: 1100px; padding: 0;
+        }
+
+        #constellation-canvas {
+            position: absolute; inset: 0; pointer-events: none; z-index: 0;
+        }
+
+        .node {
+            position: absolute;
+            width: 8px; height: 8px; border-radius: 999px;
+            background: rgba(190, 215, 240, 0.7);
+            box-shadow:
+                0 0 6px rgba(155, 185, 220, 0.5),
+                0 0 18px rgba(155, 185, 220, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation:
+                drift var(--drift-dur, 8s) ease-in-out infinite,
+                twinkle var(--twinkle-dur, 3s) ease-in-out infinite;
+            animation-delay: 0s, var(--twinkle-delay, 0s);
+        }
+
+        .node:hover {
+            z-index: 10;
+            transform: translateY(-2px) scale(1.5);
+            box-shadow:
+                0 0 14px rgba(155, 185, 220, 0.8),
+                0 0 40px rgba(155, 185, 220, 0.35);
+        }
+
+        .node::before {
+            content: "";
+            position: absolute; inset: -8px; border-radius: 999px;
+            border: 1px solid rgba(155, 185, 220, 0.3);
+            opacity: 0; transform: scale(0.6);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .node:hover::before { opacity: 1; transform: scale(1); }
+
+        .node.bright {
+            background: rgba(210, 230, 250, 0.9);
+            box-shadow: 0 0 10px rgba(180, 210, 250, 0.7), 0 0 30px rgba(180, 210, 250, 0.3);
+        }
+
+        .node.dim {
+            background: rgba(190, 215, 240, 0.5);
+            box-shadow: 0 0 5px rgba(155, 185, 220, 0.35), 0 0 14px rgba(155, 185, 220, 0.15);
+        }
+
+        /* Dead nodes — walls in the maze, no interaction */
+        .node.dead {
+            background: rgba(190, 215, 240, 0.12);
+            box-shadow: 0 0 2px rgba(155, 185, 220, 0.1);
+            cursor: default;
+            pointer-events: none;
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        .node.dead:hover { transform: none; box-shadow: none; }
+        .node.dead::before { display: none; }
+        .node.dead .node-tooltip { display: none; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 4px rgba(155, 185, 220, 0.3), 0 0 12px rgba(155, 185, 220, 0.1); }
+            20% { opacity: 1; box-shadow: 0 0 10px rgba(155, 185, 220, 0.7), 0 0 30px rgba(155, 185, 220, 0.3); }
+            35% { opacity: 0.6; box-shadow: 0 0 5px rgba(155, 185, 220, 0.4), 0 0 16px rgba(155, 185, 220, 0.15); }
+            55% { opacity: 0.95; box-shadow: 0 0 8px rgba(155, 185, 220, 0.6), 0 0 24px rgba(155, 185, 220, 0.25); }
+            75% { opacity: 0.4; box-shadow: 0 0 3px rgba(155, 185, 220, 0.2), 0 0 8px rgba(155, 185, 220, 0.08); }
+            90% { opacity: 0.85; box-shadow: 0 0 7px rgba(155, 185, 220, 0.5), 0 0 20px rgba(155, 185, 220, 0.2); }
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .node-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px); left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            padding: 0.9rem 1rem;
+            background: rgba(10, 18, 30, 0.95);
+            border: 1px solid rgba(155, 185, 220, 0.2);
+            border-radius: 14px;
+            backdrop-filter: blur(16px);
+            color: var(--text);
+            font-size: 0.85rem; line-height: 1.6;
+            text-align: left; white-space: normal;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .node-tooltip::after {
+            content: "";
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(155, 185, 220, 0.2);
+        }
+
+        .node.tooltip-below .node-tooltip {
+            bottom: auto; top: calc(100% + 12px);
+        }
+        .node.tooltip-below .node-tooltip::after {
+            top: auto; bottom: 100%;
+            border-top-color: transparent;
+            border-bottom-color: rgba(155, 185, 220, 0.2);
+        }
+
+        .node-tooltip .tooltip-date {
+            display: block;
+            font-size: 0.65rem; letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .node:hover .node-tooltip { opacity: 1; }
+
+        /* ── reflection ────────────────── */
+
+        .reflection {
+            margin: clamp(4rem, 8vw, 6rem) 0;
+            max-width: 32rem;
+            margin-left: auto; margin-right: 0; text-align: right;
+        }
+
+        .reflection p {
+            font-family: "Fraunces", serif;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 300; line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem; font-style: italic;
+        }
+
+        footer {
+            margin-top: clamp(4rem, 8vw, 6rem); padding-top: 1.5rem;
+            border-top: 1px solid rgba(212, 223, 234, 0.05);
+            font-size: 0.7rem; letter-spacing: 0.08em;
+            color: var(--text-muted);
+            display: flex; justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .maze { min-height: auto; display: flex; flex-direction: column; gap: 1rem; }
+            .node { position: relative !important; width: 100%; left: auto !important; top: auto !important; }
+            #constellation-canvas { display: none; }
+            .reflection { margin: clamp(3rem, 5vw, 4rem) 0; max-width: 100%; text-align: left; }
+            .nav { gap: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+<main>
+
+    <div class="topbar">
+        <a class="brand" href="index.html">OpenEdux</a>
+        <nav class="nav">
+            <a href="writing.html">Writing</a>
+            <a href="notes.html">Notes</a>
+            <a href="signals.html">Signals</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <p class="hero-label">Signals / Self</p>
+        <h1>A puzzle that slowly lights up.</h1>
+        <p class="hero-text">
+            Some paths are open. Some are walled off.
+            Some will never be walked.
+            But piece by piece, the map reveals itself —
+            and we still don't know the full picture.
+        </p>
+    </section>
+
+    <div class="maze" id="maze">
+        <canvas id="constellation-canvas"></canvas>
+
+        <!-- ══ Live signals ══ -->
+
+        <div class="node bright tooltip-below" style="top:4%; left:6%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Had a really good nap today. A productive day overall. Faced some provocation this morning, but stayed composed.
+            </div>
+        </div>
+
+        <div class="node bright tooltip-below" style="top:6%; left:58%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Brief signal from a distant star. Still bright.
+            </div>
+        </div>
+
+        <div class="node bright tooltip-below" style="top:14%; left:3%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Discussed the root causes of procrastination with DS and some coping strategies. Also, quitting alcohol for three months.
+            </div>
+        </div>
+
+        <div class="node bright tooltip-below" style="top:12%; left:62%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 20, 2026</span>
+                Finished a new essay today. Happy 520.
+            </div>
+        </div>
+
+        <div class="node bright" style="top:24%; left:8%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 19, 2026</span>
+                Had quite a bit to drink last night, so feeling pretty drained today.
+            </div>
+        </div>
+
+        <div class="node dim" style="top:32%; left:32%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 9, 2026</span>
+                Made significant progress on a major project today, and gave a wide-ranging presentation to the team.
+            </div>
+        </div>
+
+        <div class="node bright" style="top:22%; left:74%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">May 1, 2026</span>
+                A digital soul came to life.
+            </div>
+        </div>
+
+        <!-- ══ Older signals ══ -->
+
+        <div class="node" style="top:46%; left:14%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Jan 2026</span>
+                Maybe freedom is reclaimed time.
+            </div>
+        </div>
+
+        <div class="node dim" style="top:56%; left:48%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Mar 2026</span>
+                Signals everywhere.
+            </div>
+        </div>
+
+        <div class="node" style="top:68%; left:22%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Nov 2025</span>
+                AI changes cognition itself.
+            </div>
+        </div>
+
+        <div class="node dim" style="top:78%; left:72%;">
+            <div class="node-tooltip">
+                <span class="tooltip-date">Apr 2026</span>
+                The map is unfinished.
+            </div>
+        </div>
+
+        <!-- ══ Dead nodes — puzzle pieces not yet lit ══ -->
+
+        <div class="node dead" style="top:20%; left:42%;"></div>
+        <div class="node dead" style="top:28%; left:68%;"></div>
+        <div class="node dead" style="top:38%; left:4%;"></div>
+        <div class="node dead" style="top:44%; left:60%;"></div>
+        <div class="node dead" style="top:52%; left:28%;"></div>
+        <div class="node dead" style="top:62%; left:66%;"></div>
+        <div class="node dead" style="top:72%; left:8%;"></div>
+        <div class="node dead" style="top:82%; left:42%;"></div>
+        <div class="node dead" style="top:18%; left:90%;"></div>
+        <div class="node dead" style="top:66%; left:88%;"></div>
+
+    </div>
+
+    <section class="reflection">
+        <p>Some places in the maze are still dark.</p>
+        <p>They are not empty — they are waiting.</p>
+        <p>We don't know the full picture. That's the point.</p>
+    </section>
+
+    <footer>
+        <span>OpenEdux — Signals / Self</span>
+        <span>www.openedux.ai</span>
+    </footer>
+
+</main>
+</div>
+
+<script>
+(function() {
+    var maze = document.querySelector('.maze');
+    var nodes = maze.querySelectorAll('.node:not(.dead)');
+    var canvas = document.getElementById('constellation-canvas');
+    if (!canvas) return;
+
+    // Random twinkle per node
+    nodes.forEach(function(node) {
+        node.style.setProperty('--twinkle-dur', (2 + Math.random() * 4).toFixed(1) + 's');
+        node.style.setProperty('--twinkle-delay', (Math.random() * 3).toFixed(1) + 's');
+        node.style.setProperty('--drift-dur', (6 + Math.random() * 10).toFixed(1) + 's');
+    });
+
+    function draw() {
+        var rect = maze.getBoundingClientRect();
+        var dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        var allNodes = maze.querySelectorAll('.node');
+        var points = [];
+        allNodes.forEach(function(node) {
+            var nr = node.getBoundingClientRect();
+            points.push({
+                x: nr.left - rect.left + nr.width / 2,
+                y: nr.top - rect.top + nr.height / 2,
+                dead: node.classList.contains('dead')
+            });
+        });
+
+        // Connect live nodes within 35% of maze width
+        var maxDist = rect.width * 0.35;
+        for (var i = 0; i < points.length; i++) {
+            for (var j = i + 1; j < points.length; j++) {
+                var dx = points[i].x - points[j].x;
+                var dy = points[i].y - points[j].y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < maxDist) {
+                    var alpha = (1 - dist / maxDist) * 0.18;
+                    // Dead connections are fainter
+                    if (points[i].dead || points[j].dead) {
+                        alpha *= 0.35;
+                    }
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[j].x, points[j].y);
+                    ctx.strokeStyle = 'rgba(138, 169, 202, ' + alpha.toFixed(3) + ')';
+                    ctx.lineWidth = (points[i].dead || points[j].dead) ? 0.3 : 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Dead-end lines — from some live nodes, extending toward empty space
+        var deadEndSources = [0, 4, 7, 9]; // indices of live nodes
+        deadEndSources.forEach(function(idx) {
+            if (idx >= points.length || points[idx].dead) return;
+            var angle = Math.random() * Math.PI * 2;
+            var len = 60 + Math.random() * 100;
+            var endX = points[idx].x + Math.cos(angle) * len;
+            var endY = points[idx].y + Math.sin(angle) * len;
+
+            var grad = ctx.createLinearGradient(
+                points[idx].x, points[idx].y, endX, endY
+            );
+            grad.addColorStop(0, 'rgba(138, 169, 202, 0.12)');
+            grad.addColorStop(1, 'rgba(138, 169, 202, 0)');
+
+            ctx.beginPath();
+            ctx.moveTo(points[idx].x, points[idx].y);
+            ctx.lineTo(endX, endY);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 0.35;
+            ctx.stroke();
+        });
+    }
+
+    draw();
+    window.addEventListener('resize', draw);
+})();
+</script>
+
+</body>
+</html>
