@@ -120,8 +120,8 @@
             animation-delay: calc(-1s * var(--dp, 0.5) * 6);
             opacity: 0;
             animation-name: drift, fadeStaggerIn;
-            animation-duration: calc(12s + 8s * (1 - var(--dp, 0.5))), 0.8s;
-            animation-delay: calc(-1s * var(--dp, 0.5) * 6), var(--fade-delay, 0s);
+            animation-duration: calc(15s + 10s * (1 - var(--dp, 0.5))), 1.5s;
+            animation-delay: calc(-1s * var(--dp, 0.5) * 8), var(--fade-delay, 0s);
             animation-fill-mode: none, forwards;
             animation-timing-function: ease-in-out, ease-out;
         }
@@ -130,8 +130,8 @@
             --dp: 0.08;
             cursor: default;
             pointer-events: none;
-            animation: drift 25s ease-in-out infinite, fadeStaggerIn 0.8s ease-out forwards;
-            animation-delay: calc(-1s * 0.08 * 6), var(--fade-delay, 0s);
+            animation: drift 30s ease-in-out infinite, fadeStaggerIn 1.5s ease-out forwards;
+            animation-delay: calc(-1s * 0.08 * 8), var(--fade-delay, 0s);
             animation-fill-mode: none, forwards;
         }
 
@@ -412,9 +412,9 @@
         var dp = dateDepths[date] || 0.5;
         node.style.setProperty('--dp', dp.toFixed(2));
 
-        // Staggered fade-in: live nodes first, then dead nodes
+        // Staggered fade-in: slowly, like real stars at dusk
         if (!node.classList.contains('dead')) {
-            node.style.setProperty('--fade-delay', ((0.3 + fadeOrder * 0.15)).toFixed(2) + 's');
+            node.style.setProperty('--fade-delay', ((0.8 + fadeOrder * 0.5)).toFixed(2) + 's');
             fadeOrder++;
         }
     });
@@ -422,7 +422,7 @@
     // Dead nodes fade in last, all at once
     var deadNodes = maze.querySelectorAll('.node.dead');
     deadNodes.forEach(function(node) {
-        node.style.setProperty('--fade-delay', '2.2s');
+        node.style.setProperty('--fade-delay', '7s');
     });
 
     function draw() {
