@@ -428,55 +428,6 @@
             white-space: nowrap;
             border: 0;
         }
-
-        .learning-theories {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(1.5rem, 3vw, 2rem);
-            margin-top: clamp(1.75rem, 4vw, 2.5rem);
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .learning-theories {
-                flex-direction: row;
-                gap: clamp(1.5rem, 3vw, 2.5rem);
-            }
-        }
-
-        .theory-card {
-            background: var(--bg-mid);
-            padding: clamp(1.5rem, 3.5vw, 2.25rem);
-            border-radius: 1.25rem;
-            box-shadow:
-                0 0.08em 0.35em rgba(42, 38, 34, 0.05),
-                0 0 0 1px rgba(42, 38, 34, 0.03);
-            text-align: left;
-            flex: 1;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .theory-card {
-                box-shadow:
-                    0 0.08em 0.4em rgba(0, 0, 0, 0.25),
-                    0 0 0 1px rgba(242, 236, 228, 0.06);
-            }
-        }
-
-        .theory-title {
-            font-family: "Fraunces", Georgia, "Times New Roman", serif;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .theory-description {
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            line-height: 1.6;
-            color: var(--text);
-        }
     </style>
 </head>
 <body>
