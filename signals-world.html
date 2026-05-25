@@ -165,6 +165,18 @@
             50% { opacity: 0.5; }
         }
 
+        /* === ECG Wave Canvas === */
+        #ecg-canvas {
+            position: absolute;
+            top: calc(5rem + 10px);
+            left: 2%;
+            width: 96%;
+            height: 30px;
+            pointer-events: none;
+            z-index: 1;
+            transform: translateY(-15px);
+        }
+
         .timeline-nodes {
             display: flex;
             justify-content: space-between;
@@ -374,6 +386,7 @@
 
     <div class="timeline-container">
         <div class="timeline-line"></div>
+        <canvas id="ecg-canvas"></canvas>
         <div class="timeline-nodes">
             <!-- 2022 -->
             <div class="node-wrapper">
@@ -452,5 +465,133 @@
 
     <footer>OpenEdux — World Signal</footer>
 </main>
+
+<script>
+(function() {
+    var canvas = document.getElementById('ecg-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var startTime = Date.now();
+
+    function draw() {
+        var dpr = window.devicePixelRatio || 1;
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var w = rect.width * 0.96;
+        var h = 30;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        ctx.clearRect(0, 0, w, h);
+
+        var elapsed = (Date.now() - startTime) / 1000;
+        var speed = 0.3;
+        var phase = elapsed * speed;
+
+        // Draw ECG waveform
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(138, 164, 199, 0.2)';
+        ctx.lineWidth = 0.8;
+
+        var step = 2;
+        var midY = h / 2;
+
+        for (var x = 0; x < w; x += step) {
+            var normalizedX = (x / w + phase) % 1;
+            var y = midY;
+
+            // Flat baseline
+            y = midY;
+
+            // ECG spike pattern: sharp up-down at specific positions
+            var spikePos1 = 0.18;
+            var spikePos2 = 0.48;
+            var spikePos3 = 0.78;
+
+            var spikeWidth = 0.03;
+
+            var checkSpike = function(spikePos) {
+                var dist = Math.abs(normalizedX - spikePos);
+                if (dist < spikeWidth) {
+                    var t = dist / spikeWidth;
+                    if (t < 0.15) {
+                        // Small P-wave
+                        y = midY - (1 - t / 0.15) * 5;
+                    } else if (t < 0.3) {
+                        // Sharp QRS complex up
+                        y = midY - 10 * Math.sin((t - 0.15) / 0.15 * Math.PI);
+                    } else if (t < 0.45) {
+                        y = midY + 4 * Math.sin((t - 0.3) / 0.15 * Math.PI);
+                    } else if (t < 0.65) {
+                        y = midY - 3 * Math.sin((t - 0.45) / 0.2 * Math.PI);
+                    } else {
+                        y = midY;
+                    }
+                }
+            };
+
+            checkSpike(spikePos1);
+            checkSpike(spikePos2);
+            checkSpike(spikePos3);
+
+            if (x === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+
+        ctx.stroke();
+
+        // Brighter glow line overlay
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(160, 200, 240, 0.15)';
+        ctx.lineWidth = 1.5;
+        ctx.shadowColor = 'rgba(138, 164, 199, 0.3)';
+        ctx.shadowBlur = 6;
+
+        for (var x = 0; x < w; x += step) {
+            var normalizedX = (x / w + phase) % 1;
+            var y = midY;
+            var spikePos1 = 0.18, spikePos2 = 0.48, spikePos3 = 0.78;
+            var spikeWidth = 0.03;
+
+            var inSpike = false;
+            [spikePos1, spikePos2, spikePos3].forEach(function(sp) {
+                var dist = Math.abs(normalizedX - sp);
+                if (dist < spikeWidth * 2) inSpike = true;
+            });
+
+            if (inSpike) {
+                var sp = [spikePos1, spikePos2, spikePos3].reduce(function(a, b) {
+                    return Math.abs(normalizedX - a) < Math.abs(normalizedX - b) ? a : b;
+                });
+                var dist = Math.abs(normalizedX - sp);
+                var t = dist / spikeWidth;
+                if (t < 0.15) y = midY - (1 - t / 0.15) * 5;
+                else if (t < 0.3) y = midY - 10 * Math.sin((t - 0.15) / 0.15 * Math.PI);
+                else if (t < 0.45) y = midY + 4 * Math.sin((t - 0.3) / 0.15 * Math.PI);
+                else if (t < 0.65) y = midY - 3 * Math.sin((t - 0.45) / 0.2 * Math.PI);
+                else y = midY;
+            } else {
+                y = midY;
+            }
+
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+    window.addEventListener('resize', function() {});
+})();
+</script>
 </body>
 </html>
