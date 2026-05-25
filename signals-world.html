@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Signal — OpenEdux</title>
+    <meta name="description" content="A living horizontal timeline tracking how AI transforms the structure of reality.">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+    <meta property="og:title" content="World Signal — AI Timeline">
+    <meta property="og:description" content="A living horizontal timeline tracking how AI transforms the structure of reality.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0F14;
+            --line: rgba(138, 164, 199, 0.25);
+            --glow: rgba(138, 164, 199, 0.35);
+            --text: #c8d6e5;
+            --text-dim: rgba(200, 214, 229, 0.45);
+            --accent: #7aa2d4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Source Sans 3", sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 30%, rgba(30,50,80,0.6), transparent 70%),
+                radial-gradient(ellipse 40% 50% at 80% 60%, rgba(20,40,70,0.3), transparent 60%);
+            pointer-events: none;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -2.5rem;
+            left: 0;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        .tagline {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .eyebrow {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .title {
+            font-family: "JetBrains Mono", monospace;
+            font-weight: 300;
+            font-size: 1.6rem;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-weight: 300;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* === Timeline === */
+        .timeline-container {
+            position: relative;
+            padding: 5rem 0 3rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: calc(5rem + 20px);
+            left: 5%;
+            right: 5%;
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                var(--line) 10%,
+                var(--line) 85%,
+                transparent 100%
+            );
+        }
+
+        .timeline-line::after {
+            content: "";
+            position: absolute;
+            right: 5%;
+            top: 0;
+            width: 15%;
+            height: 1px;
+            background: linear-gradient(to right, var(--line), transparent);
+            animation: extend-line 4s ease-in-out infinite;
+        }
+
+        @keyframes extend-line {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .timeline-line::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(138,164,199,0.15) 20%,
+                rgba(138,164,199,0.15) 80%,
+                transparent
+            );
+            animation: flow-pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes flow-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .timeline-nodes {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 3%;
+            position: relative;
+        }
+
+        .node-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .node-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(180, 210, 245, 0.8);
+            box-shadow:
+                0 0 8px var(--glow),
+                0 0 24px rgba(138, 164, 199, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .node-wrapper:hover .node-dot {
+            background: rgba(210, 230, 255, 0.95);
+            transform: scale(1.6);
+            box-shadow:
+                0 0 14px rgba(160, 200, 245, 0.8),
+                0 0 40px rgba(138, 164, 199, 0.4);
+        }
+
+        .node-wrapper.future .node-dot {
+            background: rgba(138, 164, 199, 0.3);
+            box-shadow: 0 0 6px rgba(138, 164, 199, 0.1);
+            animation: pulse-future 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-future {
+            0%, 100% { opacity: 0.4; box-shadow: 0 0 6px rgba(138,164,199,0.1); }
+            50% { opacity: 0.9; box-shadow: 0 0 16px rgba(138,164,199,0.3); }
+        }
+
+        .node-year {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.92rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-top: 1.5rem;
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
+        }
+
+        .node-wrapper:hover .node-year { color: var(--accent); }
+
+        .node-event {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin-top: 0.3rem;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .node-wrapper:hover .node-event { color: var(--text); }
+
+        .node-wrapper.future .node-event {
+            color: rgba(200, 214, 229, 0.25);
+            font-style: italic;
+        }
+
+        /* === Tooltip === */
+        .node-tooltip {
+            position: absolute;
+            top: -5.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 22, 35, 0.95);
+            border: 1px solid rgba(138, 164, 199, 0.2);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            min-width: 200px;
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateX(-50%) translateY(4px);
+            z-index: 10;
+        }
+
+        .node-wrapper:hover .node-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tooltip-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .tooltip-text {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* === Philosophy === */
+        .philosophy {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(138, 164, 199, 0.08);
+        }
+
+        .philosophy p {
+            font-family: "Source Sans 3", sans-serif;
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+        }
+
+        /* Mobile: vertical timeline */
+        @media (max-width: 768px) {
+            .timeline-nodes {
+                flex-direction: column;
+                gap: 2.5rem;
+                padding-left: 2rem;
+                align-items: flex-start;
+            }
+
+            .timeline-line {
+                top: calc(5rem + 10px);
+                bottom: 2rem;
+                left: calc(2rem + 5px);
+                right: auto;
+                width: 1px;
+                height: auto;
+                background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    var(--line) 5%,
+                    var(--line) 90%,
+                    transparent 100%
+                );
+            }
+
+            .node-wrapper {
+                flex-direction: row;
+                align-items: center;
+                gap: 1.2rem;
+                padding-left: 0;
+            }
+
+            .node-year {
+                margin-top: 0;
+                min-width: 3rem;
+            }
+
+            .node-event { white-space: normal; }
+
+            .node-tooltip {
+                top: auto;
+                left: 2.5rem;
+                transform: translateY(4px);
+            }
+
+            .node-wrapper:hover .node-tooltip {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <a class="back-link" href="signals.html">← Signals</a>
+
+    <div class="tagline">World Signal</div>
+
+    <div class="title-section">
+        <div class="eyebrow">AI Timeline</div>
+        <h1 class="title">structure, not events</h1>
+        <p class="subtitle">
+            The world is not changing in events.<br>
+            It is changing in structure.
+        </p>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-nodes">
+            <!-- 2022 -->
+            <div class="node-wrapper">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-text">tool → conversation</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
+                    <div class="tooltip-text">AI becomes publicly accessible</div>
+                </div>
+                <div class="node-year">2022</div>
+                <div class="node-event">ChatGPT</div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="node-wrapper">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-text">text → reasoning</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
+                    <div class="tooltip-text">AI enters professional workflows</div>
+                </div>
+                <div class="node-year">2023</div>
+                <div class="node-event">GPT-4</div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="node-wrapper">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-text">response → action</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
+                    <div class="tooltip-text">AI starts executing tasks</div>
+                </div>
+                <div class="node-year">2024</div>
+                <div class="node-event">AI Agents</div>
+            </div>
+
+            <!-- 2025 -->
+            <div class="node-wrapper">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-text">standalone → infrastructure</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
+                    <div class="tooltip-text">AI becomes invisible backbone</div>
+                </div>
+                <div class="node-year">2025</div>
+                <div class="node-event">AI System Integration</div>
+            </div>
+
+            <!-- 2026 -->
+            <div class="node-wrapper future">
+                <div class="node-dot"></div>
+                <div class="node-tooltip" style="min-width:160px;">
+                    <div class="tooltip-text" style="color:rgba(200,214,229,0.5);">the future is still being written</div>
+                </div>
+                <div class="node-year">2026</div>
+                <div class="node-event">→</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="philosophy">
+        <p>
+            The most important structural changes<br>
+            do not arrive as revolutions.<br>
+            They arrive as an ordinary afternoon,<br>
+            a small automation,<br>
+            a brief moment of noticing<br>
+            that something has already shifted.
+        </p>
+    </div>
+
+    <footer>OpenEdux — World Signal</footer>
+</main>
+</body>
+</html>
