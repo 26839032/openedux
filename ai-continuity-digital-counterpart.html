@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today, for the First Time, I Felt AI Truly Start Working for Me — OpenEdux</title>
+    <meta name="description" content="When a scheduling system starts inferring next actions, emailing colleagues, and receiving feedback — AI is no longer a chat window. It is entering real workflows.">
+    <meta name="theme-color" content="#f7f9fc">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.openedux.ai/ai-continuity-digital-counterpart">
+    <meta property="og:title" content="Today, for the First Time, I Felt AI Truly Start Working for Me">
+    <meta property="og:description" content="When a scheduling system starts inferring next actions, emailing colleagues, and receiving feedback — AI is no longer a chat window. It is entering real workflows.">
+    <meta property="og:image" content="https://www.openedux.ai/logo-capybara.png">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Today, for the First Time, I Felt AI Truly Start Working for Me">
+    <meta name="twitter:description" content="When a scheduling system starts inferring next actions, emailing colleagues, and receiving feedback — AI is no longer a chat window. It is entering real workflows.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #f7f9fc;
+            --bg-mid: #eef2f7;
+            --bg-radial: #e7edf5;
+            --text: #1f2328;
+            --text-muted: rgba(31, 35, 40, 0.52);
+            --accent: #6b84a3;
+            --noise-opacity: 0.03;
+            --footer-border: rgba(31, 35, 40, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-base: #16181d;
+                --bg-mid: #1f232a;
+                --bg-radial: #252b35;
+                --text: #edf2f7;
+                --text-muted: rgba(237, 242, 247, 0.5);
+                --accent: #8ba3c7;
+                --noise-opacity: 0.03;
+                --footer-border: rgba(237, 242, 247, 0.08);
+            }
+        }
+
+        /* Manual dark mode override — tech feel */
+        html.dark {
+            --bg-base: #0d1625;
+            --bg-mid: #131e33;
+            --bg-radial: #1b2940;
+
+            --text: #e2ecf7;
+            --text-muted: rgba(226, 236, 247, 0.48);
+
+            --accent: #6099d4;
+
+            --noise-opacity: 0.03;
+            --footer-border: rgba(226, 236, 247, 0.07);
+            
+        }
+        /* Manual pink mode override — warm & elegant */
+        html.pink {
+            --bg-base: #fdf6f6;
+            --bg-mid: #f8ebea;
+            --bg-radial: #f4dedb;
+
+            --text: #2d2425;
+            --text-muted: rgba(45, 36, 37, 0.5);
+
+            --accent: #b87280;
+
+            --noise-opacity: 0.03;
+            --footer-border: rgba(45, 36, 37, 0.08);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(ellipse 120% 80% at 50% -20%, var(--bg-radial), transparent 55%),
+                radial-gradient(ellipse 90% 60% at 100% 100%, var(--bg-mid), transparent 50%),
+                radial-gradient(ellipse 70% 50% at 0% 80%, var(--bg-mid), transparent 45%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: var(--noise-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 65rem;
+            margin: 0 auto;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .header-logo-img {
+            width: 2.5rem;
+            height: auto;
+            border-radius: 12%;
+            opacity: 0.94;
+        }
+
+        .header-logo-text {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: clamp(1.5rem, 4vw, 3rem);
+            right: clamp(1.5rem, 4vw, 3rem);
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: 1px solid var(--footer-border);
+            border-radius: 50%;
+            background: var(--bg-base);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        main {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .back-to-writing {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            transition: color 0.2s ease;
+        }
+
+        .back-to-writing:hover,
+        .back-to-writing:focus-visible {
+            color: var(--accent);
+        }
+
+        .article-header {
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .article-date {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .article-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(107, 132, 163, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .article-tag {
+                background: rgba(139, 163, 199, 0.15);
+            }
+        }
+
+        .article-title {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .article-excerpt {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .article-content {
+            font-size: clamp(1rem, 1.75vw, 1.125rem);
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-family: "Fraunces", Georgia, "Times New Roman", serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin: clamp(2.5rem, 5vw, 3.5rem) 0 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            margin-top: clamp(3rem, 6vw, 4rem);
+            padding-top: 2.5rem;
+            width: 100%;
+            max-width: 65rem;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border-top: 1px solid var(--footer-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-domain {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        .privacy {
+            margin-top: 0.75rem;
+        }
+
+        .privacy a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .privacy a:hover,
+        .privacy a:focus-visible {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .header-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        .footer-email {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-email:hover {
+            color: var(--accent);
+        }
+
+        /* Like button */
+        .like-section {
+            margin-top: clamp(2.5rem, 5vw, 3.5rem);
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--footer-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .like-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.875rem 0.375rem 0.75rem;
+            font-family: "Source Sans 3", sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: transparent;
+            border: 1px solid var(--footer-border);
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .like-btn:hover,
+        .like-btn:focus-visible {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(107, 132, 163, 0.06);
+        }
+
+        .like-btn.liked {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(107, 132, 163, 0.1);
+            cursor: default;
+        }
+
+        .like-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .like-btn svg {
+            flex-shrink: 0;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .like-btn.liked {
+                background: rgba(139, 163, 199, 0.12);
+            }
+            .like-btn:hover,
+            .like-btn:focus-visible {
+                background: rgba(139, 163, 199, 0.08);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="index.html" class="header-logo">
+                <img class="header-logo-img" src="logo-capybara.png" width="80" height="44" alt="OpenEdux logo">
+                <span class="header-logo-text">OpenEdux</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="writing.html">Writing</a>
+                <a href="notes.html">Notes</a>
+                <a href="signals.html">Signals</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="writing.html" class="back-to-writing">
+            ← Writing
+        </a>
+
+        <article>
+            <header class="article-header">
+                <div class="article-meta">
+                    <time class="article-date">May 25, 2026</time>
+                    <span class="article-tag">AI</span>
+                    <span class="article-tag">Workflow</span>
+                </div>
+                <h1 class="article-title">Today, for the First Time, I Felt AI Truly Start Working for Me</h1>
+                <p class="article-excerpt">A real future moment that already happened.</p>
+            </header>
+
+            <div class="article-content">
+                <p>Today, something small happened — but I feel like I'll probably remember it for a very long time.</p>
+
+                <p>I connected AI to a personalized scheduling system that I built for myself.</p>
+
+                <p>Then, based on my schedule and current project progress, it inferred what work should happen next.</p>
+
+                <p>After that, it automatically sent emails to the relevant team members.</p>
+
+                <p>Even more interestingly,</p>
+
+                <p>their feedback flowed directly back into my scheduling system.</p>
+
+                <p>At that moment, I suddenly realized:</p>
+
+                <p>some things had started to truly operate on their own.</p>
+
+                <h2>The old tools only recorded</h2>
+
+                <p>Most software in the past was simply designed to record things.</p>
+
+                <p>Calendars were static.<br>
+                Todo lists were static.<br>
+                Reminders were static.</p>
+
+                <p>They quietly sat there,</p>
+
+                <p>waiting for you to open them, review them, and manually push things forward.</p>
+
+                <p>But today felt different.</p>
+
+                <p>Because the system started to:</p>
+
+                <p>understand context,</p>
+
+                <p>infer next actions,</p>
+
+                <p>proactively move work forward,</p>
+
+                <p>receive feedback,</p>
+
+                <p>and continuously update its own state.</p>
+
+                <p>For the first time, I felt:</p>
+
+                <p>AI was no longer limited to responding every time I told it to do something.</p>
+
+                <p>It had started participating in real workflows.</p>
+
+                <h2>Continuity, before creativity</h2>
+
+                <p>And more importantly,</p>
+
+                <p>it had started proactively helping me maintain:</p>
+
+                <p>continuity.</p>
+
+                <p>Most work is not actually difficult.</p>
+
+                <p>What makes things exhausting is that they constantly:</p>
+
+                <p>get forgotten,</p>
+
+                <p>become interrupted,</p>
+
+                <p>stall inside someone else's inbox,</p>
+
+                <p>disappear during context switching.</p>
+
+                <p>The human brain is simply not designed to continuously track large numbers of open loops.</p>
+
+                <p>A lot of mental fatigue does not come from doing the work itself.</p>
+
+                <p>It comes from:</p>
+
+                <p>constantly trying to remember what still has not fallen apart.</p>
+
+                <p>But today, when I watched tasks being automatically pushed forward,</p>
+
+                <p>and feedback flowing back into the system on its own,</p>
+
+                <p>I experienced a very strange feeling:</p>
+
+                <p>some parts of reality no longer depended entirely on me manually holding everything together.</p>
+
+                <p>At that moment, I suddenly understood something:</p>
+
+                <p>maybe AI will not first change human creativity.</p>
+
+                <p>Maybe it will first change:</p>
+
+                <p>continuity.</p>
+
+                <p>Because what modern life destroys most easily is not capability.</p>
+
+                <p>It is:</p>
+
+                <p>long-term follow-through,</p>
+
+                <p>sustained momentum,</p>
+
+                <p>context preservation,</p>
+
+                <p>coordination across time,</p>
+
+                <p>continuous handling of complexity.</p>
+
+                <p>And strangely enough,</p>
+
+                <p>those are exactly the kinds of things AI is exceptionally good at.</p>
+
+                <h2>The digital counterpart</h2>
+
+                <p>In some sense,</p>
+
+                <p>today did not feel like I "built an AI automation."</p>
+
+                <p>It felt more like:</p>
+
+                <p>my digital counterpart had started quietly operating in the real world.</p>
+
+                <p>It began to:</p>
+
+                <p>understand my working state,</p>
+
+                <p>participate in collaboration,</p>
+
+                <p>maintain task continuity,</p>
+
+                <p>keep things moving forward.</p>
+
+                <p>It is still primitive.</p>
+
+                <p>But what made me happiest today was not the automation itself.</p>
+
+                <p>It was the feeling that:</p>
+
+                <p>things were finally starting to land somewhere.</p>
+
+                <p>Like all the tasks and responsibilities that could have quietly scattered across time…</p>
+
+                <p>were finally being gently caught by a system that keeps running, even when I stop looking at it.</p>
+            </div>
+            <div class="like-section">
+                <button id="like-btn" class="like-btn" aria-label="Like this article">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 22V11M2 13v7a2 2 0 0 0 2 2h11.6a2 2 0 0 0 1.9-1.4l2.4-7.2A2 2 0 0 0 18 9h-5.5V4a2 2 0 0 0-2-2l-2 6H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                    <span id="like-count">—</span>
+                </button>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p class="footer-domain">www.openedux.ai</p>
+        <p><a class="footer-email" href="mailto:enjoylm2012@gmail.com">enjoylm2012@gmail.com</a></p>
+        <p class="privacy">
+            <a href="index.html#privacy">Privacy</a>
+        </p>
+    </footer>
+<script>
+(function() {
+    var slug = location.pathname.replace(/\.html$/, '').replace(/^\//, '');
+    var btn = document.getElementById('like-btn');
+    var countEl = document.getElementById('like-count');
+
+    var localLiked = localStorage.getItem('liked_' + slug);
+    if (localLiked) {
+        btn.classList.add('liked');
+        btn.disabled = true;
+    }
+
+    fetch('https://openedux-visit.26839032.workers.dev/api/like?article=' + encodeURIComponent(slug))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            countEl.textContent = data.likes;
+            if (data.already_liked) {
+                btn.classList.add('liked');
+                btn.disabled = true;
+                localStorage.setItem('liked_' + slug, '1');
+            }
+        })
+        .catch(function() {
+            countEl.textContent = '?';
+        });
+
+    btn.addEventListener('click', function() {
+        if (btn.classList.contains('liked') || btn.disabled) return;
+
+        btn.disabled = true;
+        fetch('https://openedux-visit.26839032.workers.dev/api/like', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ article: slug })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(result) {
+            if (result.likes !== null && result.likes !== undefined) {
+                countEl.textContent = result.likes;
+            }
+            if (!result.already_liked) {
+                btn.classList.add('liked');
+                localStorage.setItem('liked_' + slug, '1');
+            } else {
+                btn.classList.add('liked');
+            }
+        })
+        .catch(function() {
+            btn.disabled = false;
+        });
+    });
+})();
+</script>
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+<script>
+(function() {
+    var html = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var saved = localStorage.getItem('theme');
+
+    // Restore saved theme
+    if (saved === 'dark') {
+        html.classList.add('dark');
+    } else if (saved === 'pink') {
+        html.classList.add('pink');
+    }
+
+    // Cycle: light → dark → pink → light
+    btn.addEventListener('click', function() {
+        if (html.classList.contains('dark')) {
+            html.classList.remove('dark');
+            html.classList.add('pink');
+            localStorage.setItem('theme', 'pink');
+        } else if (html.classList.contains('pink')) {
+            html.classList.remove('pink');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+})();
+</script>
+</body>
+</html>
