@@ -211,12 +211,22 @@
             100% { left: 0%;   opacity: 0; }
         }
 
-        .timeline-nodes {
+        /* === L1 main line nodes === */
+        .timeline-layer-primary {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             padding: 0 2rem;
             position: relative;
+        }
+
+        .timeline-layer-secondary {
+            display: flex;
+            align-items: flex-start;
+            padding: 0 2rem;
+            position: relative;
+            gap: 1.5rem;
+            margin-top: -0.5rem;
         }
 
         .node-wrapper {
@@ -227,62 +237,109 @@
             cursor: pointer;
         }
 
-        .node-dot {
+        /* L1: bright primary nodes */
+        .node-wrapper.primary .node-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(180, 210, 245, 0.8);
+            background: rgba(200, 225, 250, 0.9);
             box-shadow:
-                0 0 8px var(--glow),
-                0 0 24px rgba(138, 164, 199, 0.2);
+                0 0 10px rgba(138, 164, 199, 0.6),
+                0 0 30px rgba(138, 164, 199, 0.3);
             transition: all 0.4s ease;
-            position: relative;
             z-index: 2;
         }
 
-        .node-wrapper:hover .node-dot {
-            background: rgba(210, 230, 255, 0.95);
+        .node-wrapper.primary:hover .node-dot {
+            background: rgba(220, 240, 255, 1);
             transform: scale(1.6);
             box-shadow:
-                0 0 14px rgba(160, 200, 245, 0.8),
-                0 0 40px rgba(138, 164, 199, 0.4);
+                0 0 16px rgba(160, 200, 245, 0.9),
+                0 0 48px rgba(138, 164, 199, 0.5);
         }
 
-        .node-wrapper.future .node-dot {
-            background: rgba(138, 164, 199, 0.3);
-            box-shadow: 0 0 6px rgba(138, 164, 199, 0.1);
-            animation: pulse-future 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-future {
-            0%, 100% { opacity: 0.4; box-shadow: 0 0 6px rgba(138,164,199,0.1); }
-            50% { opacity: 0.9; box-shadow: 0 0 16px rgba(138,164,199,0.3); }
-        }
-
-        .node-year {
+        .node-wrapper.primary .node-year {
             font-family: "JetBrains Mono", monospace;
-            font-size: 0.92rem;
-            font-weight: 400;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--text);
+            margin-top: 1.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .node-wrapper.primary .node-event {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 0.3rem;
+        }
+
+        .node-wrapper.primary:hover .node-year { color: var(--accent); }
+        .node-wrapper.primary:hover .node-event { color: var(--text); }
+
+        /* L2: subtle secondary nodes */
+        .node-wrapper.secondary .node-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(138, 164, 199, 0.4);
+            box-shadow: 0 0 4px rgba(138, 164, 199, 0.15);
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .node-wrapper.secondary:hover .node-dot {
+            background: rgba(180, 210, 245, 0.8);
+            transform: scale(1.8);
+            box-shadow:
+                0 0 8px rgba(160, 200, 245, 0.6),
+                0 0 20px rgba(138, 164, 199, 0.25);
+        }
+
+        .node-wrapper.secondary .node-year {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: rgba(200, 214, 229, 0.35);
             margin-top: 1.5rem;
             letter-spacing: 0.02em;
             transition: color 0.3s;
         }
 
-        .node-wrapper:hover .node-year { color: var(--accent); }
-
-        .node-event {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            margin-top: 0.3rem;
-            transition: color 0.3s;
+        .node-wrapper.secondary .node-event {
+            font-size: 0.68rem;
+            color: rgba(200, 214, 229, 0.25);
+            margin-top: 0.2rem;
             white-space: nowrap;
         }
 
-        .node-wrapper:hover .node-event { color: var(--text); }
+        .node-wrapper.secondary:hover .node-year { color: var(--text-dim); }
+        .node-wrapper.secondary:hover .node-event { color: rgba(200, 214, 229, 0.5); }
+
+        /* L3: future */
+        .node-wrapper.future .node-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(138, 164, 199, 0.25);
+            box-shadow: 0 0 6px rgba(138, 164, 199, 0.08);
+            animation: pulse-future 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-future {
+            0%, 100% { opacity: 0.4; box-shadow: 0 0 6px rgba(138,164,199,0.08); }
+            50% { opacity: 0.9; box-shadow: 0 0 18px rgba(138,164,199,0.3); }
+        }
+
+        .node-wrapper.future .node-year {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.85rem;
+            color: rgba(200, 214, 229, 0.2);
+            margin-top: 1.5rem;
+        }
 
         .node-wrapper.future .node-event {
-            color: rgba(200, 214, 229, 0.25);
+            font-size: 0.75rem;
+            color: rgba(200, 214, 229, 0.15);
             font-style: italic;
         }
 
@@ -355,12 +412,15 @@
         @media (max-width: 768px) {
             .timeline-inner { min-width: auto; }
 
-            .timeline-nodes {
+            .timeline-layer-primary,
+            .timeline-layer-secondary {
                 flex-direction: column;
-                gap: 2.5rem;
+                gap: 2rem;
                 padding-left: 2rem;
                 align-items: flex-start;
             }
+
+            .timeline-layer-secondary { margin-top: 2rem; }
 
             .timeline-line {
                 top: calc(5rem + 10px);
@@ -423,128 +483,56 @@
       <div class="timeline-inner">
         <div class="timeline-line"></div>
         <div class="scan-line"><div class="scan-dot"></div></div>
-        <div class="timeline-nodes">
-            <!-- 1956 -->
-            <div class="node-wrapper">
+        <!-- L1: Main narrative line -->
+        <div class="timeline-layer-primary">
+            <div class="node-wrapper primary">
                 <div class="node-dot"></div>
                 <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">philosophy → field</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">AI is born as a discipline</div>
-                </div>
-                <div class="node-year">1956</div>
-                <div class="node-event">Dartmouth</div>
-            </div>
-
-            <!-- 2012 -->
-            <div class="node-wrapper">
-                <div class="node-dot"></div>
-                <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">rules → data</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">Deep learning revolution begins</div>
-                </div>
-                <div class="node-year">2012</div>
-                <div class="node-event">AlexNet</div>
-            </div>
-
-            <!-- 2017 -->
-            <div class="node-wrapper">
-                <div class="node-dot"></div>
-                <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-label">PARADIGM</div>
                     <div class="tooltip-text">recurrence → attention</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">LEGACY</div>
                     <div class="tooltip-text">Foundation of all modern LLMs</div>
                 </div>
                 <div class="node-year">2017</div>
-                <div class="node-event">Transformer</div>
+                <div class="node-event">Intelligence via attention</div>
             </div>
 
-            <!-- 2022 -->
-            <div class="node-wrapper">
+            <div class="node-wrapper primary">
                 <div class="node-dot"></div>
                 <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-label">PARADIGM</div>
                     <div class="tooltip-text">tool → conversation</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">AI becomes publicly accessible</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">LEGACY</div>
+                    <div class="tooltip-text">AI becomes publicly accessible to billions</div>
                 </div>
                 <div class="node-year">2022</div>
-                <div class="node-event">ChatGPT</div>
+                <div class="node-event">Intelligence via conversation</div>
             </div>
 
-            <!-- 2023 -->
-            <div class="node-wrapper">
+            <div class="node-wrapper primary">
                 <div class="node-dot"></div>
                 <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">text → reasoning</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">Frontier models enter work: GPT-4, Claude</div>
-                </div>
-                <div class="node-year">2023</div>
-                <div class="node-event">GPT-4</div>
-            </div>
-
-            <!-- 2024 -->
-            <div class="node-wrapper">
-                <div class="node-dot"></div>
-                <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
+                    <div class="tooltip-label">PARADIGM</div>
                     <div class="tooltip-text">response → action</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">AI starts executing tasks</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">LEGACY</div>
+                    <div class="tooltip-text">AI starts executing tasks in the real world</div>
                 </div>
                 <div class="node-year">2024</div>
-                <div class="node-event">AI Agents</div>
+                <div class="node-event">Intelligence via action</div>
             </div>
 
-            <!-- DeepSeek-V2 -->
-            <div class="node-wrapper">
+            <div class="node-wrapper primary">
                 <div class="node-dot"></div>
                 <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">closed → open</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">MoE at fraction of cost, open-source</div>
-                </div>
-                <div class="node-year">2024</div>
-                <div class="node-event">DeepSeek-V2</div>
-            </div>
-
-            <!-- DeepSeek-R1 -->
-            <div class="node-wrapper">
-                <div class="node-dot"></div>
-                <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">proprietary → open reasoning</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">Open-source reasoning matches closed frontier</div>
+                    <div class="tooltip-label">PARADIGM</div>
+                    <div class="tooltip-text">tool → infrastructure</div>
+                    <div class="tooltip-label" style="margin-top:0.5rem;">LEGACY</div>
+                    <div class="tooltip-text">AI becomes the invisible backbone of work</div>
                 </div>
                 <div class="node-year">2025</div>
-                <div class="node-event">DeepSeek-R1</div>
+                <div class="node-event">Intelligence as infrastructure</div>
             </div>
 
-            <!-- 2025 -->
-            <div class="node-wrapper">
-                <div class="node-dot"></div>
-                <div class="node-tooltip">
-                    <div class="tooltip-label">SHIFT</div>
-                    <div class="tooltip-text">standalone → infrastructure</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">IMPACT</div>
-                    <div class="tooltip-text">AI becomes invisible backbone</div>
-                    <div class="tooltip-label" style="margin-top:0.5rem;">TOOLS</div>
-                    <div class="tooltip-text">Claude Code — AI-native development</div>
-                </div>
-                <div class="node-year">2025</div>
-                <div class="node-event">System Integration</div>
-                <div style="font-size:0.7rem;color:rgba(200,214,229,0.3);margin-top:2px;">Claude Code · Cursor · Copilot</div>
-            </div>
-
-            <!-- 2026 -->
             <div class="node-wrapper future">
                 <div class="node-dot"></div>
                 <div class="node-tooltip" style="min-width:160px;">
@@ -552,6 +540,69 @@
                 </div>
                 <div class="node-year">2026</div>
                 <div class="node-event">→</div>
+            </div>
+        </div>
+
+        <!-- L2: Historical context & ecosystem details -->
+        <div class="timeline-layer-secondary">
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">ORIGIN</div>
+                    <div class="tooltip-text">AI is born as a formal discipline</div>
+                </div>
+                <div class="node-year">1956</div>
+                <div class="node-event">Dartmouth</div>
+            </div>
+
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">BREAKTHROUGH</div>
+                    <div class="tooltip-text">Deep learning revolution begins</div>
+                </div>
+                <div class="node-year">2012</div>
+                <div class="node-event">AlexNet</div>
+            </div>
+
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">MILESTONE</div>
+                    <div class="tooltip-text">Frontier reasoning: GPT-4, Claude</div>
+                </div>
+                <div class="node-year">2023</div>
+                <div class="node-event">GPT-4</div>
+            </div>
+
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">OPEN SOURCE</div>
+                    <div class="tooltip-text">DeepSeek-V2: MoE at fraction of cost</div>
+                </div>
+                <div class="node-year">2024</div>
+                <div class="node-event">DeepSeek-V2</div>
+            </div>
+
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">OPEN REASONING</div>
+                    <div class="tooltip-text">DeepSeek-R1 matches closed frontier</div>
+                </div>
+                <div class="node-year">2025</div>
+                <div class="node-event">DeepSeek-R1</div>
+            </div>
+
+            <div class="node-wrapper secondary">
+                <div class="node-dot"></div>
+                <div class="node-tooltip">
+                    <div class="tooltip-label">AI-NATIVE DEV</div>
+                    <div class="tooltip-text">Claude Code, Cursor, Copilot</div>
+                </div>
+                <div class="node-year">2025</div>
+                <div class="node-event">Claude Code</div>
             </div>
         </div>
       </div>
