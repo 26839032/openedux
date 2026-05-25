@@ -110,6 +110,7 @@
             position: relative;
             margin: 2rem 0;
             overflow-x: auto;
+            overflow-y: visible;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -120,6 +121,7 @@
             min-width: 100%;
             position: relative;
             padding: 0 2rem;
+            overflow: visible;
         }
 
         /* L1 main row: dots sit on the line */
@@ -127,8 +129,9 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 3rem 0 0;
+            padding: 4rem 0 0;
             position: relative;
+            overflow: visible;
         }
 
         /* L2 detail row: below, smaller, dimmer */
@@ -144,7 +147,7 @@
         /* Horizontal line through L1 dots */
         .timeline-line {
             position: absolute;
-            top: calc(3rem + 5px);
+            top: calc(4rem + 5px);
             left: 0;
             right: 0;
             height: 1px;
@@ -175,7 +178,7 @@
         /* Scanning light */
         .scan-dot-wrapper {
             position: absolute;
-            top: calc(3rem + 3px);
+            top: calc(4rem + 3px);
             left: 0; right: 0;
             height: 4px;
             pointer-events: none;
