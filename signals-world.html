@@ -108,7 +108,6 @@
         /* === Timeline === */
         .timeline-container {
             position: relative;
-            padding: 5rem 0 3rem;
             margin: 2rem 0;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -123,12 +122,31 @@
             padding: 0 2rem;
         }
 
+        /* L1 main row: dots sit on the line */
+        .timeline-layer-primary {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 3rem 0 0;
+            position: relative;
+        }
+
+        /* L2 detail row: below, smaller, dimmer */
+        .timeline-layer-secondary {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        /* Horizontal line through L1 dots */
         .timeline-line {
             position: absolute;
-            top: calc(5rem + 20px);
-            left: 2rem;
-            right: 2rem;
-            width: calc(100% - 4rem);
+            top: calc(3rem + 5px);
+            left: 0;
+            right: 0;
             height: 1px;
             background: linear-gradient(
                 to right,
@@ -137,15 +155,14 @@
                 var(--line) 95%,
                 transparent 100%
             );
+            pointer-events: none;
         }
 
         .timeline-line::after {
             content: "";
             position: absolute;
-            right: 0;
-            top: 0;
-            width: 20%;
-            height: 1px;
+            right: 0; top: 0;
+            width: 20%; height: 1px;
             background: linear-gradient(to right, var(--line), transparent);
             animation: extend-line 4s ease-in-out infinite;
         }
@@ -155,51 +172,23 @@
             50% { opacity: 0.8; }
         }
 
-        .timeline-line::before {
-            content: "";
+        /* Scanning light */
+        .scan-dot-wrapper {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(138,164,199,0.15) 20%,
-                rgba(138,164,199,0.15) 80%,
-                transparent
-            );
-            animation: flow-pulse 6s ease-in-out infinite;
-        }
-
-        @keyframes flow-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* === Scanning light === */
-        .scan-line {
-            position: absolute;
-            top: calc(5rem + 20px);
-            left: 2rem;
-            right: 2rem;
-            width: calc(100% - 4rem);
-            height: 1px;
+            top: calc(3rem + 3px);
+            left: 0; right: 0;
+            height: 4px;
             pointer-events: none;
             z-index: 3;
         }
 
         .scan-dot {
             position: absolute;
-            top: -2px;
-            width: 4px;
-            height: 4px;
+            top: 0;
+            width: 4px; height: 4px;
             border-radius: 50%;
-            background: rgba(180, 210, 245, 0.9);
-            box-shadow:
-                0 0 6px rgba(160, 200, 240, 0.8),
-                0 0 20px rgba(138, 164, 199, 0.5),
-                0 0 40px rgba(138, 164, 199, 0.25);
+            background: rgba(200, 225, 250, 0.9);
+            box-shadow: 0 0 6px rgba(160,200,240,0.8), 0 0 20px rgba(138,164,199,0.5);
             animation: scan 8s ease-in-out infinite;
         }
 
@@ -211,59 +200,36 @@
             100% { left: 0%;   opacity: 0; }
         }
 
-        /* === L1 main line nodes === */
-        .timeline-layer-primary {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        .timeline-layer-secondary {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 0 2rem;
-            position: relative;
-            margin-top: 2rem;
-        }
-
+        /* Node base */
         .node-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             cursor: pointer;
+            z-index: 2;
         }
 
-        /* L1: bright primary nodes */
+        /* L1: bright */
         .node-wrapper.primary .node-dot {
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             border-radius: 50%;
             background: rgba(200, 225, 250, 0.9);
-            box-shadow:
-                0 0 10px rgba(138, 164, 199, 0.6),
-                0 0 30px rgba(138, 164, 199, 0.3);
+            box-shadow: 0 0 10px rgba(138,164,199,0.6), 0 0 30px rgba(138,164,199,0.3);
             transition: all 0.4s ease;
-            z-index: 2;
         }
 
         .node-wrapper.primary:hover .node-dot {
             background: rgba(220, 240, 255, 1);
             transform: scale(1.6);
-            box-shadow:
-                0 0 16px rgba(160, 200, 245, 0.9),
-                0 0 48px rgba(138, 164, 199, 0.5);
+            box-shadow: 0 0 16px rgba(160,200,245,0.9), 0 0 48px rgba(138,164,199,0.5);
         }
 
         .node-wrapper.primary .node-year {
             font-family: "JetBrains Mono", monospace;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1rem; font-weight: 500;
             color: var(--text);
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             letter-spacing: 0.03em;
         }
 
@@ -271,75 +237,69 @@
             font-size: 0.85rem;
             color: var(--text-dim);
             margin-top: 0.3rem;
+            white-space: nowrap;
         }
 
         .node-wrapper.primary:hover .node-year { color: var(--accent); }
         .node-wrapper.primary:hover .node-event { color: var(--text); }
 
-        /* L2: subtle secondary nodes */
+        /* L2: subtle */
         .node-wrapper.secondary .node-dot {
-            width: 5px;
-            height: 5px;
+            width: 5px; height: 5px;
             border-radius: 50%;
-            background: rgba(138, 164, 199, 0.4);
-            box-shadow: 0 0 4px rgba(138, 164, 199, 0.15);
+            background: rgba(138, 164, 199, 0.3);
+            box-shadow: 0 0 4px rgba(138,164,199,0.1);
             transition: all 0.4s ease;
-            z-index: 2;
         }
 
         .node-wrapper.secondary:hover .node-dot {
             background: rgba(180, 210, 245, 0.8);
-            transform: scale(1.8);
-            box-shadow:
-                0 0 8px rgba(160, 200, 245, 0.6),
-                0 0 20px rgba(138, 164, 199, 0.25);
+            transform: scale(2);
+            box-shadow: 0 0 8px rgba(160,200,245,0.5);
         }
 
         .node-wrapper.secondary .node-year {
             font-family: "JetBrains Mono", monospace;
-            font-size: 0.72rem;
-            font-weight: 400;
-            color: rgba(200, 214, 229, 0.35);
-            margin-top: 1.5rem;
+            font-size: 0.7rem;
+            color: rgba(200, 214, 229, 0.3);
+            margin-top: 1rem;
             letter-spacing: 0.02em;
             transition: color 0.3s;
         }
 
         .node-wrapper.secondary .node-event {
-            font-size: 0.68rem;
-            color: rgba(200, 214, 229, 0.25);
+            font-size: 0.65rem;
+            color: rgba(200, 214, 229, 0.2);
             margin-top: 0.2rem;
             white-space: nowrap;
         }
 
         .node-wrapper.secondary:hover .node-year { color: var(--text-dim); }
-        .node-wrapper.secondary:hover .node-event { color: rgba(200, 214, 229, 0.5); }
+        .node-wrapper.secondary:hover .node-event { color: rgba(200, 214, 229, 0.45); }
 
-        /* L3: future */
+        /* L3: future pulse */
         .node-wrapper.future .node-dot {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             border-radius: 50%;
-            background: rgba(138, 164, 199, 0.25);
-            box-shadow: 0 0 6px rgba(138, 164, 199, 0.08);
+            background: rgba(138, 164, 199, 0.2);
             animation: pulse-future 3s ease-in-out infinite;
         }
 
         @keyframes pulse-future {
-            0%, 100% { opacity: 0.4; box-shadow: 0 0 6px rgba(138,164,199,0.08); }
-            50% { opacity: 0.9; box-shadow: 0 0 18px rgba(138,164,199,0.3); }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.9; box-shadow: 0 0 14px rgba(138,164,199,0.25); }
         }
 
         .node-wrapper.future .node-year {
             font-family: "JetBrains Mono", monospace;
             font-size: 0.85rem;
-            color: rgba(200, 214, 229, 0.2);
-            margin-top: 1.5rem;
+            color: rgba(200, 214, 229, 0.15);
+            margin-top: 1.2rem;
         }
 
         .node-wrapper.future .node-event {
             font-size: 0.75rem;
-            color: rgba(200, 214, 229, 0.15);
+            color: rgba(200, 214, 229, 0.12);
             font-style: italic;
         }
 
@@ -481,10 +441,10 @@
 
     <div class="timeline-container">
       <div class="timeline-inner">
-        <div class="timeline-line"></div>
-        <div class="scan-line"><div class="scan-dot"></div></div>
         <!-- L1: Main narrative line -->
         <div class="timeline-layer-primary">
+            <div class="timeline-line"></div>
+            <div class="scan-dot-wrapper"><div class="scan-dot"></div></div>
             <div class="node-wrapper primary">
                 <div class="node-dot"></div>
                 <div class="node-tooltip">
