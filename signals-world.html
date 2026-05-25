@@ -48,7 +48,7 @@
 
         main {
             width: 100%;
-            max-width: 1400px;
+            max-width: 96vw;
             position: relative;
             z-index: 1;
         }
@@ -118,9 +118,9 @@
         .timeline-container::-webkit-scrollbar-thumb { background: rgba(138,164,199,0.2); border-radius: 2px; }
 
         .timeline-inner {
-            min-width: 1200px;
+            min-width: 100%;
             position: relative;
-            padding: 0 3rem;
+            padding: 0 2rem;
         }
 
         .timeline-line {
@@ -128,6 +128,7 @@
             top: calc(5rem + 20px);
             left: 2rem;
             right: 2rem;
+            width: calc(100% - 4rem);
             height: 1px;
             background: linear-gradient(
                 to right,
@@ -182,6 +183,7 @@
             top: calc(5rem + 20px);
             left: 2rem;
             right: 2rem;
+            width: calc(100% - 4rem);
             height: 1px;
             pointer-events: none;
             z-index: 3;
@@ -211,10 +213,10 @@
 
         .timeline-nodes {
             display: flex;
+            justify-content: space-between;
             align-items: flex-start;
-            padding: 0 3rem;
+            padding: 0 2rem;
             position: relative;
-            gap: 4rem;
         }
 
         .node-wrapper {
@@ -222,7 +224,6 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            flex-shrink: 0;
             cursor: pointer;
         }
 
