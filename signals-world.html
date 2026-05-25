@@ -309,7 +309,7 @@
         /* === Tooltip === */
         .node-tooltip {
             position: absolute;
-            top: -5.5rem;
+            bottom: calc(100% + 12px);
             left: 50%;
             transform: translateX(-50%);
             background: rgba(15, 22, 35, 0.95);
@@ -320,14 +320,12 @@
             backdrop-filter: blur(12px);
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: translateX(-50%) translateY(4px);
+            transition: opacity 0.3s ease;
             z-index: 10;
         }
 
         .node-wrapper:hover .node-tooltip {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
         }
 
         .tooltip-label {
