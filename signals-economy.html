@@ -404,7 +404,7 @@ function draw() {
             }
             const y = pad.top + ph * (1 - pt[1] / 100);
             ctx.beginPath();
-            ctx.arc(x, y, isActive ? 5 : 3, 0, Math.PI * 2);
+            ctx.arc(x, y, isActive ? 3.5 : 2, 0, Math.PI * 2);
             ctx.fillStyle = etf.color;
             ctx.shadowColor = isActive ? etf.color : 'transparent';
             ctx.shadowBlur = isActive ? 10 : 0;
