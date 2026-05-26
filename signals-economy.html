@@ -322,47 +322,49 @@ function draw() {
         ctx.fillText(label, x, H - pad.bottom + 18);
     });
 
-    // Draw lines
+    // Draw dots & lines
     etfs.forEach(etf => {
         const pts = chartData[etf.code];
-        if (!pts || pts.length < 2) return;
+        if (!pts || pts.length === 0) return;
 
         const isActive = activeCode === etf.code;
         const isDimmed = activeCode && activeCode !== etf.code;
+        const alpha = isDimmed ? 0.1 : (activeCode ? 0.7 : 0.85);
 
-        ctx.beginPath();
-        ctx.strokeStyle = isDimmed ? 'rgba(255,255,255,0.04)' : etf.color;
-        ctx.lineWidth = isActive ? 2.5 : 1.2;
-        ctx.globalAlpha = isDimmed ? 0.15 : (activeCode ? 0.6 : 0.85);
+        // Draw connecting lines (if 2+ points)
+        if (pts.length >= 2) {
+            ctx.beginPath();
+            ctx.strokeStyle = isDimmed ? 'rgba(255,255,255,0.03)' : etf.color;
+            ctx.lineWidth = isActive ? 2.5 : 1.2;
+            ctx.globalAlpha = alpha;
+            ctx.shadowColor = isActive ? etf.color : 'transparent';
+            ctx.shadowBlur = isActive ? 12 : 0;
 
-        ctx.shadowColor = isActive ? etf.color : 'transparent';
-        ctx.shadowBlur = isActive ? 12 : 0;
+            pts.forEach((pt, i) => {
+                const x = pad.left + (pw / (pts.length - 1)) * i;
+                const y = pad.top + ph * (1 - pt[1] / 100);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
 
+        // Always draw dots at data points
+        ctx.globalAlpha = alpha;
         pts.forEach((pt, i) => {
-            const x = pad.left + (pw / (pts.length - 1)) * i;
+            const x = pad.left + (pw / (Math.max(pts.length - 1, 1))) * i;
             const y = pad.top + ph * (1 - pt[1] / 100);
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
+            ctx.beginPath();
+            ctx.arc(x, y, isActive ? 4 : 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = etf.color;
+            ctx.shadowColor = isActive ? etf.color : 'transparent';
+            ctx.shadowBlur = isActive ? 8 : 0;
+            ctx.fill();
         });
-
-        ctx.stroke();
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
     });
-
-    // Highlight active dots
-    if (activeCode) {
-        const pts = chartData[activeCode];
-        const etf = etfs.find(e => e.code === activeCode);
-        pts.forEach((pt, i) => {
-            const x = pad.left + (pw / (pts.length - 1)) * i;
-            const y = pad.top + ph * (1 - pt[1] / 100);
-            ctx.beginPath();
-            ctx.arc(x, y, 3, 0, Math.PI * 2);
-            ctx.fillStyle = etf.color;
-            ctx.fill();
-        });
-    }
 }
 
 // ===== Hover interaction =====
@@ -381,8 +383,10 @@ canvas.addEventListener('mousemove', function(e) {
     let minDist = Infinity;
     etfs.forEach(etf => {
         const pts = chartData[etf.code];
+        if (!pts || pts.length === 0) return;
         pts.forEach((pt, i) => {
-            const x = pad.left + (pw / (pts.length - 1)) * i;
+            const divisor = Math.max(pts.length - 1, 1);
+            const x = pad.left + (pw / divisor) * i;
             const y = pad.top + ph * (1 - pt[1] / 100);
             const dist = Math.sqrt((mx - x) ** 2 + (my - y) ** 2);
             if (dist < 30 && dist < minDist) {
