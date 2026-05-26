@@ -85,8 +85,9 @@
         /* === Chart === */
         .chart-wrap {
             position: relative;
-            width: 100%;
-            margin: 2rem 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
         }
 
         canvas {
@@ -179,41 +180,79 @@ const etfs = [
     { code: "XLK",    name: "美股科技",   color: "#6366f1", region: "US" },
 ];
 
-// ===== Seed data: [date_str, percentile] =====
-// Replace with JSON fetch later
-const seedData = {};
-const dates = [];
-const today = new Date();
-for (let i = 29; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    dates.push(d.toISOString().split('T')[0]);
+// ===== Data loading: JSON → seed fallback =====
+let chartData = {};
+let dates = [];
+
+function buildSeedData() {
+    // Generate smooth realistic seed curves as fallback
+    const d = [];
+    const today = new Date();
+    for (let i = 29; i >= 0; i--) {
+        const dt = new Date(today);
+        dt.setDate(dt.getDate() - i);
+        d.push(dt.toISOString().split('T')[0]);
+    }
+
+    const baseValues = {
+        "513180": { start: 62, trend: -0.3, amp: 4 },
+        "512010": { start: 23, trend: 0.2, amp: 3 },
+        "512880": { start: 48, trend: -0.5, amp: 5 },
+        "159928": { start: 18, trend: 0.1, amp: 2 },
+        "516160": { start: 35, trend: -0.4, amp: 6 },
+        "512480": { start: 72, trend: 0.6, amp: 5 },
+        "510300": { start: 45, trend: -0.1, amp: 3 },
+        "QQQ":    { start: 85, trend: 0.3, amp: 4 },
+        "XLV":    { start: 55, trend: -0.2, amp: 3 },
+        "XLK":    { start: 78, trend: 0.4, amp: 4 },
+    };
+
+    const sd = {};
+    etfs.forEach(etf => {
+        const b = baseValues[etf.code] || { start: 50, trend: 0, amp: 3 };
+        const pts = [];
+        d.forEach((dt, i) => {
+            let v = b.start + b.trend * i + Math.sin(i * 0.3) * b.amp + Math.cos(i * 0.7) * b.amp * 0.5;
+            v = Math.max(2, Math.min(98, Math.round(v * 10) / 10));
+            pts.push([dt, v]);
+        });
+        sd[etf.code] = pts;
+    });
+    return { data: sd, dates: d };
 }
 
-// Generate smooth realistic seed curves
-const baseValues = {
-    "513180": { start: 62, trend: -0.3, amp: 4 },
-    "512010": { start: 23, trend: 0.2, amp: 3 },
-    "512880": { start: 48, trend: -0.5, amp: 5 },
-    "159928": { start: 18, trend: 0.1, amp: 2 },
-    "516160": { start: 35, trend: -0.4, amp: 6 },
-    "512480": { start: 72, trend: 0.6, amp: 5 },
-    "510300": { start: 45, trend: -0.1, amp: 3 },
-    "QQQ":    { start: 85, trend: 0.3, amp: 4 },
-    "XLV":    { start: 55, trend: -0.2, amp: 3 },
-    "XLK":    { start: 78, trend: 0.4, amp: 4 },
-};
+async function loadData() {
+    try {
+        const resp = await fetch('etf_data.json');
+        if (!resp.ok) throw new Error('no data file');
+        const json = await resp.json();
+        const allDates = new Set();
+        const cd = {};
 
-etfs.forEach(etf => {
-    const b = baseValues[etf.code];
-    const pts = [];
-    dates.forEach((d, i) => {
-        let v = b.start + b.trend * i + Math.sin(i * 0.3) * b.amp + Math.cos(i * 0.7) * b.amp * 0.5;
-        v = Math.max(2, Math.min(98, Math.round(v * 10) / 10));
-        pts.push([d, v]);
-    });
-    seedData[etf.code] = pts;
-});
+        etfs.forEach(etf => {
+            const pts = json[etf.code];
+            if (pts && pts.length > 0) {
+                cd[etf.code] = pts.map(p => {
+                    allDates.add(p.date);
+                    return [p.date, p.percentile];
+                });
+            }
+        });
+
+        if (Object.keys(cd).length > 0) {
+            chartData = cd;
+            dates = Array.from(allDates).sort();
+            console.log('Loaded real data:', Object.keys(cd).length, 'ETFs,', dates.length, 'days');
+            return;
+        }
+    } catch(e) {
+        console.log('No data file, using seed data');
+    }
+
+    const seed = buildSeedData();
+    chartData = seed.data;
+    dates = seed.dates;
+}
 
 // ===== Canvas Chart =====
 const canvas = document.getElementById('chart');
@@ -285,7 +324,7 @@ function draw() {
 
     // Draw lines
     etfs.forEach(etf => {
-        const pts = seedData[etf.code];
+        const pts = chartData[etf.code];
         if (!pts || pts.length < 2) return;
 
         const isActive = activeCode === etf.code;
@@ -313,7 +352,7 @@ function draw() {
 
     // Highlight active dots
     if (activeCode) {
-        const pts = seedData[activeCode];
+        const pts = chartData[activeCode];
         const etf = etfs.find(e => e.code === activeCode);
         pts.forEach((pt, i) => {
             const x = pad.left + (pw / (pts.length - 1)) * i;
@@ -341,7 +380,7 @@ canvas.addEventListener('mousemove', function(e) {
     let closest = null;
     let minDist = Infinity;
     etfs.forEach(etf => {
-        const pts = seedData[etf.code];
+        const pts = chartData[etf.code];
         pts.forEach((pt, i) => {
             const x = pad.left + (pw / (pts.length - 1)) * i;
             const y = pad.top + ph * (1 - pt[1] / 100);
@@ -372,7 +411,7 @@ canvas.addEventListener('mouseleave', function() {
 // ===== Legend =====
 function updateLegend() {
     legendEl.innerHTML = etfs.map(etf => {
-        const pts = seedData[etf.code];
+        const pts = chartData[etf.code];
         const last = pts[pts.length - 1][1];
         const isActive = activeCode === etf.code;
         const isDimmed = activeCode && !isActive;
@@ -398,9 +437,12 @@ function updateLegend() {
 }
 
 // ===== Init =====
-updateLegend();
-window.addEventListener('resize', resize);
-resize();
+(async function() {
+    await loadData();
+    updateLegend();
+    window.addEventListener('resize', resize);
+    resize();
+})();
 </script>
 </body>
 </html>
