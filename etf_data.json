@@ -2,459 +2,459 @@
   "510300": [
     {
       "date": "2026-01-07",
-      "percentile": 86.2,
-      "pe": 14.44
+      "percentile": 99.8,
+      "price": 4.901
     },
     {
       "date": "2026-01-08",
-      "percentile": 84.9,
-      "pe": 14.35
+      "percentile": 99.6,
+      "price": 4.863
     },
     {
       "date": "2026-01-09",
-      "percentile": 85.8,
-      "pe": 14.41
+      "percentile": 99.6,
+      "price": 4.885
     },
     {
       "date": "2026-01-12",
-      "percentile": 87.0,
-      "pe": 14.48
+      "percentile": 99.8,
+      "price": 4.913
     },
     {
       "date": "2026-01-13",
-      "percentile": 86.7,
-      "pe": 14.46
+      "percentile": 99.4,
+      "price": 4.896
     },
     {
       "date": "2026-01-14",
-      "percentile": 84.8,
-      "pe": 14.35
+      "percentile": 99.0,
+      "price": 4.866
     },
     {
       "date": "2026-01-15",
-      "percentile": 84.2,
-      "pe": 14.32
+      "percentile": 99.0,
+      "price": 4.875
     },
     {
       "date": "2026-01-16",
-      "percentile": 82.7,
-      "pe": 14.22
+      "percentile": 98.2,
+      "price": 4.859
     },
     {
       "date": "2026-01-19",
-      "percentile": 82.7,
-      "pe": 14.22
+      "percentile": 93.3,
+      "price": 4.738
     },
     {
       "date": "2026-01-20",
-      "percentile": 82.8,
-      "pe": 14.22
+      "percentile": 92.2,
+      "price": 4.724
     },
     {
       "date": "2026-01-21",
-      "percentile": 81.9,
-      "pe": 14.18
+      "percentile": 92.8,
+      "price": 4.73
     },
     {
       "date": "2026-01-22",
-      "percentile": 81.5,
-      "pe": 14.17
+      "percentile": 92.0,
+      "price": 4.727
     },
     {
       "date": "2026-01-23",
-      "percentile": 79.0,
-      "pe": 14.08
+      "percentile": 90.2,
+      "price": 4.704
     },
     {
       "date": "2026-01-26",
-      "percentile": 80.9,
-      "pe": 14.15
+      "percentile": 91.0,
+      "price": 4.712
     },
     {
       "date": "2026-01-27",
-      "percentile": 80.6,
-      "pe": 14.14
+      "percentile": 90.8,
+      "price": 4.71
     },
     {
       "date": "2026-01-28",
-      "percentile": 82.3,
-      "pe": 14.2
+      "percentile": 91.8,
+      "price": 4.725
     },
     {
       "date": "2026-01-29",
-      "percentile": 84.2,
-      "pe": 14.31
+      "percentile": 95.6,
+      "price": 4.768
     },
     {
       "date": "2026-01-30",
-      "percentile": 81.8,
-      "pe": 14.18
+      "percentile": 90.5,
+      "price": 4.711
     },
     {
       "date": "2026-02-02",
-      "percentile": 75.4,
-      "pe": 13.91
+      "percentile": 81.8,
+      "price": 4.6
     },
     {
       "date": "2026-02-03",
-      "percentile": 76.8,
-      "pe": 13.97
+      "percentile": 86.0,
+      "price": 4.664
     },
     {
       "date": "2026-02-04",
-      "percentile": 80.0,
-      "pe": 14.13
+      "percentile": 89.6,
+      "price": 4.707
     },
     {
       "date": "2026-02-05",
-      "percentile": 78.7,
-      "pe": 14.08
+      "percentile": 86.8,
+      "price": 4.679
     },
     {
       "date": "2026-02-06",
-      "percentile": 77.9,
-      "pe": 14.04
+      "percentile": 84.5,
+      "price": 4.649
     },
     {
       "date": "2026-02-09",
-      "percentile": 82.4,
-      "pe": 14.2
+      "percentile": 92.0,
+      "price": 4.727
     },
     {
       "date": "2026-02-10",
-      "percentile": 83.0,
-      "pe": 14.23
+      "percentile": 93.0,
+      "price": 4.733
     },
     {
       "date": "2026-02-11",
-      "percentile": 83.0,
-      "pe": 14.23
+      "percentile": 91.0,
+      "price": 4.723
     },
     {
       "date": "2026-02-12",
-      "percentile": 82.3,
-      "pe": 14.2
+      "percentile": 91.8,
+      "price": 4.727
     },
     {
       "date": "2026-02-13",
-      "percentile": 77.2,
-      "pe": 14.01
+      "percentile": 85.8,
+      "price": 4.671
     },
     {
       "date": "2026-02-24",
-      "percentile": 80.6,
-      "pe": 14.15
+      "percentile": 90.3,
+      "price": 4.716
     },
     {
       "date": "2026-02-25",
-      "percentile": 82.3,
-      "pe": 14.2
+      "percentile": 94.0,
+      "price": 4.75
     },
     {
       "date": "2026-02-26",
-      "percentile": 80.6,
-      "pe": 14.15
+      "percentile": 93.1,
+      "price": 4.735
     },
     {
       "date": "2026-02-27",
-      "percentile": 79.7,
-      "pe": 14.13
+      "percentile": 90.9,
+      "price": 4.725
     },
     {
       "date": "2026-03-02",
-      "percentile": 83.9,
-      "pe": 14.28
+      "percentile": 93.3,
+      "price": 4.739
     },
     {
       "date": "2026-03-03",
-      "percentile": 83.9,
-      "pe": 14.28
+      "percentile": 85.2,
+      "price": 4.678
     },
     {
       "date": "2026-03-04",
-      "percentile": 79.1,
-      "pe": 14.11
+      "percentile": 79.9,
+      "price": 4.61
     },
     {
       "date": "2026-03-05",
-      "percentile": 81.6,
-      "pe": 14.18
+      "percentile": 83.2,
+      "price": 4.654
     },
     {
       "date": "2026-03-06",
-      "percentile": 81.9,
-      "pe": 14.19
+      "percentile": 84.4,
+      "price": 4.667
     },
     {
       "date": "2026-03-09",
-      "percentile": 80.4,
-      "pe": 14.15
+      "percentile": 81.5,
+      "price": 4.629
     },
     {
       "date": "2026-03-10",
-      "percentile": 80.4,
-      "pe": 14.15
+      "percentile": 85.7,
+      "price": 4.683
     },
     {
       "date": "2026-03-11",
-      "percentile": 83.5,
-      "pe": 14.26
+      "percentile": 89.2,
+      "price": 4.711
     },
     {
       "date": "2026-03-12",
-      "percentile": 83.5,
-      "pe": 14.26
+      "percentile": 86.4,
+      "price": 4.694
     },
     {
       "date": "2026-03-13",
-      "percentile": 82.3,
-      "pe": 14.21
+      "percentile": 84.7,
+      "price": 4.677
     },
     {
       "date": "2026-03-16",
-      "percentile": 82.1,
-      "pe": 14.2
+      "percentile": 85.1,
+      "price": 4.68
     },
     {
       "date": "2026-03-17",
-      "percentile": 80.5,
-      "pe": 14.16
+      "percentile": 81.5,
+      "price": 4.646
     },
     {
       "date": "2026-03-18",
-      "percentile": 81.4,
-      "pe": 14.18
+      "percentile": 82.7,
+      "price": 4.662
     },
     {
       "date": "2026-03-19",
-      "percentile": 78.0,
-      "pe": 14.09
+      "percentile": 77.7,
+      "price": 4.599
     },
     {
       "date": "2026-03-20",
-      "percentile": 76.5,
-      "pe": 14.02
+      "percentile": 77.0,
+      "price": 4.576
     },
     {
       "date": "2026-03-23",
-      "percentile": 70.7,
-      "pe": 13.61
+      "percentile": 74.4,
+      "price": 4.43
     },
     {
       "date": "2026-03-24",
-      "percentile": 71.8,
-      "pe": 13.74
+      "percentile": 75.0,
+      "price": 4.479
     },
     {
       "date": "2026-03-25",
-      "percentile": 73.1,
-      "pe": 13.86
+      "percentile": 75.6,
+      "price": 4.544
     },
     {
       "date": "2026-03-26",
-      "percentile": 72.2,
-      "pe": 13.79
+      "percentile": 74.9,
+      "price": 4.488
     },
     {
       "date": "2026-03-27",
-      "percentile": 74.1,
-      "pe": 13.91
+      "percentile": 75.0,
+      "price": 4.508
     },
     {
       "date": "2026-03-30",
-      "percentile": 75.0,
-      "pe": 13.96
+      "percentile": 74.8,
+      "price": 4.5
     },
     {
       "date": "2026-03-31",
-      "percentile": 73.6,
-      "pe": 13.89
+      "percentile": 73.9,
+      "price": 4.463
     },
     {
       "date": "2026-04-01",
-      "percentile": 78.8,
-      "pe": 14.12
+      "percentile": 75.3,
+      "price": 4.534
     },
     {
       "date": "2026-04-02",
-      "percentile": 77.1,
-      "pe": 14.05
+      "percentile": 74.6,
+      "price": 4.489
     },
     {
       "date": "2026-04-03",
-      "percentile": 74.0,
-      "pe": 13.91
+      "percentile": 73.3,
+      "price": 4.454
     },
     {
       "date": "2026-04-07",
-      "percentile": 73.6,
-      "pe": 13.9
+      "percentile": 73.2,
+      "price": 4.446
     },
     {
       "date": "2026-04-08",
-      "percentile": 81.9,
-      "pe": 14.19
+      "percentile": 78.6,
+      "price": 4.602
     },
     {
       "date": "2026-04-09",
-      "percentile": 78.2,
-      "pe": 14.1
+      "percentile": 77.1,
+      "price": 4.572
     },
     {
       "date": "2026-04-10",
-      "percentile": 82.9,
-      "pe": 14.22
+      "percentile": 81.4,
+      "price": 4.642
     },
     {
       "date": "2026-04-13",
-      "percentile": 83.7,
-      "pe": 14.26
+      "percentile": 82.3,
+      "price": 4.652
     },
     {
       "date": "2026-04-14",
-      "percentile": 85.7,
-      "pe": 14.38
+      "percentile": 89.8,
+      "price": 4.712
     },
     {
       "date": "2026-04-15",
-      "percentile": 85.4,
-      "pe": 14.36
+      "percentile": 86.8,
+      "price": 4.694
     },
     {
       "date": "2026-04-16",
-      "percentile": 86.5,
-      "pe": 14.43
+      "percentile": 94.2,
+      "price": 4.746
     },
     {
       "date": "2026-04-17",
-      "percentile": 86.1,
-      "pe": 14.4
+      "percentile": 93.5,
+      "price": 4.739
     },
     {
       "date": "2026-04-20",
-      "percentile": 88.0,
-      "pe": 14.52
+      "percentile": 95.7,
+      "price": 4.765
     },
     {
       "date": "2026-04-21",
-      "percentile": 88.7,
-      "pe": 14.58
+      "percentile": 96.4,
+      "price": 4.776
     },
     {
       "date": "2026-04-22",
-      "percentile": 88.9,
-      "pe": 14.61
+      "percentile": 97.3,
+      "price": 4.811
     },
     {
       "date": "2026-04-23",
-      "percentile": 88.8,
-      "pe": 14.6
+      "percentile": 96.6,
+      "price": 4.801
     },
     {
       "date": "2026-04-24",
-      "percentile": 88.0,
-      "pe": 14.55
+      "percentile": 96.1,
+      "price": 4.782
     },
     {
       "date": "2026-04-27",
-      "percentile": 87.8,
-      "pe": 14.54
+      "percentile": 96.1,
+      "price": 4.782
     },
     {
       "date": "2026-04-28",
-      "percentile": 88.9,
-      "pe": 14.61
+      "percentile": 95.4,
+      "price": 4.77
     },
     {
       "date": "2026-04-29",
-      "percentile": 89.9,
-      "pe": 14.71
+      "percentile": 97.7,
+      "price": 4.821
     },
     {
       "date": "2026-04-30",
-      "percentile": 89.4,
-      "pe": 14.64
+      "percentile": 97.9,
+      "price": 4.824
     },
     {
       "date": "2026-05-06",
-      "percentile": 90.5,
-      "pe": 14.79
+      "percentile": 99.3,
+      "price": 4.888
     },
     {
       "date": "2026-05-07",
-      "percentile": 90.3,
-      "pe": 14.77
+      "percentile": 99.6,
+      "price": 4.912
     },
     {
       "date": "2026-05-08",
-      "percentile": 89.8,
-      "pe": 14.71
+      "percentile": 98.9,
+      "price": 4.886
     },
     {
       "date": "2026-05-11",
-      "percentile": 91.2,
-      "pe": 14.85
+      "percentile": 100.0,
+      "price": 4.966
     },
     {
       "date": "2026-05-12",
-      "percentile": 91.0,
-      "pe": 14.83
+      "percentile": 99.8,
+      "price": 4.963
     },
     {
       "date": "2026-05-13",
-      "percentile": 91.7,
-      "pe": 14.9
+      "percentile": 100.0,
+      "price": 5.017
     },
     {
       "date": "2026-05-14",
-      "percentile": 89.6,
-      "pe": 14.73
+      "percentile": 99.5,
+      "price": 4.941
     },
     {
       "date": "2026-05-15",
-      "percentile": 88.4,
-      "pe": 14.61
+      "percentile": 97.9,
+      "price": 4.878
     },
     {
       "date": "2026-05-18",
-      "percentile": 87.4,
-      "pe": 14.55
+      "percentile": 96.8,
+      "price": 4.852
     },
     {
       "date": "2026-05-19",
-      "percentile": 88.8,
-      "pe": 14.63
+      "percentile": 97.6,
+      "price": 4.869
     },
     {
       "date": "2026-05-20",
-      "percentile": 87.7,
-      "pe": 14.57
+      "percentile": 97.6,
+      "price": 4.871
     },
     {
       "date": "2026-05-21",
-      "percentile": 85.0,
-      "pe": 14.4
+      "percentile": 94.9,
+      "price": 4.808
     },
     {
       "date": "2026-05-22",
-      "percentile": 86.6,
-      "pe": 14.49
+      "percentile": 96.9,
+      "price": 4.862
     },
     {
       "date": "2026-05-25",
-      "percentile": 89.0,
-      "pe": 14.64
+      "percentile": 99.3,
+      "price": 4.937
     },
     {
       "date": "2026-05-26",
-      "percentile": 67.9,
-      "pe": 13.86
+      "percentile": 99.8,
+      "price": 4.972
     }
   ],
   "_meta": {
     "513180": {
       "name": "恒生科技",
-      "region": "HK"
+      "region": "CN"
     },
     "512010": {
       "name": "医药",
@@ -480,6 +480,10 @@
       "name": "沪深300",
       "region": "CN"
     },
+    "518880": {
+      "name": "黄金",
+      "region": "CN"
+    },
     "QQQ": {
       "name": "纳指100",
       "region": "US"
@@ -491,2722 +495,2718 @@
     "XLK": {
       "name": "美股科技",
       "region": "US"
-    },
-    "518880": {
-      "name": "黄金",
-      "region": "CN"
     }
   },
   "512010": [
     {
       "date": "2026-01-07",
-      "percentile": 35.7,
-      "pe": 56.75
+      "percentile": 82.0,
+      "price": 0.397
     },
     {
       "date": "2026-01-08",
-      "percentile": 35.2,
-      "pe": 56.52
+      "percentile": 82.8,
+      "price": 0.399
     },
     {
       "date": "2026-01-09",
-      "percentile": 35.5,
-      "pe": 56.68
+      "percentile": 84.9,
+      "price": 0.403
     },
     {
       "date": "2026-01-12",
-      "percentile": 35.9,
-      "pe": 56.75
+      "percentile": 85.3,
+      "price": 0.404
     },
     {
       "date": "2026-01-13",
-      "percentile": 37.5,
-      "pe": 57.34
+      "percentile": 88.4,
+      "price": 0.41
     },
     {
       "date": "2026-01-14",
-      "percentile": 35.3,
-      "pe": 56.53
+      "percentile": 86.6,
+      "price": 0.407
     },
     {
       "date": "2026-01-15",
-      "percentile": 33.7,
-      "pe": 56.14
+      "percentile": 85.0,
+      "price": 0.404
     },
     {
       "date": "2026-01-16",
-      "percentile": 29.5,
-      "pe": 55.05
+      "percentile": 82.0,
+      "price": 0.399
     },
     {
       "date": "2026-01-19",
-      "percentile": 26.5,
-      "pe": 54.32
+      "percentile": 80.2,
+      "price": 0.396
     },
     {
       "date": "2026-01-20",
-      "percentile": 23.7,
-      "pe": 53.77
+      "percentile": 79.3,
+      "price": 0.393
     },
     {
       "date": "2026-01-21",
-      "percentile": 22.7,
-      "pe": 53.41
+      "percentile": 76.3,
+      "price": 0.39
     },
     {
       "date": "2026-01-22",
-      "percentile": 20.8,
-      "pe": 52.83
+      "percentile": 74.7,
+      "price": 0.388
     },
     {
       "date": "2026-01-23",
-      "percentile": 19.5,
-      "pe": 52.43
+      "percentile": 74.8,
+      "price": 0.388
     },
     {
       "date": "2026-01-26",
-      "percentile": 16.7,
-      "pe": 51.69
+      "percentile": 73.9,
+      "price": 0.387
     },
     {
       "date": "2026-01-27",
-      "percentile": 13.5,
-      "pe": 50.84
+      "percentile": 66.3,
+      "price": 0.381
     },
     {
       "date": "2026-01-28",
-      "percentile": 12.0,
-      "pe": 50.26
+      "percentile": 61.8,
+      "price": 0.378
     },
     {
       "date": "2026-01-29",
-      "percentile": 16.6,
-      "pe": 51.64
+      "percentile": 72.0,
+      "price": 0.386
     },
     {
       "date": "2026-01-30",
-      "percentile": 16.9,
-      "pe": 51.69
+      "percentile": 64.0,
+      "price": 0.38
     },
     {
       "date": "2026-02-02",
-      "percentile": 11.7,
-      "pe": 50.2
+      "percentile": 53.4,
+      "price": 0.372
     },
     {
       "date": "2026-02-03",
-      "percentile": 14.4,
-      "pe": 51.08
+      "percentile": 60.2,
+      "price": 0.377
     },
     {
       "date": "2026-02-04",
-      "percentile": 15.1,
-      "pe": 51.19
+      "percentile": 64.2,
+      "price": 0.38
     },
     {
       "date": "2026-02-05",
-      "percentile": 17.1,
-      "pe": 51.69
+      "percentile": 69.9,
+      "price": 0.384
     },
     {
       "date": "2026-02-06",
-      "percentile": 13.9,
-      "pe": 50.93
+      "percentile": 68.8,
+      "price": 0.383
     },
     {
       "date": "2026-02-09",
-      "percentile": 14.2,
-      "pe": 51.06
+      "percentile": 68.9,
+      "price": 0.383
     },
     {
       "date": "2026-02-10",
-      "percentile": 17.9,
-      "pe": 51.9
+      "percentile": 75.4,
+      "price": 0.388
     },
     {
       "date": "2026-02-11",
-      "percentile": 19.8,
-      "pe": 52.35
+      "percentile": 75.4,
+      "price": 0.388
     },
     {
       "date": "2026-02-12",
-      "percentile": 19.2,
-      "pe": 52.2
+      "percentile": 74.1,
+      "price": 0.387
     },
     {
       "date": "2026-02-13",
-      "percentile": 17.3,
-      "pe": 51.75
+      "percentile": 67.0,
+      "price": 0.382
     },
     {
       "date": "2026-02-24",
-      "percentile": 16.5,
-      "pe": 51.56
+      "percentile": 65.7,
+      "price": 0.381
     },
     {
       "date": "2026-02-25",
-      "percentile": 15.9,
-      "pe": 51.42
+      "percentile": 67.1,
+      "price": 0.382
     },
     {
       "date": "2026-02-26",
-      "percentile": 12.4,
-      "pe": 50.41
+      "percentile": 63.1,
+      "price": 0.38
     },
     {
       "date": "2026-02-27",
-      "percentile": 12.0,
-      "pe": 50.27
+      "percentile": 62.0,
+      "price": 0.379
     },
     {
       "date": "2026-03-02",
-      "percentile": 8.7,
-      "pe": 48.47
+      "percentile": 51.2,
+      "price": 0.371
     },
     {
       "date": "2026-03-03",
-      "percentile": 7.7,
-      "pe": 47.65
+      "percentile": 40.9,
+      "price": 0.366
     },
     {
       "date": "2026-03-04",
-      "percentile": 7.0,
-      "pe": 47.09
+      "percentile": 34.1,
+      "price": 0.361
     },
     {
       "date": "2026-03-05",
-      "percentile": 8.0,
-      "pe": 47.74
+      "percentile": 37.3,
+      "price": 0.363
     },
     {
       "date": "2026-03-06",
-      "percentile": 10.2,
-      "pe": 49.38
+      "percentile": 52.5,
+      "price": 0.372
     },
     {
       "date": "2026-03-09",
-      "percentile": 9.5,
-      "pe": 48.83
+      "percentile": 42.7,
+      "price": 0.367
     },
     {
       "date": "2026-03-10",
-      "percentile": 12.4,
-      "pe": 50.26
+      "percentile": 55.3,
+      "price": 0.374
     },
     {
       "date": "2026-03-11",
-      "percentile": 10.6,
-      "pe": 49.62
+      "percentile": 53.9,
+      "price": 0.373
     },
     {
       "date": "2026-03-12",
-      "percentile": 9.8,
-      "pe": 49.15
+      "percentile": 51.3,
+      "price": 0.371
     },
     {
       "date": "2026-03-13",
-      "percentile": 9.6,
-      "pe": 48.98
+      "percentile": 44.0,
+      "price": 0.368
     },
     {
       "date": "2026-03-16",
-      "percentile": 10.4,
-      "pe": 49.4
+      "percentile": 47.0,
+      "price": 0.369
     },
     {
       "date": "2026-03-17",
-      "percentile": 11.5,
-      "pe": 50.04
+      "percentile": 51.6,
+      "price": 0.371
     },
     {
       "date": "2026-03-18",
-      "percentile": 13.5,
-      "pe": 50.55
+      "percentile": 49.4,
+      "price": 0.37
     },
     {
       "date": "2026-03-19",
-      "percentile": 10.9,
-      "pe": 49.79
+      "percentile": 38.6,
+      "price": 0.365
     },
     {
       "date": "2026-03-20",
-      "percentile": 9.6,
-      "pe": 49.01
+      "percentile": 34.3,
+      "price": 0.362
     },
     {
       "date": "2026-03-23",
-      "percentile": 6.8,
-      "pe": 46.91
+      "percentile": 20.0,
+      "price": 0.348
     },
     {
       "date": "2026-03-24",
-      "percentile": 7.9,
-      "pe": 47.67
+      "percentile": 29.7,
+      "price": 0.357
     },
     {
       "date": "2026-03-25",
-      "percentile": 8.6,
-      "pe": 48.08
+      "percentile": 31.7,
+      "price": 0.359
     },
     {
       "date": "2026-03-26",
-      "percentile": 5.0,
-      "pe": 44.44
+      "percentile": 25.3,
+      "price": 0.353
     },
     {
       "date": "2026-03-27",
-      "percentile": 7.6,
-      "pe": 47.5
+      "percentile": 39.3,
+      "price": 0.365
     },
     {
       "date": "2026-03-30",
-      "percentile": 8.5,
-      "pe": 47.99
+      "percentile": 39.4,
+      "price": 0.365
     },
     {
       "date": "2026-03-31",
-      "percentile": 7.7,
-      "pe": 47.53
+      "percentile": 37.5,
+      "price": 0.364
     },
     {
       "date": "2026-04-01",
-      "percentile": 11.2,
-      "pe": 49.69
+      "percentile": 60.5,
+      "price": 0.377
     },
     {
       "date": "2026-04-02",
-      "percentile": 10.8,
-      "pe": 49.38
+      "percentile": 56.5,
+      "price": 0.374
     },
     {
       "date": "2026-04-03",
-      "percentile": 9.2,
-      "pe": 48.53
+      "percentile": 44.7,
+      "price": 0.368
     },
     {
       "date": "2026-04-07",
-      "percentile": 9.0,
-      "pe": 48.3
+      "percentile": 47.7,
+      "price": 0.369
     },
     {
       "date": "2026-04-08",
-      "percentile": 11.1,
-      "pe": 49.45
+      "percentile": 58.1,
+      "price": 0.375
     },
     {
       "date": "2026-04-09",
-      "percentile": 10.3,
-      "pe": 49.03
+      "percentile": 55.0,
+      "price": 0.373
     },
     {
       "date": "2026-04-10",
-      "percentile": 10.5,
-      "pe": 49.11
+      "percentile": 55.1,
+      "price": 0.373
     },
     {
       "date": "2026-04-13",
-      "percentile": 7.6,
-      "pe": 47.51
+      "percentile": 52.3,
+      "price": 0.371
     },
     {
       "date": "2026-04-14",
-      "percentile": 9.1,
-      "pe": 48.36
+      "percentile": 58.4,
+      "price": 0.375
     },
     {
       "date": "2026-04-15",
-      "percentile": 11.8,
-      "pe": 49.69
+      "percentile": 61.2,
+      "price": 0.377
     },
     {
       "date": "2026-04-16",
-      "percentile": 11.4,
-      "pe": 49.47
+      "percentile": 61.2,
+      "price": 0.377
     },
     {
       "date": "2026-04-17",
-      "percentile": 9.4,
-      "pe": 48.49
+      "percentile": 40.7,
+      "price": 0.366
     },
     {
       "date": "2026-04-20",
-      "percentile": 9.4,
-      "pe": 48.49
+      "percentile": 38.8,
+      "price": 0.365
     },
     {
       "date": "2026-04-21",
-      "percentile": 8.6,
-      "pe": 47.99
+      "percentile": 38.9,
+      "price": 0.365
     },
     {
       "date": "2026-04-22",
-      "percentile": 8.2,
-      "pe": 47.72
+      "percentile": 36.2,
+      "price": 0.363
     },
     {
       "date": "2026-04-23",
-      "percentile": 6.0,
-      "pe": 46.1
+      "percentile": 39.1,
+      "price": 0.365
     },
     {
       "date": "2026-04-24",
-      "percentile": 5.9,
-      "pe": 45.82
+      "percentile": 41.2,
+      "price": 0.366
     },
     {
       "date": "2026-04-27",
-      "percentile": 5.6,
-      "pe": 45.27
+      "percentile": 36.7,
+      "price": 0.364
     },
     {
       "date": "2026-04-28",
-      "percentile": 5.4,
-      "pe": 44.83
+      "percentile": 53.8,
+      "price": 0.372
     },
     {
       "date": "2026-04-29",
-      "percentile": 5.5,
-      "pe": 44.95
+      "percentile": 57.2,
+      "price": 0.374
     },
     {
       "date": "2026-04-30",
-      "percentile": 4.7,
-      "pe": 44.04
+      "percentile": 50.2,
+      "price": 0.37
     },
     {
       "date": "2026-05-06",
-      "percentile": 4.4,
-      "pe": 43.84
+      "percentile": 44.6,
+      "price": 0.368
     },
     {
       "date": "2026-05-07",
-      "percentile": 4.4,
-      "pe": 43.88
+      "percentile": 44.7,
+      "price": 0.368
     },
     {
       "date": "2026-05-08",
-      "percentile": 4.0,
-      "pe": 43.16
+      "percentile": 41.1,
+      "price": 0.366
     },
     {
       "date": "2026-05-11",
-      "percentile": 4.3,
-      "pe": 43.75
+      "percentile": 50.5,
+      "price": 0.37
     },
     {
       "date": "2026-05-12",
-      "percentile": 6.4,
-      "pe": 45.87
+      "percentile": 54.1,
+      "price": 0.372
     },
     {
       "date": "2026-05-13",
-      "percentile": 6.2,
-      "pe": 45.66
+      "percentile": 50.5,
+      "price": 0.37
     },
     {
       "date": "2026-05-14",
-      "percentile": 5.3,
-      "pe": 44.4
+      "percentile": 31.3,
+      "price": 0.36
     },
     {
       "date": "2026-05-15",
-      "percentile": 5.1,
-      "pe": 44.13
+      "percentile": 26.1,
+      "price": 0.356
     },
     {
       "date": "2026-05-18",
-      "percentile": 3.9,
-      "pe": 42.86
+      "percentile": 20.0,
+      "price": 0.349
     },
     {
       "date": "2026-05-19",
-      "percentile": 3.6,
-      "pe": 42.17
+      "percentile": 20.1,
+      "price": 0.349
     },
     {
       "date": "2026-05-20",
-      "percentile": 3.1,
-      "pe": 41.65
+      "percentile": 17.5,
+      "price": 0.347
     },
     {
       "date": "2026-05-21",
-      "percentile": 3.6,
-      "pe": 42.06
+      "percentile": 20.4,
+      "price": 0.349
     },
     {
       "date": "2026-05-22",
-      "percentile": 2.7,
-      "pe": 41.26
+      "percentile": 15.5,
+      "price": 0.345
     },
     {
       "date": "2026-05-25",
-      "percentile": 2.3,
-      "pe": 40.41
+      "percentile": 12.7,
+      "price": 0.34
     },
     {
       "date": "2026-05-26",
-      "percentile": 2.2,
-      "pe": 40.22
+      "percentile": 12.8,
+      "price": 0.34
     }
   ],
   "513180": [
     {
       "date": "2026-01-07",
-      "percentile": 57.5,
-      "pe": 146.41
+      "percentile": 81.6,
+      "price": 0.76
     },
     {
       "date": "2026-01-08",
-      "percentile": 57.6,
-      "pe": 147.49
+      "percentile": 76.9,
+      "price": 0.751
     },
     {
       "date": "2026-01-09",
-      "percentile": 58.4,
-      "pe": 153.54
+      "percentile": 79.2,
+      "price": 0.755
     },
     {
       "date": "2026-01-12",
-      "percentile": 61.7,
-      "pe": 164.58
+      "percentile": 84.9,
+      "price": 0.772
     },
     {
       "date": "2026-01-13",
-      "percentile": 64.2,
-      "pe": 168.14
+      "percentile": 85.0,
+      "price": 0.772
     },
     {
       "date": "2026-01-14",
-      "percentile": 66.2,
-      "pe": 172.98
+      "percentile": 87.4,
+      "price": 0.781
     },
     {
       "date": "2026-01-15",
-      "percentile": 66.5,
-      "pe": 175.05
+      "percentile": 84.0,
+      "price": 0.769
     },
     {
       "date": "2026-01-16",
-      "percentile": 66.6,
-      "pe": 175.9
+      "percentile": 83.8,
+      "price": 0.768
     },
     {
       "date": "2026-01-19",
-      "percentile": 64.3,
-      "pe": 168.59
+      "percentile": 80.8,
+      "price": 0.76
     },
     {
       "date": "2026-01-20",
-      "percentile": 60.1,
-      "pe": 161.9
+      "percentile": 75.9,
+      "price": 0.751
     },
     {
       "date": "2026-01-21",
-      "percentile": 59.5,
-      "pe": 160.41
+      "percentile": 78.7,
+      "price": 0.756
     },
     {
       "date": "2026-01-22",
-      "percentile": 59.8,
-      "pe": 161.38
+      "percentile": 80.0,
+      "price": 0.758
     },
     {
       "date": "2026-01-23",
-      "percentile": 60.3,
-      "pe": 162.23
+      "percentile": 82.2,
+      "price": 0.763
     },
     {
       "date": "2026-01-26",
-      "percentile": 59.6,
-      "pe": 160.63
+      "percentile": 77.4,
+      "price": 0.754
     },
     {
       "date": "2026-01-27",
-      "percentile": 59.4,
-      "pe": 160.58
+      "percentile": 80.5,
+      "price": 0.759
     },
     {
       "date": "2026-01-28",
-      "percentile": 58.6,
-      "pe": 158.29
+      "percentile": 85.3,
+      "price": 0.773
     },
     {
       "date": "2026-01-29",
-      "percentile": 64.5,
-      "pe": 168.45
+      "percentile": 82.1,
+      "price": 0.764
     },
     {
       "date": "2026-01-30",
-      "percentile": 61.7,
-      "pe": 164.58
+      "percentile": 75.4,
+      "price": 0.752
     },
     {
       "date": "2026-02-02",
-      "percentile": 58.3,
-      "pe": 157.4
+      "percentile": 64.2,
+      "price": 0.722
     },
     {
       "date": "2026-02-03",
-      "percentile": 59.4,
-      "pe": 160.49
+      "percentile": 63.1,
+      "price": 0.72
     },
     {
       "date": "2026-02-04",
-      "percentile": 58.2,
-      "pe": 157.21
+      "percentile": 59.1,
+      "price": 0.71
     },
     {
       "date": "2026-02-05",
-      "percentile": 57.8,
-      "pe": 153.95
+      "percentile": 58.0,
+      "price": 0.707
     },
     {
       "date": "2026-02-06",
-      "percentile": 57.4,
-      "pe": 151.35
+      "percentile": 56.7,
+      "price": 0.701
     },
     {
       "date": "2026-02-09",
-      "percentile": 57.9,
-      "pe": 155.77
+      "percentile": 59.7,
+      "price": 0.712
     },
     {
       "date": "2026-02-10",
-      "percentile": 58.2,
-      "pe": 157.01
+      "percentile": 60.2,
+      "price": 0.713
     },
     {
       "date": "2026-02-11",
-      "percentile": 57.9,
-      "pe": 155.94
+      "percentile": 62.2,
+      "price": 0.717
     },
     {
       "date": "2026-02-12",
-      "percentile": 59.2,
-      "pe": 159.61
+      "percentile": 58.8,
+      "price": 0.708
     },
     {
       "date": "2026-02-13",
-      "percentile": 58.6,
-      "pe": 157.73
+      "percentile": 58.8,
+      "price": 0.708
     },
     {
       "date": "2026-02-24",
-      "percentile": 58.6,
-      "pe": 157.84
+      "percentile": 53.1,
+      "price": 0.687
     },
     {
       "date": "2026-02-25",
-      "percentile": 57.7,
-      "pe": 154.97
+      "percentile": 52.6,
+      "price": 0.684
     },
     {
       "date": "2026-02-26",
-      "percentile": 57.5,
-      "pe": 153.78
+      "percentile": 51.2,
+      "price": 0.667
     },
     {
       "date": "2026-02-27",
-      "percentile": 57.6,
-      "pe": 154.14
+      "percentile": 51.6,
+      "price": 0.67
     },
     {
       "date": "2026-03-02",
-      "percentile": 57.0,
-      "pe": 150.0
+      "percentile": 50.4,
+      "price": 0.652
     },
     {
       "date": "2026-03-03",
-      "percentile": 55.5,
-      "pe": 144.01
+      "percentile": 48.4,
+      "price": 0.634
     },
     {
       "date": "2026-03-04",
-      "percentile": 55.2,
-      "pe": 142.82
+      "percentile": 46.7,
+      "price": 0.625
     },
     {
       "date": "2026-03-05",
-      "percentile": 55.5,
-      "pe": 144.12
+      "percentile": 47.4,
+      "price": 0.626
     },
     {
       "date": "2026-03-06",
-      "percentile": 55.8,
-      "pe": 145.06
+      "percentile": 50.2,
+      "price": 0.643
     },
     {
       "date": "2026-03-09",
-      "percentile": 56.5,
-      "pe": 147.74
+      "percentile": 49.7,
+      "price": 0.639
     },
     {
       "date": "2026-03-10",
-      "percentile": 56.8,
-      "pe": 148.29
+      "percentile": 50.8,
+      "price": 0.651
     },
     {
       "date": "2026-03-11",
-      "percentile": 56.4,
-      "pe": 146.58
+      "percentile": 51.0,
+      "price": 0.654
     },
     {
       "date": "2026-03-12",
-      "percentile": 55.9,
-      "pe": 145.47
+      "percentile": 50.6,
+      "price": 0.649
     },
     {
       "date": "2026-03-13",
-      "percentile": 55.1,
-      "pe": 143.04
+      "percentile": 50.3,
+      "price": 0.646
     },
     {
       "date": "2026-03-16",
-      "percentile": 55.3,
-      "pe": 143.95
+      "percentile": 51.7,
+      "price": 0.665
     },
     {
       "date": "2026-03-17",
-      "percentile": 54.2,
-      "pe": 141.3
+      "percentile": 51.6,
+      "price": 0.662
     },
     {
       "date": "2026-03-18",
-      "percentile": 54.6,
-      "pe": 142.43
+      "percentile": 51.5,
+      "price": 0.661
     },
     {
       "date": "2026-03-19",
-      "percentile": 53.2,
-      "pe": 139.07
+      "percentile": 50.3,
+      "price": 0.648
     },
     {
       "date": "2026-03-20",
-      "percentile": 51.7,
-      "pe": 135.48
+      "percentile": 47.0,
+      "price": 0.63
     },
     {
       "date": "2026-03-23",
-      "percentile": 49.2,
-      "pe": 128.27
+      "percentile": 39.4,
+      "price": 0.607
     },
     {
       "date": "2026-03-24",
-      "percentile": 49.4,
-      "pe": 129.32
+      "percentile": 44.2,
+      "price": 0.621
     },
     {
       "date": "2026-03-25",
-      "percentile": 50.0,
-      "pe": 131.36
+      "percentile": 47.9,
+      "price": 0.633
     },
     {
       "date": "2026-03-26",
-      "percentile": 49.1,
-      "pe": 128.6
+      "percentile": 44.1,
+      "price": 0.62
     },
     {
       "date": "2026-03-27",
-      "percentile": 49.4,
-      "pe": 129.07
+      "percentile": 44.5,
+      "price": 0.622
     },
     {
       "date": "2026-03-30",
-      "percentile": 48.9,
-      "pe": 128.13
+      "percentile": 40.2,
+      "price": 0.61
     },
     {
       "date": "2026-03-31",
-      "percentile": 48.8,
-      "pe": 127.61
+      "percentile": 37.3,
+      "price": 0.602
     },
     {
       "date": "2026-04-01",
-      "percentile": 49.7,
-      "pe": 129.81
+      "percentile": 43.2,
+      "price": 0.616
     },
     {
       "date": "2026-04-02",
-      "percentile": 48.4,
-      "pe": 126.69
+      "percentile": 36.8,
+      "price": 0.601
     },
     {
       "date": "2026-04-03",
-      "percentile": 48.2,
-      "pe": 126.25
+      "percentile": 36.6,
+      "price": 0.6
     },
     {
       "date": "2026-04-07",
-      "percentile": 48.1,
-      "pe": 125.87
+      "percentile": 37.6,
+      "price": 0.602
     },
     {
       "date": "2026-04-08",
-      "percentile": 50.5,
-      "pe": 132.3
+      "percentile": 48.2,
+      "price": 0.631
     },
     {
       "date": "2026-04-09",
-      "percentile": 49.9,
-      "pe": 130.37
+      "percentile": 45.2,
+      "price": 0.622
     },
     {
       "date": "2026-04-10",
-      "percentile": 50.3,
-      "pe": 131.55
+      "percentile": 46.5,
+      "price": 0.624
     },
     {
       "date": "2026-04-13",
-      "percentile": 50.4,
-      "pe": 131.94
+      "percentile": 44.4,
+      "price": 0.62
     },
     {
       "date": "2026-04-14",
-      "percentile": 50.9,
-      "pe": 133.46
+      "percentile": 46.4,
+      "price": 0.623
     },
     {
       "date": "2026-04-15",
-      "percentile": 50.1,
-      "pe": 131.28
+      "percentile": 48.3,
+      "price": 0.63
     },
     {
       "date": "2026-04-16",
-      "percentile": 50.8,
-      "pe": 132.82
+      "percentile": 52.2,
+      "price": 0.65
     },
     {
       "date": "2026-04-17",
-      "percentile": 50.9,
-      "pe": 133.21
+      "percentile": 51.4,
+      "price": 0.644
     },
     {
       "date": "2026-04-20",
-      "percentile": 52.1,
-      "pe": 135.14
+      "percentile": 52.2,
+      "price": 0.649
     },
     {
       "date": "2026-04-21",
-      "percentile": 51.6,
-      "pe": 134.7
+      "percentile": 51.9,
+      "price": 0.648
     },
     {
       "date": "2026-04-22",
-      "percentile": 53.0,
-      "pe": 136.72
+      "percentile": 50.4,
+      "price": 0.639
     },
     {
       "date": "2026-04-23",
-      "percentile": 52.0,
-      "pe": 135.01
+      "percentile": 46.5,
+      "price": 0.625
     },
     {
       "date": "2026-04-24",
-      "percentile": 54.9,
-      "pe": 140.79
+      "percentile": 47.7,
+      "price": 0.628
     },
     {
       "date": "2026-04-27",
-      "percentile": 55.9,
-      "pe": 142.92
+      "percentile": 48.7,
+      "price": 0.632
     },
     {
       "date": "2026-04-28",
-      "percentile": 54.9,
-      "pe": 141.08
+      "percentile": 43.9,
+      "price": 0.621
     },
     {
       "date": "2026-04-29",
-      "percentile": 50.8,
-      "pe": 133.78
+      "percentile": 47.8,
+      "price": 0.628
     },
     {
       "date": "2026-04-30",
-      "percentile": 50.5,
-      "pe": 133.03
+      "percentile": 47.2,
+      "price": 0.627
     },
     {
       "date": "2026-05-06",
-      "percentile": 53.4,
-      "pe": 137.74
+      "percentile": 50.1,
+      "price": 0.636
     },
     {
       "date": "2026-05-07",
-      "percentile": 54.0,
-      "pe": 139.13
+      "percentile": 53.7,
+      "price": 0.654
     },
     {
       "date": "2026-05-08",
-      "percentile": 53.9,
-      "pe": 138.93
+      "percentile": 53.5,
+      "price": 0.653
     },
     {
       "date": "2026-05-11",
-      "percentile": 54.6,
-      "pe": 140.02
+      "percentile": 53.2,
+      "price": 0.651
     },
     {
       "date": "2026-05-12",
-      "percentile": 52.6,
-      "pe": 135.93
+      "percentile": 51.7,
+      "price": 0.645
     },
     {
       "date": "2026-05-13",
-      "percentile": 53.3,
-      "pe": 137.51
+      "percentile": 51.9,
+      "price": 0.646
     },
     {
       "date": "2026-05-14",
-      "percentile": 50.2,
-      "pe": 132.73
+      "percentile": 52.0,
+      "price": 0.646
     },
     {
       "date": "2026-05-15",
-      "percentile": 49.4,
-      "pe": 131.22
+      "percentile": 47.4,
+      "price": 0.629
     },
     {
       "date": "2026-05-18",
-      "percentile": 52.2,
-      "pe": 135.59
+      "percentile": 41.9,
+      "price": 0.617
     },
     {
       "date": "2026-05-19",
-      "percentile": 53.0,
-      "pe": 136.73
+      "percentile": 43.0,
+      "price": 0.62
     },
     {
       "date": "2026-05-20",
-      "percentile": 50.6,
-      "pe": 133.62
+      "percentile": 43.5,
+      "price": 0.621
     },
     {
       "date": "2026-05-21",
-      "percentile": 49.5,
-      "pe": 131.39
+      "percentile": 38.2,
+      "price": 0.608
     },
     {
       "date": "2026-05-22",
-      "percentile": 49.8,
-      "pe": 131.81
+      "percentile": 42.4,
+      "price": 0.618
     },
     {
       "date": "2026-05-25",
-      "percentile": 52.3,
-      "pe": 135.51
+      "percentile": 41.8,
+      "price": 0.617
     },
     {
       "date": "2026-05-26",
-      "percentile": 53.2,
-      "pe": 137.1
+      "percentile": 48.4,
+      "price": 0.63
     }
   ],
   "512880": [
     {
       "date": "2026-01-07",
-      "percentile": 42.3,
-      "pe": 15.58
+      "percentile": 94.9,
+      "price": 1.267
     },
     {
       "date": "2026-01-08",
-      "percentile": 36.4,
-      "pe": 15.07
+      "percentile": 85.3,
+      "price": 1.233
     },
     {
       "date": "2026-01-09",
-      "percentile": 36.9,
-      "pe": 15.09
+      "percentile": 86.3,
+      "price": 1.237
     },
     {
       "date": "2026-01-12",
-      "percentile": 38.7,
-      "pe": 15.2
+      "percentile": 91.4,
+      "price": 1.254
     },
     {
       "date": "2026-01-13",
-      "percentile": 36.7,
-      "pe": 15.08
+      "percentile": 89.2,
+      "price": 1.246
     },
     {
       "date": "2026-01-14",
-      "percentile": 33.4,
-      "pe": 14.91
+      "percentile": 86.0,
+      "price": 1.237
     },
     {
       "date": "2026-01-15",
-      "percentile": 18.1,
-      "pe": 13.95
+      "percentile": 79.6,
+      "price": 1.218
     },
     {
       "date": "2026-01-16",
-      "percentile": 16.7,
-      "pe": 13.85
+      "percentile": 75.6,
+      "price": 1.208
     },
     {
       "date": "2026-01-19",
-      "percentile": 15.7,
-      "pe": 13.76
+      "percentile": 74.4,
+      "price": 1.203
     },
     {
       "date": "2026-01-20",
-      "percentile": 16.4,
-      "pe": 13.83
+      "percentile": 75.5,
+      "price": 1.207
     },
     {
       "date": "2026-01-21",
-      "percentile": 15.9,
-      "pe": 13.78
+      "percentile": 73.3,
+      "price": 1.201
     },
     {
       "date": "2026-01-22",
-      "percentile": 15.9,
-      "pe": 13.77
+      "percentile": 74.3,
+      "price": 1.203
     },
     {
       "date": "2026-01-23",
-      "percentile": 14.8,
-      "pe": 13.7
+      "percentile": 72.4,
+      "price": 1.2
     },
     {
       "date": "2026-01-26",
-      "percentile": 16.9,
-      "pe": 13.84
+      "percentile": 77.0,
+      "price": 1.211
     },
     {
       "date": "2026-01-27",
-      "percentile": 15.5,
-      "pe": 13.74
+      "percentile": 70.9,
+      "price": 1.197
     },
     {
       "date": "2026-01-28",
-      "percentile": 16.1,
-      "pe": 13.78
+      "percentile": 71.0,
+      "price": 1.197
     },
     {
       "date": "2026-01-29",
-      "percentile": 21.0,
-      "pe": 14.09
+      "percentile": 77.4,
+      "price": 1.212
     },
     {
       "date": "2026-01-30",
-      "percentile": 17.2,
-      "pe": 13.85
+      "percentile": 70.1,
+      "price": 1.194
     },
     {
       "date": "2026-02-02",
-      "percentile": 15.5,
-      "pe": 13.74
+      "percentile": 67.2,
+      "price": 1.178
     },
     {
       "date": "2026-02-03",
-      "percentile": 16.4,
-      "pe": 13.79
+      "percentile": 66.3,
+      "price": 1.174
     },
     {
       "date": "2026-02-04",
-      "percentile": 19.7,
-      "pe": 14.0
+      "percentile": 69.5,
+      "price": 1.191
     },
     {
       "date": "2026-02-05",
-      "percentile": 19.0,
-      "pe": 13.95
+      "percentile": 69.9,
+      "price": 1.193
     },
     {
       "date": "2026-02-06",
-      "percentile": 18.0,
-      "pe": 13.89
+      "percentile": 68.2,
+      "price": 1.186
     },
     {
       "date": "2026-02-09",
-      "percentile": 17.0,
-      "pe": 13.84
+      "percentile": 71.2,
+      "price": 1.197
     },
     {
       "date": "2026-02-10",
-      "percentile": 17.5,
-      "pe": 13.85
+      "percentile": 70.7,
+      "price": 1.196
     },
     {
       "date": "2026-02-11",
-      "percentile": 16.7,
-      "pe": 13.83
+      "percentile": 70.2,
+      "price": 1.194
     },
     {
       "date": "2026-02-12",
-      "percentile": 15.6,
-      "pe": 13.74
+      "percentile": 67.7,
+      "price": 1.185
     },
     {
       "date": "2026-02-13",
-      "percentile": 13.4,
-      "pe": 13.62
+      "percentile": 65.4,
+      "price": 1.174
     },
     {
       "date": "2026-02-24",
-      "percentile": 13.5,
-      "pe": 13.63
+      "percentile": 64.9,
+      "price": 1.172
     },
     {
       "date": "2026-02-25",
-      "percentile": 14.5,
-      "pe": 13.68
+      "percentile": 66.9,
+      "price": 1.179
     },
     {
       "date": "2026-02-26",
-      "percentile": 12.5,
-      "pe": 13.5
+      "percentile": 63.3,
+      "price": 1.166
     },
     {
       "date": "2026-02-27",
-      "percentile": 12.5,
-      "pe": 13.5
+      "percentile": 64.0,
+      "price": 1.169
     },
     {
       "date": "2026-03-02",
-      "percentile": 10.7,
-      "pe": 13.35
+      "percentile": 61.5,
+      "price": 1.154
     },
     {
       "date": "2026-03-03",
-      "percentile": 9.0,
-      "pe": 13.22
+      "percentile": 60.1,
+      "price": 1.144
     },
     {
       "date": "2026-03-04",
-      "percentile": 7.0,
-      "pe": 12.89
+      "percentile": 53.1,
+      "price": 1.115
     },
     {
       "date": "2026-03-05",
-      "percentile": 7.6,
-      "pe": 12.93
+      "percentile": 53.5,
+      "price": 1.117
     },
     {
       "date": "2026-03-06",
-      "percentile": 8.5,
-      "pe": 13.03
+      "percentile": 56.3,
+      "price": 1.131
     },
     {
       "date": "2026-03-09",
-      "percentile": 6.0,
-      "pe": 12.76
+      "percentile": 52.0,
+      "price": 1.112
     },
     {
       "date": "2026-03-10",
-      "percentile": 7.0,
-      "pe": 12.89
+      "percentile": 54.2,
+      "price": 1.12
     },
     {
       "date": "2026-03-11",
-      "percentile": 6.9,
-      "pe": 12.87
+      "percentile": 54.6,
+      "price": 1.123
     },
     {
       "date": "2026-03-12",
-      "percentile": 6.5,
-      "pe": 12.79
+      "percentile": 54.4,
+      "price": 1.121
     },
     {
       "date": "2026-03-13",
-      "percentile": 5.5,
-      "pe": 12.7
+      "percentile": 51.8,
+      "price": 1.112
     },
     {
       "date": "2026-03-16",
-      "percentile": 4.7,
-      "pe": 12.58
+      "percentile": 49.4,
+      "price": 1.106
     },
     {
       "date": "2026-03-17",
-      "percentile": 6.5,
-      "pe": 12.78
+      "percentile": 53.5,
+      "price": 1.118
     },
     {
       "date": "2026-03-18",
-      "percentile": 6.8,
-      "pe": 12.81
+      "percentile": 52.6,
+      "price": 1.114
     },
     {
       "date": "2026-03-19",
-      "percentile": 5.0,
-      "pe": 12.63
+      "percentile": 48.0,
+      "price": 1.101
     },
     {
       "date": "2026-03-20",
-      "percentile": 4.2,
-      "pe": 12.48
+      "percentile": 43.8,
+      "price": 1.083
     },
     {
       "date": "2026-03-23",
-      "percentile": 1.1,
-      "pe": 11.98
+      "percentile": 37.0,
+      "price": 1.036
     },
     {
       "date": "2026-03-24",
-      "percentile": 1.3,
-      "pe": 12.01
+      "percentile": 38.4,
+      "price": 1.047
     },
     {
       "date": "2026-03-25",
-      "percentile": 2.1,
-      "pe": 12.16
+      "percentile": 40.2,
+      "price": 1.059
     },
     {
       "date": "2026-03-26",
-      "percentile": 0.9,
-      "pe": 11.9
+      "percentile": 36.4,
+      "price": 1.035
     },
     {
       "date": "2026-03-27",
-      "percentile": 1.1,
-      "pe": 11.95
+      "percentile": 37.5,
+      "price": 1.041
     },
     {
       "date": "2026-03-30",
-      "percentile": 0.7,
-      "pe": 11.88
+      "percentile": 37.2,
+      "price": 1.037
     },
     {
       "date": "2026-03-31",
-      "percentile": 0.7,
-      "pe": 11.85
+      "percentile": 34.8,
+      "price": 1.029
     },
     {
       "date": "2026-04-01",
-      "percentile": 2.1,
-      "pe": 12.08
+      "percentile": 38.6,
+      "price": 1.045
     },
     {
       "date": "2026-04-02",
-      "percentile": 1.0,
-      "pe": 11.89
+      "percentile": 34.3,
+      "price": 1.025
     },
     {
       "date": "2026-04-03",
-      "percentile": 0.7,
-      "pe": 11.82
+      "percentile": 33.8,
+      "price": 1.016
     },
     {
       "date": "2026-04-07",
-      "percentile": 0.7,
-      "pe": 11.79
+      "percentile": 33.8,
+      "price": 1.015
     },
     {
       "date": "2026-04-08",
-      "percentile": 2.8,
-      "pe": 12.17
+      "percentile": 40.1,
+      "price": 1.054
     },
     {
       "date": "2026-04-09",
-      "percentile": 1.3,
-      "pe": 11.9
+      "percentile": 35.8,
+      "price": 1.031
     },
     {
       "date": "2026-04-10",
-      "percentile": 0.1,
-      "pe": 11.37
+      "percentile": 42.9,
+      "price": 1.068
     },
     {
       "date": "2026-04-13",
-      "percentile": 0.1,
-      "pe": 11.46
+      "percentile": 43.9,
+      "price": 1.075
     },
     {
       "date": "2026-04-14",
-      "percentile": 0.2,
-      "pe": 11.5
+      "percentile": 44.9,
+      "price": 1.081
     },
     {
       "date": "2026-04-15",
-      "percentile": 0.1,
-      "pe": 11.42
+      "percentile": 43.6,
+      "price": 1.073
     },
     {
       "date": "2026-04-16",
-      "percentile": 0.4,
-      "pe": 11.55
+      "percentile": 45.1,
+      "price": 1.081
     },
     {
       "date": "2026-04-17",
-      "percentile": 0.3,
-      "pe": 11.53
+      "percentile": 44.3,
+      "price": 1.076
     },
     {
       "date": "2026-04-20",
-      "percentile": 0.5,
-      "pe": 11.55
+      "percentile": 43.9,
+      "price": 1.075
     },
     {
       "date": "2026-04-21",
-      "percentile": 0.5,
-      "pe": 11.55
+      "percentile": 41.6,
+      "price": 1.066
     },
     {
       "date": "2026-04-22",
-      "percentile": 1.1,
-      "pe": 11.73
+      "percentile": 44.1,
+      "price": 1.075
     },
     {
       "date": "2026-04-23",
-      "percentile": 0.8,
-      "pe": 11.63
+      "percentile": 41.7,
+      "price": 1.066
     },
     {
       "date": "2026-04-24",
-      "percentile": 0.3,
-      "pe": 11.52
+      "percentile": 39.8,
+      "price": 1.056
     },
     {
       "date": "2026-04-27",
-      "percentile": 1.2,
-      "pe": 11.76
+      "percentile": 40.3,
+      "price": 1.057
     },
     {
       "date": "2026-04-28",
-      "percentile": 2.5,
-      "pe": 11.99
+      "percentile": 43.2,
+      "price": 1.07
     },
     {
       "date": "2026-04-29",
-      "percentile": 2.6,
-      "pe": 12.0
+      "percentile": 45.1,
+      "price": 1.076
     },
     {
       "date": "2026-04-30",
-      "percentile": 2.3,
-      "pe": 11.95
+      "percentile": 45.6,
+      "price": 1.078
     },
     {
       "date": "2026-05-06",
-      "percentile": 3.3,
-      "pe": 12.07
+      "percentile": 49.6,
+      "price": 1.094
     },
     {
       "date": "2026-05-07",
-      "percentile": 2.4,
-      "pe": 11.96
+      "percentile": 48.6,
+      "price": 1.089
     },
     {
       "date": "2026-05-08",
-      "percentile": 1.6,
-      "pe": 11.84
+      "percentile": 45.7,
+      "price": 1.08
     },
     {
       "date": "2026-05-11",
-      "percentile": 2.9,
-      "pe": 12.0
+      "percentile": 50.2,
+      "price": 1.097
     },
     {
       "date": "2026-05-12",
-      "percentile": 2.4,
-      "pe": 11.95
+      "percentile": 51.1,
+      "price": 1.102
     },
     {
       "date": "2026-05-13",
-      "percentile": 2.2,
-      "pe": 11.92
+      "percentile": 49.8,
+      "price": 1.095
     },
     {
       "date": "2026-05-14",
-      "percentile": 1.1,
-      "pe": 11.71
+      "percentile": 42.7,
+      "price": 1.071
     },
     {
       "date": "2026-05-15",
-      "percentile": 0.7,
-      "pe": 11.57
+      "percentile": 38.1,
+      "price": 1.048
     },
     {
       "date": "2026-05-18",
-      "percentile": 0.3,
-      "pe": 11.49
+      "percentile": 37.8,
+      "price": 1.047
     },
     {
       "date": "2026-05-19",
-      "percentile": 0.5,
-      "pe": 11.54
+      "percentile": 39.3,
+      "price": 1.056
     },
     {
       "date": "2026-05-20",
-      "percentile": 0.2,
-      "pe": 11.45
+      "percentile": 38.4,
+      "price": 1.049
     },
     {
       "date": "2026-05-21",
-      "percentile": 0.5,
-      "pe": 11.51
+      "percentile": 39.0,
+      "price": 1.054
     },
     {
       "date": "2026-05-22",
-      "percentile": 0.1,
-      "pe": 11.36
+      "percentile": 36.0,
+      "price": 1.037
     },
     {
       "date": "2026-05-25",
-      "percentile": 0.5,
-      "pe": 11.5
+      "percentile": 37.3,
+      "price": 1.045
     },
     {
       "date": "2026-05-26",
-      "percentile": 0.6,
-      "pe": 11.51
+      "percentile": 39.9,
+      "price": 1.056
     }
   ],
   "159928": [
     {
       "date": "2026-01-07",
-      "percentile": 1.5,
-      "pe": 19.8
+      "percentile": 34.4,
+      "price": 0.804
     },
     {
       "date": "2026-01-08",
-      "percentile": 0.8,
-      "pe": 19.64
+      "percentile": 29.9,
+      "price": 0.798
     },
     {
       "date": "2026-01-09",
-      "percentile": 1.2,
-      "pe": 19.74
+      "percentile": 32.2,
+      "price": 0.801
     },
     {
       "date": "2026-01-12",
-      "percentile": 1.6,
-      "pe": 19.8
+      "percentile": 36.3,
+      "price": 0.806
     },
     {
       "date": "2026-01-13",
-      "percentile": 0.7,
-      "pe": 19.63
+      "percentile": 29.9,
+      "price": 0.798
     },
     {
       "date": "2026-01-14",
-      "percentile": 0.2,
-      "pe": 19.45
+      "percentile": 24.7,
+      "price": 0.794
     },
     {
       "date": "2026-01-15",
-      "percentile": 0.1,
-      "pe": 19.32
+      "percentile": 21.3,
+      "price": 0.79
     },
     {
       "date": "2026-01-16",
-      "percentile": 0.1,
-      "pe": 19.22
+      "percentile": 15.2,
+      "price": 0.779
     },
     {
       "date": "2026-01-19",
-      "percentile": 0.1,
-      "pe": 19.14
+      "percentile": 17.3,
+      "price": 0.782
     },
     {
       "date": "2026-01-20",
-      "percentile": 0.1,
-      "pe": 19.11
+      "percentile": 18.7,
+      "price": 0.784
     },
     {
       "date": "2026-01-21",
-      "percentile": 0.1,
-      "pe": 18.79
+      "percentile": 13.9,
+      "price": 0.775
     },
     {
       "date": "2026-01-22",
-      "percentile": 0.1,
-      "pe": 18.64
+      "percentile": 12.4,
+      "price": 0.772
     },
     {
       "date": "2026-01-23",
-      "percentile": 0.1,
-      "pe": 18.6
+      "percentile": 11.8,
+      "price": 0.771
     },
     {
       "date": "2026-01-26",
-      "percentile": 0.2,
-      "pe": 18.67
+      "percentile": 12.0,
+      "price": 0.771
     },
     {
       "date": "2026-01-27",
-      "percentile": 0.3,
-      "pe": 18.68
+      "percentile": 8.0,
+      "price": 0.758
     },
     {
       "date": "2026-01-28",
-      "percentile": 0.1,
-      "pe": 18.41
+      "percentile": 7.4,
+      "price": 0.756
     },
     {
       "date": "2026-01-29",
-      "percentile": 4.8,
-      "pe": 20.0
+      "percentile": 33.1,
+      "price": 0.8
     },
     {
       "date": "2026-01-30",
-      "percentile": 1.0,
-      "pe": 19.49
+      "percentile": 15.8,
+      "price": 0.778
     },
     {
       "date": "2026-02-02",
-      "percentile": 3.1,
-      "pe": 19.85
+      "percentile": 15.0,
+      "price": 0.777
     },
     {
       "date": "2026-02-03",
-      "percentile": 9.7,
-      "pe": 20.52
+      "percentile": 19.1,
+      "price": 0.783
     },
     {
       "date": "2026-02-04",
-      "percentile": 11.5,
-      "pe": 21.21
+      "percentile": 33.7,
+      "price": 0.8
     },
     {
       "date": "2026-02-05",
-      "percentile": 12.4,
-      "pe": 21.63
+      "percentile": 39.7,
+      "price": 0.808
     },
     {
       "date": "2026-02-06",
-      "percentile": 11.3,
-      "pe": 21.07
+      "percentile": 31.8,
+      "price": 0.798
     },
     {
       "date": "2026-02-09",
-      "percentile": 11.5,
-      "pe": 21.21
+      "percentile": 32.7,
+      "price": 0.799
     },
     {
       "date": "2026-02-10",
-      "percentile": 11.1,
-      "pe": 20.93
+      "percentile": 22.9,
+      "price": 0.789
     },
     {
       "date": "2026-02-11",
-      "percentile": 11.1,
-      "pe": 20.93
+      "percentile": 23.0,
+      "price": 0.789
     },
     {
       "date": "2026-02-12",
-      "percentile": 10.4,
-      "pe": 20.68
+      "percentile": 17.3,
+      "price": 0.78
     },
     {
       "date": "2026-02-13",
-      "percentile": 10.2,
-      "pe": 20.66
+      "percentile": 15.0,
+      "price": 0.777
     },
     {
       "date": "2026-02-24",
-      "percentile": 9.0,
-      "pe": 20.4
+      "percentile": 12.2,
+      "price": 0.771
     },
     {
       "date": "2026-02-25",
-      "percentile": 10.6,
-      "pe": 20.75
+      "percentile": 14.7,
+      "price": 0.775
     },
     {
       "date": "2026-02-26",
-      "percentile": 8.9,
-      "pe": 20.39
+      "percentile": 12.4,
+      "price": 0.771
     },
     {
       "date": "2026-02-27",
-      "percentile": 7.6,
-      "pe": 20.24
+      "percentile": 15.0,
+      "price": 0.775
     },
     {
       "date": "2026-03-02",
-      "percentile": 5.2,
-      "pe": 20.03
+      "percentile": 10.6,
+      "price": 0.768
     },
     {
       "date": "2026-03-03",
-      "percentile": 3.0,
-      "pe": 19.84
+      "percentile": 9.6,
+      "price": 0.765
     },
     {
       "date": "2026-03-04",
-      "percentile": 1.1,
-      "pe": 19.49
+      "percentile": 8.2,
+      "price": 0.759
     },
     {
       "date": "2026-03-05",
-      "percentile": 0.9,
-      "pe": 19.46
+      "percentile": 7.3,
+      "price": 0.756
     },
     {
       "date": "2026-03-06",
-      "percentile": 1.3,
-      "pe": 19.5
+      "percentile": 14.3,
+      "price": 0.773
     },
     {
       "date": "2026-03-09",
-      "percentile": 0.9,
-      "pe": 19.43
+      "percentile": 13.1,
+      "price": 0.771
     },
     {
       "date": "2026-03-10",
-      "percentile": 1.3,
-      "pe": 19.5
+      "percentile": 14.1,
+      "price": 0.772
     },
     {
       "date": "2026-03-11",
-      "percentile": 1.1,
-      "pe": 19.47
+      "percentile": 16.3,
+      "price": 0.776
     },
     {
       "date": "2026-03-12",
-      "percentile": 0.9,
-      "pe": 19.36
+      "percentile": 18.4,
+      "price": 0.779
     },
     {
       "date": "2026-03-13",
-      "percentile": 2.1,
-      "pe": 19.66
+      "percentile": 20.4,
+      "price": 0.781
     },
     {
       "date": "2026-03-16",
-      "percentile": 9.0,
-      "pe": 20.31
+      "percentile": 25.7,
+      "price": 0.79
     },
     {
       "date": "2026-03-17",
-      "percentile": 11.0,
-      "pe": 20.66
+      "percentile": 24.7,
+      "price": 0.788
     },
     {
       "date": "2026-03-18",
-      "percentile": 9.9,
-      "pe": 20.43
+      "percentile": 20.9,
+      "price": 0.782
     },
     {
       "date": "2026-03-19",
-      "percentile": 8.0,
-      "pe": 20.21
+      "percentile": 12.0,
+      "price": 0.77
     },
     {
       "date": "2026-03-20",
-      "percentile": 6.7,
-      "pe": 20.1
+      "percentile": 9.2,
+      "price": 0.764
     },
     {
       "date": "2026-03-23",
-      "percentile": 1.8,
-      "pe": 19.59
+      "percentile": 4.9,
+      "price": 0.736
     },
     {
       "date": "2026-03-24",
-      "percentile": 1.7,
-      "pe": 19.58
+      "percentile": 5.2,
+      "price": 0.742
     },
     {
       "date": "2026-03-25",
-      "percentile": 2.1,
-      "pe": 19.62
+      "percentile": 5.8,
+      "price": 0.747
     },
     {
       "date": "2026-03-26",
-      "percentile": 1.5,
-      "pe": 19.49
+      "percentile": 5.0,
+      "price": 0.739
     },
     {
       "date": "2026-03-27",
-      "percentile": 2.7,
-      "pe": 19.7
+      "percentile": 6.9,
+      "price": 0.752
     },
     {
       "date": "2026-03-30",
-      "percentile": 3.0,
-      "pe": 19.75
+      "percentile": 7.0,
+      "price": 0.753
     },
     {
       "date": "2026-03-31",
-      "percentile": 8.1,
-      "pe": 20.17
+      "percentile": 5.5,
+      "price": 0.742
     },
     {
       "date": "2026-04-01",
-      "percentile": 9.4,
-      "pe": 20.3
+      "percentile": 6.6,
+      "price": 0.751
     },
     {
       "date": "2026-04-02",
-      "percentile": 9.5,
-      "pe": 20.31
+      "percentile": 8.7,
+      "price": 0.756
     },
     {
       "date": "2026-04-03",
-      "percentile": 9.6,
-      "pe": 20.31
+      "percentile": 6.2,
+      "price": 0.747
     },
     {
       "date": "2026-04-07",
       "percentile": 6.1,
-      "pe": 20.03
+      "price": 0.745
     },
     {
       "date": "2026-04-08",
-      "percentile": 10.3,
-      "pe": 20.38
+      "percentile": 9.2,
+      "price": 0.757
     },
     {
       "date": "2026-04-09",
-      "percentile": 9.9,
-      "pe": 20.32
+      "percentile": 6.6,
+      "price": 0.747
     },
     {
       "date": "2026-04-10",
-      "percentile": 8.6,
-      "pe": 20.22
+      "percentile": 5.7,
+      "price": 0.743
     },
     {
       "date": "2026-04-13",
-      "percentile": 6.8,
-      "pe": 20.08
+      "percentile": 6.2,
+      "price": 0.744
     },
     {
       "date": "2026-04-14",
-      "percentile": 7.5,
-      "pe": 20.13
+      "percentile": 7.6,
+      "price": 0.751
     },
     {
       "date": "2026-04-15",
-      "percentile": 11.0,
-      "pe": 20.41
+      "percentile": 8.3,
+      "price": 0.752
     },
     {
       "date": "2026-04-16",
-      "percentile": 10.2,
-      "pe": 20.35
+      "percentile": 8.7,
+      "price": 0.753
     },
     {
       "date": "2026-04-17",
-      "percentile": 14.4,
-      "pe": 21.41
+      "percentile": 5.6,
+      "price": 0.742
     },
     {
       "date": "2026-04-20",
-      "percentile": 14.6,
-      "pe": 21.46
+      "percentile": 5.8,
+      "price": 0.742
     },
     {
       "date": "2026-04-21",
-      "percentile": 14.8,
-      "pe": 21.48
+      "percentile": 5.9,
+      "price": 0.742
     },
     {
       "date": "2026-04-22",
-      "percentile": 14.5,
-      "pe": 21.44
+      "percentile": 4.9,
+      "price": 0.737
     },
     {
       "date": "2026-04-23",
-      "percentile": 15.1,
-      "pe": 21.59
+      "percentile": 5.0,
+      "price": 0.737
     },
     {
       "date": "2026-04-24",
-      "percentile": 17.8,
-      "pe": 22.19
+      "percentile": 5.2,
+      "price": 0.737
     },
     {
       "date": "2026-04-27",
-      "percentile": 14.1,
-      "pe": 21.24
+      "percentile": 4.7,
+      "price": 0.731
     },
     {
       "date": "2026-04-28",
-      "percentile": 14.2,
-      "pe": 21.27
+      "percentile": 4.8,
+      "price": 0.732
     },
     {
       "date": "2026-04-29",
-      "percentile": 14.0,
-      "pe": 21.21
+      "percentile": 7.8,
+      "price": 0.745
     },
     {
       "date": "2026-04-30",
-      "percentile": 13.4,
-      "pe": 20.97
+      "percentile": 8.5,
+      "price": 0.747
     },
     {
       "date": "2026-05-06",
-      "percentile": 12.9,
-      "pe": 20.82
+      "percentile": 6.9,
+      "price": 0.742
     },
     {
       "date": "2026-05-07",
-      "percentile": 12.6,
-      "pe": 20.76
+      "percentile": 5.9,
+      "price": 0.739
     },
     {
       "date": "2026-05-08",
-      "percentile": 12.8,
-      "pe": 20.79
+      "percentile": 5.0,
+      "price": 0.734
     },
     {
       "date": "2026-05-11",
-      "percentile": 12.0,
-      "pe": 20.61
+      "percentile": 5.3,
+      "price": 0.736
     },
     {
       "date": "2026-05-12",
-      "percentile": 11.6,
-      "pe": 20.51
+      "percentile": 4.4,
+      "price": 0.725
     },
     {
       "date": "2026-05-13",
-      "percentile": 10.2,
-      "pe": 20.35
+      "percentile": 4.0,
+      "price": 0.719
     },
     {
       "date": "2026-05-14",
-      "percentile": 10.0,
-      "pe": 20.32
+      "percentile": 4.2,
+      "price": 0.72
     },
     {
       "date": "2026-05-15",
-      "percentile": 8.2,
-      "pe": 20.18
+      "percentile": 3.0,
+      "price": 0.708
     },
     {
       "date": "2026-05-18",
-      "percentile": 6.0,
-      "pe": 20.03
+      "percentile": 2.1,
+      "price": 0.7
     },
     {
       "date": "2026-05-19",
-      "percentile": 6.4,
-      "pe": 20.05
+      "percentile": 2.3,
+      "price": 0.7
     },
     {
       "date": "2026-05-20",
-      "percentile": 4.6,
-      "pe": 19.91
+      "percentile": 2.1,
+      "price": 0.699
     },
     {
       "date": "2026-05-21",
-      "percentile": 4.0,
-      "pe": 19.85
+      "percentile": 1.4,
+      "price": 0.69
     },
     {
       "date": "2026-05-22",
-      "percentile": 1.7,
-      "pe": 19.53
+      "percentile": 1.2,
+      "price": 0.682
     },
     {
       "date": "2026-05-25",
-      "percentile": 1.1,
-      "pe": 19.47
+      "percentile": 1.2,
+      "price": 0.681
     },
     {
       "date": "2026-05-26",
-      "percentile": 0.7,
-      "pe": 19.28
+      "percentile": 1.2,
+      "price": 0.68
     }
   ],
   "516160": [
     {
       "date": "2026-01-07",
-      "percentile": 40.0,
-      "pe": 26.55
+      "percentile": 98.4,
+      "price": 2.984
     },
     {
       "date": "2026-01-08",
-      "percentile": 39.8,
-      "pe": 26.42
+      "percentile": 98.2,
+      "price": 2.982
     },
     {
       "date": "2026-01-09",
-      "percentile": 39.8,
-      "pe": 26.42
+      "percentile": 98.6,
+      "price": 2.999
     },
     {
       "date": "2026-01-12",
-      "percentile": 38.9,
-      "pe": 25.88
+      "percentile": 98.6,
+      "price": 3.021
     },
     {
       "date": "2026-01-13",
-      "percentile": 38.4,
-      "pe": 25.69
+      "percentile": 98.4,
+      "price": 3.009
     },
     {
       "date": "2026-01-14",
-      "percentile": 37.2,
-      "pe": 25.33
+      "percentile": 98.2,
+      "price": 3.004
     },
     {
       "date": "2026-01-15",
-      "percentile": 37.0,
-      "pe": 25.31
+      "percentile": 98.8,
+      "price": 3.027
     },
     {
       "date": "2026-01-16",
-      "percentile": 36.7,
-      "pe": 25.21
+      "percentile": 98.8,
+      "price": 3.036
     },
     {
       "date": "2026-01-19",
-      "percentile": 35.9,
-      "pe": 24.97
+      "percentile": 99.2,
+      "price": 3.06
     },
     {
       "date": "2026-01-20",
-      "percentile": 36.1,
-      "pe": 25.02
+      "percentile": 97.2,
+      "price": 2.992
     },
     {
       "date": "2026-01-21",
-      "percentile": 36.2,
-      "pe": 25.03
+      "percentile": 97.8,
+      "price": 3.019
     },
     {
       "date": "2026-01-22",
-      "percentile": 35.4,
-      "pe": 24.74
+      "percentile": 97.6,
+      "price": 3.015
     },
     {
       "date": "2026-01-23",
-      "percentile": 35.6,
-      "pe": 24.83
+      "percentile": 100.0,
+      "price": 3.164
     },
     {
       "date": "2026-01-26",
-      "percentile": 34.4,
-      "pe": 24.48
+      "percentile": 99.8,
+      "price": 3.123
     },
     {
       "date": "2026-01-27",
-      "percentile": 33.9,
-      "pe": 24.29
+      "percentile": 99.6,
+      "price": 3.11
     },
     {
       "date": "2026-01-28",
-      "percentile": 34.1,
-      "pe": 24.33
+      "percentile": 99.2,
+      "price": 3.083
     },
     {
       "date": "2026-01-29",
-      "percentile": 34.5,
-      "pe": 24.46
+      "percentile": 97.6,
+      "price": 3.028
     },
     {
       "date": "2026-01-30",
-      "percentile": 36.7,
-      "pe": 25.05
+      "percentile": 94.7,
+      "price": 2.97
     },
     {
       "date": "2026-02-02",
-      "percentile": 36.2,
-      "pe": 24.97
+      "percentile": 92.7,
+      "price": 2.924
     },
     {
       "date": "2026-02-03",
-      "percentile": 36.0,
-      "pe": 24.9
+      "percentile": 97.0,
+      "price": 3.026
     },
     {
       "date": "2026-02-04",
-      "percentile": 40.1,
-      "pe": 26.12
+      "percentile": 99.2,
+      "price": 3.084
     },
     {
       "date": "2026-02-05",
-      "percentile": 39.8,
-      "pe": 25.97
+      "percentile": 93.3,
+      "price": 2.958
     },
     {
       "date": "2026-02-06",
-      "percentile": 40.4,
-      "pe": 26.41
+      "percentile": 95.7,
+      "price": 3.0
     },
     {
       "date": "2026-02-09",
-      "percentile": 40.4,
-      "pe": 26.39
+      "percentile": 98.6,
+      "price": 3.069
     },
     {
       "date": "2026-02-10",
-      "percentile": 40.1,
-      "pe": 26.12
+      "percentile": 97.5,
+      "price": 3.038
     },
     {
       "date": "2026-02-11",
-      "percentile": 40.4,
-      "pe": 26.33
+      "percentile": 98.1,
+      "price": 3.062
     },
     {
       "date": "2026-02-12",
-      "percentile": 42.0,
-      "pe": 26.9
+      "percentile": 99.4,
+      "price": 3.103
     },
     {
       "date": "2026-02-13",
-      "percentile": 40.1,
-      "pe": 26.14
+      "percentile": 97.1,
+      "price": 3.038
     },
     {
       "date": "2026-02-24",
-      "percentile": 39.5,
-      "pe": 25.9
+      "percentile": 98.4,
+      "price": 3.079
     },
     {
       "date": "2026-02-25",
-      "percentile": 39.5,
-      "pe": 25.92
+      "percentile": 99.8,
+      "price": 3.132
     },
     {
       "date": "2026-02-26",
-      "percentile": 35.3,
-      "pe": 24.76
+      "percentile": 98.8,
+      "price": 3.093
     },
     {
       "date": "2026-02-27",
-      "percentile": 34.2,
-      "pe": 24.47
+      "percentile": 99.4,
+      "price": 3.12
     },
     {
       "date": "2026-03-02",
-      "percentile": 33.9,
-      "pe": 24.35
+      "percentile": 99.2,
+      "price": 3.117
     },
     {
       "date": "2026-03-03",
-      "percentile": 34.9,
-      "pe": 24.62
+      "percentile": 95.6,
+      "price": 3.033
     },
     {
       "date": "2026-03-04",
-      "percentile": 33.2,
-      "pe": 24.25
+      "percentile": 94.6,
+      "price": 3.024
     },
     {
       "date": "2026-03-05",
-      "percentile": 36.8,
-      "pe": 25.06
+      "percentile": 96.6,
+      "price": 3.051
     },
     {
       "date": "2026-03-06",
-      "percentile": 38.2,
-      "pe": 25.39
+      "percentile": 96.2,
+      "price": 3.048
     },
     {
       "date": "2026-03-09",
-      "percentile": 38.8,
-      "pe": 25.58
+      "percentile": 98.3,
+      "price": 3.087
     },
     {
       "date": "2026-03-10",
-      "percentile": 30.2,
-      "pe": 23.79
+      "percentile": 99.8,
+      "price": 3.142
     },
     {
       "date": "2026-03-11",
-      "percentile": 36.8,
-      "pe": 25.08
+      "percentile": 100.0,
+      "price": 3.229
     },
     {
       "date": "2026-03-12",
-      "percentile": 36.2,
-      "pe": 25.0
+      "percentile": 100.0,
+      "price": 3.25
     },
     {
       "date": "2026-03-13",
-      "percentile": 37.0,
-      "pe": 25.09
+      "percentile": 99.8,
+      "price": 3.239
     },
     {
       "date": "2026-03-16",
-      "percentile": 39.7,
-      "pe": 25.82
+      "percentile": 99.4,
+      "price": 3.188
     },
     {
       "date": "2026-03-17",
-      "percentile": 39.0,
-      "pe": 25.6
+      "percentile": 98.1,
+      "price": 3.116
     },
     {
       "date": "2026-03-18",
-      "percentile": 38.5,
-      "pe": 25.41
+      "percentile": 97.6,
+      "price": 3.102
     },
     {
       "date": "2026-03-19",
-      "percentile": 37.7,
-      "pe": 25.32
+      "percentile": 94.0,
+      "price": 3.037
     },
     {
       "date": "2026-03-20",
-      "percentile": 40.7,
-      "pe": 26.11
+      "percentile": 97.9,
+      "price": 3.114
     },
     {
       "date": "2026-03-23",
-      "percentile": 38.5,
-      "pe": 25.41
+      "percentile": 95.1,
+      "price": 3.061
     },
     {
       "date": "2026-03-24",
-      "percentile": 36.9,
-      "pe": 25.09
+      "percentile": 96.1,
+      "price": 3.082
     },
     {
       "date": "2026-03-25",
-      "percentile": 37.0,
-      "pe": 25.15
+      "percentile": 98.7,
+      "price": 3.13
     },
     {
       "date": "2026-03-26",
-      "percentile": 38.9,
-      "pe": 25.44
+      "percentile": 97.6,
+      "price": 3.112
     },
     {
       "date": "2026-03-27",
-      "percentile": 41.3,
-      "pe": 26.31
+      "percentile": 99.3,
+      "price": 3.168
     },
     {
       "date": "2026-03-30",
-      "percentile": 40.9,
-      "pe": 26.11
+      "percentile": 97.2,
+      "price": 3.11
     },
     {
       "date": "2026-03-31",
-      "percentile": 38.4,
-      "pe": 25.39
+      "percentile": 90.2,
+      "price": 2.999
     },
     {
       "date": "2026-04-01",
-      "percentile": 39.3,
-      "pe": 25.65
+      "percentile": 89.7,
+      "price": 2.988
     },
     {
       "date": "2026-04-02",
-      "percentile": 38.0,
-      "pe": 25.36
+      "percentile": 86.9,
+      "price": 2.928
     },
     {
       "date": "2026-04-03",
-      "percentile": 33.7,
-      "pe": 24.43
+      "percentile": 85.1,
+      "price": 2.856
     },
     {
       "date": "2026-04-07",
-      "percentile": 33.3,
-      "pe": 24.31
+      "percentile": 85.5,
+      "price": 2.865
     },
     {
       "date": "2026-04-08",
-      "percentile": 35.0,
-      "pe": 24.74
+      "percentile": 88.8,
+      "price": 2.976
     },
     {
       "date": "2026-04-09",
-      "percentile": 34.7,
-      "pe": 24.65
+      "percentile": 87.4,
+      "price": 2.953
     },
     {
       "date": "2026-04-10",
-      "percentile": 41.6,
-      "pe": 26.3
+      "percentile": 94.0,
+      "price": 3.051
     },
     {
       "date": "2026-04-13",
-      "percentile": 43.6,
-      "pe": 27.0
+      "percentile": 98.0,
+      "price": 3.117
     },
     {
       "date": "2026-04-14",
-      "percentile": 44.1,
-      "pe": 27.23
+      "percentile": 99.1,
+      "price": 3.167
     },
     {
       "date": "2026-04-15",
-      "percentile": 44.2,
-      "pe": 27.24
+      "percentile": 97.1,
+      "price": 3.113
     },
     {
       "date": "2026-04-16",
-      "percentile": 41.4,
-      "pe": 26.24
+      "percentile": 99.5,
+      "price": 3.189
     },
     {
       "date": "2026-04-17",
-      "percentile": 39.5,
-      "pe": 25.67
+      "percentile": 99.5,
+      "price": 3.194
     },
     {
       "date": "2026-04-20",
-      "percentile": 35.8,
-      "pe": 24.99
+      "percentile": 99.5,
+      "price": 3.201
     },
     {
       "date": "2026-04-21",
-      "percentile": 40.1,
-      "pe": 25.87
+      "percentile": 99.8,
+      "price": 3.24
     },
     {
       "date": "2026-04-22",
-      "percentile": 37.2,
-      "pe": 25.22
+      "percentile": 99.8,
+      "price": 3.245
     },
     {
       "date": "2026-04-23",
-      "percentile": 38.1,
-      "pe": 25.36
+      "percentile": 98.9,
+      "price": 3.197
     },
     {
       "date": "2026-04-24",
-      "percentile": 39.8,
-      "pe": 25.71
+      "percentile": 99.3,
+      "price": 3.236
     },
     {
       "date": "2026-04-27",
-      "percentile": 36.8,
-      "pe": 25.13
+      "percentile": 98.9,
+      "price": 3.224
     },
     {
       "date": "2026-04-28",
-      "percentile": 34.6,
-      "pe": 24.72
+      "percentile": 97.9,
+      "price": 3.171
     },
     {
       "date": "2026-04-29",
-      "percentile": 40.0,
-      "pe": 25.72
+      "percentile": 100.0,
+      "price": 3.299
     },
     {
       "date": "2026-04-30",
-      "percentile": 37.0,
-      "pe": 25.2
+      "percentile": 99.8,
+      "price": 3.286
     },
     {
       "date": "2026-05-06",
-      "percentile": 43.9,
-      "pe": 26.95
+      "percentile": 100.0,
+      "price": 3.383
     },
     {
       "date": "2026-05-07",
-      "percentile": 42.4,
-      "pe": 26.46
+      "percentile": 99.8,
+      "price": 3.359
     },
     {
       "date": "2026-05-08",
-      "percentile": 39.3,
-      "pe": 25.6
+      "percentile": 99.6,
+      "price": 3.299
     },
     {
       "date": "2026-05-11",
-      "percentile": 41.5,
-      "pe": 26.13
+      "percentile": 99.6,
+      "price": 3.345
     },
     {
       "date": "2026-05-12",
-      "percentile": 37.2,
-      "pe": 25.26
+      "percentile": 99.1,
+      "price": 3.297
     },
     {
       "date": "2026-05-13",
-      "percentile": 38.9,
-      "pe": 25.43
+      "percentile": 99.5,
+      "price": 3.328
     },
     {
       "date": "2026-05-14",
-      "percentile": 35.7,
-      "pe": 25.01
+      "percentile": 97.4,
+      "price": 3.223
     },
     {
       "date": "2026-05-15",
-      "percentile": 34.9,
-      "pe": 24.81
+      "percentile": 97.0,
+      "price": 3.199
     },
     {
       "date": "2026-05-18",
-      "percentile": 33.3,
-      "pe": 24.44
+      "percentile": 96.7,
+      "price": 3.196
     },
     {
       "date": "2026-05-19",
-      "percentile": 33.5,
-      "pe": 24.48
+      "percentile": 96.7,
+      "price": 3.196
     },
     {
       "date": "2026-05-20",
-      "percentile": 32.7,
-      "pe": 24.3
+      "percentile": 97.7,
+      "price": 3.231
     },
     {
       "date": "2026-05-21",
-      "percentile": 31.2,
-      "pe": 24.11
+      "percentile": 94.9,
+      "price": 3.146
     },
     {
       "date": "2026-05-22",
-      "percentile": 31.1,
-      "pe": 24.09
+      "percentile": 96.5,
+      "price": 3.196
     },
     {
       "date": "2026-05-25",
-      "percentile": 28.1,
-      "pe": 23.6
+      "percentile": 95.5,
+      "price": 3.174
     },
     {
       "date": "2026-05-26",
-      "percentile": 28.1,
-      "pe": 23.58
+      "percentile": 95.5,
+      "price": 3.18
     }
   ],
   "512480": [
     {
       "date": "2026-01-07",
-      "percentile": 93.8,
-      "pe": 216.17
+      "percentile": 99.8,
+      "price": 1.603
     },
     {
       "date": "2026-01-08",
-      "percentile": 93.9,
-      "pe": 216.45
+      "percentile": 99.8,
+      "price": 1.607
     },
     {
       "date": "2026-01-09",
-      "percentile": 93.2,
-      "pe": 214.34
+      "percentile": 99.8,
+      "price": 1.618
     },
     {
       "date": "2026-01-12",
-      "percentile": 92.8,
-      "pe": 212.31
+      "percentile": 100.0,
+      "price": 1.646
     },
     {
       "date": "2026-01-13",
-      "percentile": 90.9,
-      "pe": 205.61
+      "percentile": 99.0,
+      "price": 1.593
     },
     {
       "date": "2026-01-14",
-      "percentile": 91.2,
-      "pe": 207.04
+      "percentile": 99.4,
+      "price": 1.617
     },
     {
       "date": "2026-01-15",
-      "percentile": 91.1,
-      "pe": 206.96
+      "percentile": 100.0,
+      "price": 1.649
     },
     {
       "date": "2026-01-16",
-      "percentile": 92.4,
-      "pe": 211.2
+      "percentile": 100.0,
+      "price": 1.702
     },
     {
       "date": "2026-01-19",
-      "percentile": 91.5,
-      "pe": 208.37
+      "percentile": 99.8,
+      "price": 1.694
     },
     {
       "date": "2026-01-20",
-      "percentile": 89.9,
-      "pe": 203.2
+      "percentile": 99.6,
+      "price": 1.682
     },
     {
       "date": "2026-01-21",
-      "percentile": 92.4,
-      "pe": 211.53
+      "percentile": 100.0,
+      "price": 1.746
     },
     {
       "date": "2026-01-22",
-      "percentile": 92.2,
-      "pe": 210.88
+      "percentile": 99.8,
+      "price": 1.735
     },
     {
       "date": "2026-01-23",
-      "percentile": 91.2,
-      "pe": 207.82
+      "percentile": 99.8,
+      "price": 1.738
     },
     {
       "date": "2026-01-26",
-      "percentile": 89.5,
-      "pe": 202.77
+      "percentile": 99.2,
+      "price": 1.698
     },
     {
       "date": "2026-01-27",
-      "percentile": 90.5,
-      "pe": 206.31
+      "percentile": 99.8,
+      "price": 1.744
     },
     {
       "date": "2026-01-28",
-      "percentile": 93.1,
-      "pe": 213.79
+      "percentile": 100.0,
+      "price": 1.764
     },
     {
       "date": "2026-01-29",
-      "percentile": 89.6,
-      "pe": 203.56
+      "percentile": 98.6,
+      "price": 1.694
     },
     {
       "date": "2026-01-30",
-      "percentile": 89.9,
-      "pe": 204.51
+      "percentile": 99.0,
+      "price": 1.711
     },
     {
       "date": "2026-02-02",
-      "percentile": 85.8,
-      "pe": 194.68
+      "percentile": 97.2,
+      "price": 1.618
     },
     {
       "date": "2026-02-03",
-      "percentile": 84.7,
-      "pe": 192.97
+      "percentile": 97.4,
+      "price": 1.642
     },
     {
       "date": "2026-02-04",
-      "percentile": 84.2,
-      "pe": 190.99
+      "percentile": 96.5,
+      "price": 1.608
     },
     {
       "date": "2026-02-05",
-      "percentile": 82.2,
-      "pe": 185.94
+      "percentile": 95.7,
+      "price": 1.591
     },
     {
       "date": "2026-02-06",
-      "percentile": 82.5,
-      "pe": 187.43
+      "percentile": 95.5,
+      "price": 1.577
     },
     {
       "date": "2026-02-09",
-      "percentile": 84.3,
-      "pe": 191.14
+      "percentile": 97.3,
+      "price": 1.628
     },
     {
       "date": "2026-02-10",
-      "percentile": 84.8,
-      "pe": 193.25
+      "percentile": 97.3,
+      "price": 1.636
     },
     {
       "date": "2026-02-11",
-      "percentile": 81.1,
-      "pe": 182.54
+      "percentile": 96.3,
+      "price": 1.617
     },
     {
       "date": "2026-02-12",
-      "percentile": 81.7,
-      "pe": 185.03
+      "percentile": 97.9,
+      "price": 1.652
     },
     {
       "date": "2026-02-13",
-      "percentile": 81.9,
-      "pe": 185.59
+      "percentile": 97.9,
+      "price": 1.655
     },
     {
       "date": "2026-02-24",
-      "percentile": 81.4,
-      "pe": 183.83
+      "percentile": 97.9,
+      "price": 1.661
     },
     {
       "date": "2026-02-25",
-      "percentile": 81.6,
-      "pe": 184.32
+      "percentile": 97.9,
+      "price": 1.675
     },
     {
       "date": "2026-02-26",
-      "percentile": 81.7,
-      "pe": 185.14
+      "percentile": 98.6,
+      "price": 1.699
     },
     {
       "date": "2026-02-27",
-      "percentile": 80.7,
-      "pe": 182.53
+      "percentile": 97.9,
+      "price": 1.685
     },
     {
       "date": "2026-03-02",
-      "percentile": 79.6,
-      "pe": 178.6
+      "percentile": 97.1,
+      "price": 1.655
     },
     {
       "date": "2026-03-03",
-      "percentile": 78.3,
-      "pe": 171.91
+      "percentile": 92.9,
+      "price": 1.559
     },
     {
       "date": "2026-03-04",
-      "percentile": 77.9,
-      "pe": 169.35
+      "percentile": 92.9,
+      "price": 1.559
     },
     {
       "date": "2026-03-05",
-      "percentile": 77.9,
-      "pe": 169.69
+      "percentile": 93.7,
+      "price": 1.586
     },
     {
       "date": "2026-03-06",
-      "percentile": 77.8,
-      "pe": 169.05
+      "percentile": 93.7,
+      "price": 1.586
     },
     {
       "date": "2026-03-09",
-      "percentile": 77.5,
-      "pe": 166.89
+      "percentile": 91.8,
+      "price": 1.554
     },
     {
       "date": "2026-03-10",
-      "percentile": 78.2,
-      "pe": 170.29
+      "percentile": 94.1,
+      "price": 1.595
     },
     {
       "date": "2026-03-11",
-      "percentile": 78.0,
-      "pe": 170.01
+      "percentile": 93.2,
+      "price": 1.577
     },
     {
       "date": "2026-03-12",
-      "percentile": 77.5,
-      "pe": 168.28
+      "percentile": 91.7,
+      "price": 1.555
     },
     {
       "date": "2026-03-13",
-      "percentile": 77.9,
-      "pe": 169.94
+      "percentile": 90.7,
+      "price": 1.544
     },
     {
       "date": "2026-03-16",
-      "percentile": 78.6,
-      "pe": 172.39
+      "percentile": 93.2,
+      "price": 1.577
     },
     {
       "date": "2026-03-17",
-      "percentile": 77.4,
-      "pe": 168.29
+      "percentile": 90.0,
+      "price": 1.534
     },
     {
       "date": "2026-03-18",
-      "percentile": 77.6,
-      "pe": 169.21
+      "percentile": 92.5,
+      "price": 1.568
     },
     {
       "date": "2026-03-19",
-      "percentile": 77.2,
-      "pe": 168.2
+      "percentile": 89.3,
+      "price": 1.527
     },
     {
       "date": "2026-03-20",
-      "percentile": 76.6,
-      "pe": 162.2
+      "percentile": 88.6,
+      "price": 1.501
     },
     {
       "date": "2026-03-23",
-      "percentile": 74.6,
-      "pe": 155.62
+      "percentile": 82.8,
+      "price": 1.425
     },
     {
       "date": "2026-03-24",
-      "percentile": 75.4,
-      "pe": 157.55
+      "percentile": 84.9,
+      "price": 1.451
     },
     {
       "date": "2026-03-25",
-      "percentile": 75.7,
-      "pe": 158.72
+      "percentile": 88.3,
+      "price": 1.49
     },
     {
       "date": "2026-03-26",
-      "percentile": 73.2,
-      "pe": 153.78
+      "percentile": 85.1,
+      "price": 1.453
     },
     {
       "date": "2026-03-27",
-      "percentile": 73.7,
-      "pe": 154.77
+      "percentile": 86.8,
+      "price": 1.468
     },
     {
       "date": "2026-03-30",
-      "percentile": 72.5,
-      "pe": 152.12
+      "percentile": 86.7,
+      "price": 1.467
     },
     {
       "date": "2026-03-31",
-      "percentile": 71.2,
-      "pe": 149.29
+      "percentile": 81.0,
+      "price": 1.415
     },
     {
       "date": "2026-04-01",
-      "percentile": 72.9,
-      "pe": 152.91
+      "percentile": 85.1,
+      "price": 1.458
     },
     {
       "date": "2026-04-02",
-      "percentile": 70.6,
-      "pe": 147.94
+      "percentile": 80.5,
+      "price": 1.413
     },
     {
       "date": "2026-04-03",
-      "percentile": 69.8,
-      "pe": 145.69
+      "percentile": 80.5,
+      "price": 1.413
     },
     {
       "date": "2026-04-07",
-      "percentile": 72.3,
-      "pe": 151.78
+      "percentile": 83.1,
+      "price": 1.437
     },
     {
       "date": "2026-04-08",
-      "percentile": 76.3,
-      "pe": 160.61
+      "percentile": 89.9,
+      "price": 1.531
     },
     {
       "date": "2026-04-09",
-      "percentile": 75.7,
-      "pe": 158.52
+      "percentile": 89.9,
+      "price": 1.532
     },
     {
       "date": "2026-04-10",
-      "percentile": 76.3,
-      "pe": 160.57
+      "percentile": 92.2,
+      "price": 1.561
     },
     {
       "date": "2026-04-13",
-      "percentile": 76.2,
-      "pe": 159.98
+      "percentile": 92.5,
+      "price": 1.566
     },
     {
       "date": "2026-04-14",
-      "percentile": 76.6,
-      "pe": 161.38
+      "percentile": 94.9,
+      "price": 1.608
     },
     {
       "date": "2026-04-15",
-      "percentile": 77.1,
-      "pe": 165.18
+      "percentile": 94.2,
+      "price": 1.598
     },
     {
       "date": "2026-04-16",
-      "percentile": 77.3,
-      "pe": 165.61
+      "percentile": 95.7,
+      "price": 1.62
     },
     {
       "date": "2026-04-17",
-      "percentile": 77.4,
-      "pe": 167.28
+      "percentile": 96.0,
+      "price": 1.628
     },
     {
       "date": "2026-04-20",
-      "percentile": 78.6,
-      "pe": 171.62
+      "percentile": 96.9,
+      "price": 1.653
     },
     {
       "date": "2026-04-21",
-      "percentile": 78.6,
-      "pe": 170.83
+      "percentile": 95.9,
+      "price": 1.635
     },
     {
       "date": "2026-04-22",
-      "percentile": 78.6,
-      "pe": 171.48
+      "percentile": 97.7,
+      "price": 1.677
     },
     {
       "date": "2026-04-23",
-      "percentile": 77.5,
-      "pe": 168.47
+      "percentile": 96.2,
+      "price": 1.648
     },
     {
       "date": "2026-04-24",
-      "percentile": 79.7,
-      "pe": 176.39
+      "percentile": 97.7,
+      "price": 1.677
     },
     {
       "date": "2026-04-27",
-      "percentile": 82.3,
-      "pe": 185.32
+      "percentile": 99.8,
+      "price": 1.755
     },
     {
       "date": "2026-04-28",
-      "percentile": 80.8,
-      "pe": 181.22
+      "percentile": 99.1,
+      "price": 1.735
     },
     {
       "date": "2026-04-29",
-      "percentile": 80.1,
-      "pe": 178.79
+      "percentile": 98.8,
+      "price": 1.732
     },
     {
       "date": "2026-04-30",
-      "percentile": 83.6,
-      "pe": 188.74
+      "percentile": 100.0,
+      "price": 1.817
     },
     {
       "date": "2026-05-06",
-      "percentile": 87.0,
-      "pe": 195.69
+      "percentile": 100.0,
+      "price": 1.913
     },
     {
       "date": "2026-05-07",
-      "percentile": 88.1,
-      "pe": 199.25
+      "percentile": 100.0,
+      "price": 1.949
     },
     {
       "date": "2026-05-08",
-      "percentile": 84.7,
-      "pe": 191.25
+      "percentile": 99.6,
+      "price": 1.902
     },
     {
       "date": "2026-05-11",
-      "percentile": 86.3,
-      "pe": 194.77
+      "percentile": 100.0,
+      "price": 2.018
     },
     {
       "date": "2026-05-12",
-      "percentile": 85.5,
-      "pe": 193.91
+      "percentile": 100.0,
+      "price": 2.025
     },
     {
       "date": "2026-05-13",
-      "percentile": 85.4,
-      "pe": 193.72
+      "percentile": 100.0,
+      "price": 2.088
     },
     {
       "date": "2026-05-14",
-      "percentile": 82.5,
-      "pe": 187.42
+      "percentile": 99.8,
+      "price": 2.043
     },
     {
       "date": "2026-05-15",
-      "percentile": 83.6,
-      "pe": 189.02
+      "percentile": 99.6,
+      "price": 2.035
     },
     {
       "date": "2026-05-18",
-      "percentile": 82.4,
-      "pe": 186.8
+      "percentile": 99.8,
+      "price": 2.058
     },
     {
       "date": "2026-05-19",
-      "percentile": 83.2,
-      "pe": 188.71
+      "percentile": 100.0,
+      "price": 2.131
     },
     {
       "date": "2026-05-20",
-      "percentile": 93.1,
-      "pe": 212.51
+      "percentile": 100.0,
+      "price": 2.227
     },
     {
       "date": "2026-05-21",
-      "percentile": 89.4,
-      "pe": 202.05
+      "percentile": 99.8,
+      "price": 2.132
     },
     {
       "date": "2026-05-22",
-      "percentile": 91.7,
-      "pe": 208.57
+      "percentile": 99.8,
+      "price": 2.189
     },
     {
       "date": "2026-05-25",
-      "percentile": 97.5,
-      "pe": 247.75
+      "percentile": 100.0,
+      "price": 2.348
     },
     {
       "date": "2026-05-26",
-      "percentile": 96.9,
-      "pe": 236.92
+      "percentile": 99.8,
+      "price": 2.321
     }
   ],
   "QQQ": [
@@ -4567,454 +4567,454 @@
   ],
   "518880": [
     {
-      "date": "2026-01-06",
-      "percentile": 32.9,
-      "pe": 39.02
-    },
-    {
       "date": "2026-01-07",
-      "percentile": 33.4,
-      "pe": 39.12
+      "percentile": 98.6,
+      "price": 9.518
     },
     {
       "date": "2026-01-08",
-      "percentile": 33.9,
-      "pe": 39.4
+      "percentile": 98.4,
+      "price": 9.511
     },
     {
       "date": "2026-01-09",
-      "percentile": 46.9,
-      "pe": 41.66
+      "percentile": 99.4,
+      "price": 9.592
     },
     {
       "date": "2026-01-12",
-      "percentile": 54.0,
-      "pe": 42.85
+      "percentile": 100.0,
+      "price": 9.777
     },
     {
       "date": "2026-01-13",
-      "percentile": 60.6,
-      "pe": 44.05
+      "percentile": 100.0,
+      "price": 9.793
     },
     {
       "date": "2026-01-14",
-      "percentile": 60.9,
-      "pe": 44.13
+      "percentile": 100.0,
+      "price": 9.922
     },
     {
       "date": "2026-01-15",
-      "percentile": 63.4,
-      "pe": 45.19
+      "percentile": 99.8,
+      "price": 9.867
     },
     {
       "date": "2026-01-16",
-      "percentile": 58.2,
-      "pe": 43.74
+      "percentile": 99.6,
+      "price": 9.857
     },
     {
       "date": "2026-01-19",
-      "percentile": 62.5,
-      "pe": 44.85
+      "percentile": 100.0,
+      "price": 10.006
     },
     {
       "date": "2026-01-20",
-      "percentile": 63.8,
-      "pe": 45.29
+      "percentile": 100.0,
+      "price": 10.082
     },
     {
       "date": "2026-01-21",
-      "percentile": 74.3,
-      "pe": 49.0
+      "percentile": 100.0,
+      "price": 10.377
     },
     {
       "date": "2026-01-22",
-      "percentile": 70.5,
-      "pe": 48.07
+      "percentile": 99.8,
+      "price": 10.341
     },
     {
       "date": "2026-01-23",
-      "percentile": 71.0,
-      "pe": 48.27
+      "percentile": 100.0,
+      "price": 10.617
     },
     {
       "date": "2026-01-26",
-      "percentile": 90.2,
-      "pe": 53.07
+      "percentile": 100.0,
+      "price": 10.924
     },
     {
       "date": "2026-01-27",
-      "percentile": 85.7,
-      "pe": 51.65
+      "percentile": 100.0,
+      "price": 10.934
     },
     {
       "date": "2026-01-28",
-      "percentile": 93.8,
-      "pe": 56.8
+      "percentile": 100.0,
+      "price": 11.28
     },
     {
       "date": "2026-01-29",
-      "percentile": 94.6,
-      "pe": 57.71
+      "percentile": 100.0,
+      "price": 11.904
     },
     {
       "date": "2026-01-30",
-      "percentile": 86.1,
-      "pe": 51.94
+      "percentile": 99.6,
+      "price": 11.009
     },
     {
       "date": "2026-02-02",
-      "percentile": 65.2,
-      "pe": 46.75
+      "percentile": 97.8,
+      "price": 9.908
     },
     {
       "date": "2026-02-03",
-      "percentile": 64.9,
-      "pe": 46.47
+      "percentile": 98.8,
+      "price": 10.422
     },
     {
       "date": "2026-02-04",
-      "percentile": 62.6,
-      "pe": 45.41
+      "percentile": 99.0,
+      "price": 10.867
     },
     {
       "date": "2026-02-05",
-      "percentile": 55.8,
-      "pe": 43.62
+      "percentile": 98.6,
+      "price": 10.523
     },
     {
       "date": "2026-02-06",
-      "percentile": 51.6,
-      "pe": 42.82
+      "percentile": 98.0,
+      "price": 10.357
     },
     {
       "date": "2026-02-09",
-      "percentile": 54.4,
-      "pe": 43.37
+      "percentile": 98.8,
+      "price": 10.719
     },
     {
       "date": "2026-02-10",
-      "percentile": 53.1,
-      "pe": 43.03
+      "percentile": 98.6,
+      "price": 10.669
     },
     {
       "date": "2026-02-11",
-      "percentile": 62.0,
-      "pe": 45.08
+      "percentile": 98.8,
+      "price": 10.758
     },
     {
       "date": "2026-02-12",
-      "percentile": 60.7,
-      "pe": 44.7
+      "percentile": 98.6,
+      "price": 10.72
     },
     {
       "date": "2026-02-13",
-      "percentile": 53.6,
-      "pe": 43.23
+      "percentile": 97.9,
+      "price": 10.575
     },
     {
       "date": "2026-02-24",
-      "percentile": 61.2,
-      "pe": 44.79
+      "percentile": 99.4,
+      "price": 10.95
     },
     {
       "date": "2026-02-25",
-      "percentile": 62.1,
-      "pe": 44.94
+      "percentile": 99.4,
+      "price": 10.959
     },
     {
       "date": "2026-02-26",
-      "percentile": 60.0,
-      "pe": 44.37
+      "percentile": 98.6,
+      "price": 10.913
     },
     {
       "date": "2026-02-27",
-      "percentile": 62.2,
-      "pe": 45.04
+      "percentile": 98.8,
+      "price": 10.933
     },
     {
       "date": "2026-03-02",
-      "percentile": 76.2,
-      "pe": 49.54
+      "percentile": 99.8,
+      "price": 11.417
     },
     {
       "date": "2026-03-03",
-      "percentile": 69.3,
-      "pe": 47.86
+      "percentile": 99.4,
+      "price": 11.259
     },
     {
       "date": "2026-03-04",
-      "percentile": 64.2,
-      "pe": 45.67
+      "percentile": 99.0,
+      "price": 10.98
     },
     {
       "date": "2026-03-05",
-      "percentile": 59.8,
-      "pe": 44.61
+      "percentile": 98.9,
+      "price": 10.964
     },
     {
       "date": "2026-03-06",
-      "percentile": 56.9,
-      "pe": 43.82
+      "percentile": 97.5,
+      "price": 10.873
     },
     {
       "date": "2026-03-09",
-      "percentile": 60.2,
-      "pe": 44.68
+      "percentile": 97.3,
+      "price": 10.868
     },
     {
       "date": "2026-03-10",
-      "percentile": 62.4,
-      "pe": 45.15
+      "percentile": 98.5,
+      "price": 10.956
     },
     {
       "date": "2026-03-11",
-      "percentile": 61.9,
-      "pe": 44.97
+      "percentile": 98.9,
+      "price": 10.974
     },
     {
       "date": "2026-03-12",
-      "percentile": 59.8,
-      "pe": 44.65
+      "percentile": 97.9,
+      "price": 10.938
     },
     {
       "date": "2026-03-13",
-      "percentile": 58.8,
-      "pe": 44.28
+      "percentile": 96.4,
+      "price": 10.802
     },
     {
       "date": "2026-03-16",
-      "percentile": 45.3,
-      "pe": 41.98
+      "percentile": 95.5,
+      "price": 10.664
     },
     {
       "date": "2026-03-17",
-      "percentile": 47.1,
-      "pe": 42.37
+      "percentile": 95.3,
+      "price": 10.637
     },
     {
       "date": "2026-03-18",
-      "percentile": 43.0,
-      "pe": 41.64
+      "percentile": 94.9,
+      "price": 10.606
     },
     {
       "date": "2026-03-19",
-      "percentile": 28.5,
-      "pe": 38.7
+      "percentile": 93.6,
+      "price": 10.126
     },
     {
       "date": "2026-03-20",
-      "percentile": 24.5,
-      "pe": 37.79
+      "percentile": 92.7,
+      "price": 9.896
     },
     {
       "date": "2026-03-23",
-      "percentile": 10.7,
-      "pe": 35.27
+      "percentile": 83.2,
+      "price": 8.941
     },
     {
       "date": "2026-03-24",
-      "percentile": 21.3,
-      "pe": 36.82
+      "percentile": 88.2,
+      "price": 9.299
     },
     {
       "date": "2026-03-25",
-      "percentile": 24.2,
-      "pe": 37.66
+      "percentile": 91.4,
+      "price": 9.641
     },
     {
       "date": "2026-03-26",
-      "percentile": 17.8,
-      "pe": 36.21
+      "percentile": 89.2,
+      "price": 9.45
     },
     {
       "date": "2026-03-27",
-      "percentile": 23.9,
-      "pe": 37.53
+      "percentile": 89.4,
+      "price": 9.494
     },
     {
       "date": "2026-03-30",
-      "percentile": 32.6,
-      "pe": 39.58
+      "percentile": 91.9,
+      "price": 9.656
     },
     {
       "date": "2026-03-31",
-      "percentile": 31.6,
-      "pe": 39.15
+      "percentile": 91.9,
+      "price": 9.699
     },
     {
       "date": "2026-04-01",
-      "percentile": 35.2,
-      "pe": 40.01
+      "percentile": 93.4,
+      "price": 10.024
     },
     {
       "date": "2026-04-02",
-      "percentile": 30.6,
-      "pe": 38.94
+      "percentile": 91.7,
+      "price": 9.738
     },
     {
       "date": "2026-04-03",
-      "percentile": 31.4,
-      "pe": 39.09
+      "percentile": 92.1,
+      "price": 9.828
     },
     {
       "date": "2026-04-07",
-      "percentile": 29.0,
-      "pe": 38.62
+      "percentile": 92.1,
+      "price": 9.837
     },
     {
       "date": "2026-04-08",
-      "percentile": 42.5,
-      "pe": 41.33
+      "percentile": 93.6,
+      "price": 10.113
     },
     {
       "date": "2026-04-09",
-      "percentile": 36.9,
-      "pe": 40.14
+      "percentile": 92.7,
+      "price": 9.908
     },
     {
       "date": "2026-04-10",
-      "percentile": 31.6,
-      "pe": 39.1
+      "percentile": 92.9,
+      "price": 9.972
     },
     {
       "date": "2026-04-13",
-      "percentile": 27.3,
-      "pe": 38.42
+      "percentile": 92.7,
+      "price": 9.924
     },
     {
       "date": "2026-04-14",
-      "percentile": 26.7,
-      "pe": 38.32
+      "percentile": 93.1,
+      "price": 10.011
     },
     {
       "date": "2026-04-15",
-      "percentile": 24.1,
-      "pe": 37.72
+      "percentile": 93.3,
+      "price": 10.064
     },
     {
       "date": "2026-04-16",
-      "percentile": 26.6,
-      "pe": 38.18
+      "percentile": 93.5,
+      "price": 10.097
     },
     {
       "date": "2026-04-17",
-      "percentile": 22.8,
-      "pe": 37.39
+      "percentile": 92.9,
+      "price": 10.029
     },
     {
       "date": "2026-04-20",
-      "percentile": 22.2,
-      "pe": 37.08
+      "percentile": 93.0,
+      "price": 10.036
     },
     {
       "date": "2026-04-21",
-      "percentile": 20.5,
-      "pe": 36.77
+      "percentile": 92.3,
+      "price": 10.01
     },
     {
       "date": "2026-04-22",
-      "percentile": 17.6,
-      "pe": 36.23
+      "percentile": 91.9,
+      "price": 10.004
     },
     {
       "date": "2026-04-23",
-      "percentile": 9.3,
-      "pe": 34.86
+      "percentile": 90.8,
+      "price": 9.9
     },
     {
       "date": "2026-04-24",
-      "percentile": 9.5,
-      "pe": 34.86
+      "percentile": 89.8,
+      "price": 9.826
     },
     {
       "date": "2026-04-27",
-      "percentile": 8.2,
-      "pe": 34.67
+      "percentile": 90.7,
+      "price": 9.897
     },
     {
       "date": "2026-04-28",
-      "percentile": 2.9,
-      "pe": 33.84
+      "percentile": 88.9,
+      "price": 9.732
     },
     {
       "date": "2026-04-29",
-      "percentile": 6.6,
-      "pe": 34.43
+      "percentile": 87.7,
+      "price": 9.637
     },
     {
       "date": "2026-04-30",
-      "percentile": 0.2,
-      "pe": 30.72
+      "percentile": 88.6,
+      "price": 9.678
     },
     {
       "date": "2026-05-06",
-      "percentile": 0.4,
-      "pe": 31.86
+      "percentile": 89.3,
+      "price": 9.791
     },
     {
       "date": "2026-05-07",
-      "percentile": 0.5,
-      "pe": 32.14
+      "percentile": 91.3,
+      "price": 9.909
     },
     {
       "date": "2026-05-08",
-      "percentile": 0.7,
-      "pe": 32.62
+      "percentile": 90.3,
+      "price": 9.88
     },
     {
       "date": "2026-05-11",
-      "percentile": 0.4,
-      "pe": 31.62
+      "percentile": 88.7,
+      "price": 9.774
     },
     {
       "date": "2026-05-12",
-      "percentile": 0.4,
-      "pe": 31.12
+      "percentile": 89.2,
+      "price": 9.806
     },
     {
       "date": "2026-05-13",
-      "percentile": 0.4,
-      "pe": 31.05
+      "percentile": 89.1,
+      "price": 9.804
     },
     {
       "date": "2026-05-14",
-      "percentile": 0.2,
-      "pe": 30.02
+      "percentile": 88.9,
+      "price": 9.795
     },
     {
       "date": "2026-05-15",
-      "percentile": 0.2,
-      "pe": 28.51
+      "percentile": 85.4,
+      "price": 9.554
     },
     {
       "date": "2026-05-18",
-      "percentile": 0.2,
-      "pe": 27.93
+      "percentile": 85.1,
+      "price": 9.513
     },
     {
       "date": "2026-05-19",
-      "percentile": 0.2,
-      "pe": 27.57
+      "percentile": 85.1,
+      "price": 9.515
     },
     {
       "date": "2026-05-20",
-      "percentile": 0.2,
-      "pe": 27.21
+      "percentile": 83.8,
+      "price": 9.367
     },
     {
       "date": "2026-05-21",
-      "percentile": 0.2,
-      "pe": 26.45
+      "percentile": 84.0,
+      "price": 9.45
     },
     {
       "date": "2026-05-22",
-      "percentile": 0.3,
-      "pe": 26.85
+      "percentile": 84.0,
+      "price": 9.461
     },
     {
       "date": "2026-05-25",
-      "percentile": 0.5,
-      "pe": 26.86
+      "percentile": 84.9,
+      "price": 9.512
+    },
+    {
+      "date": "2026-05-26",
+      "percentile": 83.7,
+      "price": 9.454
     }
   ]
 }
