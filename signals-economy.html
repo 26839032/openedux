@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economy Signal — OpenEdux</title>
+    <meta name="description" content="Tracking valuation percentiles across major sector ETFs — a living map of capital flows.">
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+    <meta property="og:title" content="Economy Signal — OpenEdux">
+    <meta property="og:description" content="Tracking valuation percentiles across major sector ETFs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e13;
+            --text: #c8d6e5;
+            --text-dim: rgba(200,214,229,0.45);
+            --accent: #7aa2d4;
+            --border: rgba(138,164,199,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Source Sans 3", sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 20%, rgba(20,40,70,0.4), transparent 70%),
+                radial-gradient(ellipse 40% 40% at 70% 60%, rgba(20,50,60,0.25), transparent 60%);
+            pointer-events: none;
+        }
+
+        main {
+            max-width: 96vw;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        .tagline {
+            text-align: center;
+            margin: 1rem 0 2rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .title-section { text-align: center; margin-bottom: 1.5rem; }
+
+        .eyebrow {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-family: "JetBrains Mono", monospace;
+            font-weight: 300;
+            font-size: 1.4rem;
+            color: var(--text);
+        }
+
+        /* === Chart === */
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            cursor: crosshair;
+        }
+
+        /* === Legend === */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .legend-item:hover { background: rgba(255,255,255,0.04); }
+
+        .legend-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-name { color: var(--text-dim); }
+        .legend-value { color: var(--text); font-weight: 500; }
+
+        .legend-item.active { background: rgba(255,255,255,0.06); }
+        .legend-item.active .legend-name { color: var(--text); }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .legend { gap: 0.5rem 1rem; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <a class="back-link" href="signals.html">← Signals</a>
+    <div class="tagline">Economy Signal</div>
+
+    <div class="title-section">
+        <div class="eyebrow">Valuation Water Level</div>
+        <h1 class="title">where capital flows</h1>
+    </div>
+
+    <div class="chart-wrap">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <div class="legend" id="legend"></div>
+
+    <footer>OpenEdux — Economy Signal</footer>
+</main>
+
+<script>
+// ===== ETF Configuration =====
+const etfs = [
+    { code: "513180", name: "恒生科技",   color: "#f97316", region: "HK" },
+    { code: "512010", name: "医药",       color: "#22c55e", region: "CN" },
+    { code: "512880", name: "证券",       color: "#ef4444", region: "CN" },
+    { code: "159928", name: "消费",       color: "#f59e0b", region: "CN" },
+    { code: "516160", name: "新能源",     color: "#06b6d4", region: "CN" },
+    { code: "512480", name: "半导体",     color: "#8b5cf6", region: "CN" },
+    { code: "510300", name: "沪深300",    color: "#a1a1aa", region: "CN" },
+    { code: "QQQ",    name: "纳指100",    color: "#3b82f6", region: "US" },
+    { code: "XLV",    name: "美股医药",   color: "#10b981", region: "US" },
+    { code: "XLK",    name: "美股科技",   color: "#6366f1", region: "US" },
+];
+
+// ===== Seed data: [date_str, percentile] =====
+// Replace with JSON fetch later
+const seedData = {};
+const dates = [];
+const today = new Date();
+for (let i = 29; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    dates.push(d.toISOString().split('T')[0]);
+}
+
+// Generate smooth realistic seed curves
+const baseValues = {
+    "513180": { start: 62, trend: -0.3, amp: 4 },
+    "512010": { start: 23, trend: 0.2, amp: 3 },
+    "512880": { start: 48, trend: -0.5, amp: 5 },
+    "159928": { start: 18, trend: 0.1, amp: 2 },
+    "516160": { start: 35, trend: -0.4, amp: 6 },
+    "512480": { start: 72, trend: 0.6, amp: 5 },
+    "510300": { start: 45, trend: -0.1, amp: 3 },
+    "QQQ":    { start: 85, trend: 0.3, amp: 4 },
+    "XLV":    { start: 55, trend: -0.2, amp: 3 },
+    "XLK":    { start: 78, trend: 0.4, amp: 4 },
+};
+
+etfs.forEach(etf => {
+    const b = baseValues[etf.code];
+    const pts = [];
+    dates.forEach((d, i) => {
+        let v = b.start + b.trend * i + Math.sin(i * 0.3) * b.amp + Math.cos(i * 0.7) * b.amp * 0.5;
+        v = Math.max(2, Math.min(98, Math.round(v * 10) / 10));
+        pts.push([d, v]);
+    });
+    seedData[etf.code] = pts;
+});
+
+// ===== Canvas Chart =====
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+const legendEl = document.getElementById('legend');
+let activeCode = null;
+
+function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = Math.min(500, window.innerHeight * 0.55) * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = Math.min(500, window.innerHeight * 0.55) + 'px';
+    draw();
+}
+
+function draw() {
+    const W = canvas.width / (window.devicePixelRatio || 1);
+    const H = canvas.height / (window.devicePixelRatio || 1);
+    const dpr = window.devicePixelRatio || 1;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const pad = { top: 30, right: 30, bottom: 40, left: 45 };
+    const pw = W - pad.left - pad.right;
+    const ph = H - pad.top - pad.bottom;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Background grid
+    ctx.strokeStyle = 'rgba(138,164,199,0.06)';
+    ctx.lineWidth = 1;
+    for (let p = 0; p <= 100; p += 25) {
+        const y = pad.top + ph * (1 - p / 100);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(W - pad.right, y);
+        ctx.stroke();
+    }
+
+    // 50% reference line
+    ctx.strokeStyle = 'rgba(138,164,199,0.15)';
+    ctx.setLineDash([4, 6]);
+    const y50 = pad.top + ph * 0.5;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y50);
+    ctx.lineTo(W - pad.right, y50);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Y-axis labels
+    ctx.fillStyle = 'rgba(200,214,229,0.35)';
+    ctx.font = '10px "JetBrains Mono", monospace';
+    ctx.textAlign = 'right';
+    [0, 25, 50, 75, 100].forEach(p => {
+        const y = pad.top + ph * (1 - p / 100);
+        ctx.fillText(p + '%', pad.left - 8, y + 4);
+    });
+
+    // X-axis labels (every 5 days)
+    ctx.fillStyle = 'rgba(200,214,229,0.25)';
+    ctx.textAlign = 'center';
+    dates.forEach((d, i) => {
+        if (i % 5 !== 0 && i !== dates.length - 1) return;
+        const x = pad.left + (pw / (dates.length - 1)) * i;
+        const label = d.slice(5);
+        ctx.fillText(label, x, H - pad.bottom + 18);
+    });
+
+    // Draw lines
+    etfs.forEach(etf => {
+        const pts = seedData[etf.code];
+        if (!pts || pts.length < 2) return;
+
+        const isActive = activeCode === etf.code;
+        const isDimmed = activeCode && activeCode !== etf.code;
+
+        ctx.beginPath();
+        ctx.strokeStyle = isDimmed ? 'rgba(255,255,255,0.04)' : etf.color;
+        ctx.lineWidth = isActive ? 2.5 : 1.2;
+        ctx.globalAlpha = isDimmed ? 0.15 : (activeCode ? 0.6 : 0.85);
+
+        ctx.shadowColor = isActive ? etf.color : 'transparent';
+        ctx.shadowBlur = isActive ? 12 : 0;
+
+        pts.forEach((pt, i) => {
+            const x = pad.left + (pw / (pts.length - 1)) * i;
+            const y = pad.top + ph * (1 - pt[1] / 100);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        });
+
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+    });
+
+    // Highlight active dots
+    if (activeCode) {
+        const pts = seedData[activeCode];
+        const etf = etfs.find(e => e.code === activeCode);
+        pts.forEach((pt, i) => {
+            const x = pad.left + (pw / (pts.length - 1)) * i;
+            const y = pad.top + ph * (1 - pt[1] / 100);
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = etf.color;
+            ctx.fill();
+        });
+    }
+}
+
+// ===== Hover interaction =====
+canvas.addEventListener('mousemove', function(e) {
+    const W = canvas.width / (window.devicePixelRatio || 1);
+    const H = canvas.height / (window.devicePixelRatio || 1);
+    const pad = { top: 30, right: 30, bottom: 40, left: 45 };
+    const pw = W - pad.left - pad.right;
+    const ph = H - pad.top - pad.bottom;
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (W / rect.width);
+    const my = (e.clientY - rect.top) * (H / rect.height);
+
+    // Find closest data point
+    let closest = null;
+    let minDist = Infinity;
+    etfs.forEach(etf => {
+        const pts = seedData[etf.code];
+        pts.forEach((pt, i) => {
+            const x = pad.left + (pw / (pts.length - 1)) * i;
+            const y = pad.top + ph * (1 - pt[1] / 100);
+            const dist = Math.sqrt((mx - x) ** 2 + (my - y) ** 2);
+            if (dist < 30 && dist < minDist) {
+                minDist = dist;
+                closest = { etf, pt, i, x, y };
+            }
+        });
+    });
+
+    const prev = activeCode;
+    activeCode = closest ? closest.etf.code : null;
+    if (activeCode !== prev) {
+        draw();
+        updateLegend();
+    }
+});
+
+canvas.addEventListener('mouseleave', function() {
+    if (activeCode) {
+        activeCode = null;
+        draw();
+        updateLegend();
+    }
+});
+
+// ===== Legend =====
+function updateLegend() {
+    legendEl.innerHTML = etfs.map(etf => {
+        const pts = seedData[etf.code];
+        const last = pts[pts.length - 1][1];
+        const isActive = activeCode === etf.code;
+        const isDimmed = activeCode && !isActive;
+        const regionTag = etf.region === 'US' ? '🇺🇸' : etf.region === 'HK' ? '🇭🇰' : '🇨🇳';
+        return `
+            <div class="legend-item${isActive ? ' active' : ''}" style="opacity:${isDimmed ? 0.25 : 1}"
+                 data-code="${etf.code}">
+                <div class="legend-dot" style="background:${etf.color};box-shadow:0 0 6px ${etf.color}44"></div>
+                <span class="legend-name">${regionTag} ${etf.name}</span>
+                <span class="legend-value">${last}%</span>
+            </div>`;
+    }).join('');
+
+    // Click to pin active
+    legendEl.querySelectorAll('.legend-item').forEach(el => {
+        el.addEventListener('click', function() {
+            const code = this.dataset.code;
+            activeCode = activeCode === code ? null : code;
+            draw();
+            updateLegend();
+        });
+    });
+}
+
+// ===== Init =====
+updateLegend();
+window.addEventListener('resize', resize);
+resize();
+</script>
+</body>
+</html>
