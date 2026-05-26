@@ -224,14 +224,14 @@ function buildSeedData() {
 async function loadData() {
     try {
         const resp = await fetch('etf_data.json');
-        if (!resp.ok) throw new Error('no data file');
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
         const json = await resp.json();
         const allDates = new Set();
         const cd = {};
 
         etfs.forEach(etf => {
             const pts = json[etf.code];
-            if (pts && pts.length > 0) {
+            if (pts && Array.isArray(pts) && pts.length > 0) {
                 cd[etf.code] = pts.map(p => {
                     allDates.add(p.date);
                     return [p.date, p.percentile];
@@ -242,11 +242,12 @@ async function loadData() {
         if (Object.keys(cd).length > 0) {
             chartData = cd;
             dates = Array.from(allDates).sort();
-            console.log('Loaded real data:', Object.keys(cd).length, 'ETFs,', dates.length, 'days');
+            document.querySelector('.tagline').textContent =
+                'Economy Signal · ' + Object.keys(cd).length + ' ETFs · ' + dates.length + ' days';
             return;
         }
     } catch(e) {
-        console.log('No data file, using seed data');
+        document.querySelector('.tagline').textContent = 'Economy Signal · using seed data';
     }
 
     const seed = buildSeedData();
@@ -276,11 +277,20 @@ function draw() {
     const dpr = window.devicePixelRatio || 1;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const pad = { top: 30, right: 30, bottom: 40, left: 45 };
+    const pad = { top: 30, right: 30, bottom: 40, left: 55 };
     const pw = W - pad.left - pad.right;
     const ph = H - pad.top - pad.bottom;
 
     ctx.clearRect(0, 0, W, H);
+
+    // No data fallback
+    if (dates.length === 0) {
+        ctx.fillStyle = 'rgba(200,214,229,0.3)';
+        ctx.font = '14px \"Source Sans 3\", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('No data yet — run fetch_etf_data.py', W/2, H/2);
+        return;
+    }
 
     // Background grid
     ctx.strokeStyle = 'rgba(138,164,199,0.06)';
@@ -312,12 +322,14 @@ function draw() {
         ctx.fillText(p + '%', pad.left - 8, y + 4);
     });
 
-    // X-axis labels (every 5 days)
+    // X-axis labels
     ctx.fillStyle = 'rgba(200,214,229,0.25)';
     ctx.textAlign = 'center';
+    const xStep = dates.length > 1 ? pw / (dates.length - 1) : pw;
     dates.forEach((d, i) => {
-        if (i % 5 !== 0 && i !== dates.length - 1) return;
-        const x = pad.left + (pw / (dates.length - 1)) * i;
+        const skip = dates.length > 10 ? i % 5 !== 0 : false;
+        if (skip && i !== dates.length - 1) return;
+        const x = pad.left + xStep * i;
         const label = d.slice(5);
         ctx.fillText(label, x, H - pad.bottom + 18);
     });
