@@ -351,7 +351,7 @@ function draw() {
         const etfIndex = activeEtfs.indexOf(etf);
         const spreadStep = pw / (activeEtfs.length - 1);
 
-        // Draw connecting lines (if 2+ points per ETF)
+        // Draw smooth curves (if 2+ points per ETF)
         if (pts.length >= 2) {
             ctx.beginPath();
             ctx.strokeStyle = isDimmed ? 'rgba(255,255,255,0.03)' : etf.color;
@@ -360,13 +360,34 @@ function draw() {
             ctx.shadowColor = isActive ? etf.color : 'transparent';
             ctx.shadowBlur = isActive ? 12 : 0;
 
-            pts.forEach((pt, i) => {
-                const divisor = Math.max(pts.length - 1, 1);
-                const x = pad.left + (pw / divisor) * i;
-                const y = pad.top + ph * (1 - pt[1] / 100);
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            });
+            const divisor = Math.max(pts.length - 1, 1);
+            const step = pw / divisor;
+
+            // Cardinal spline smoothing
+            const tension = 0.3;
+            const xs = pts.map((pt, i) => pad.left + step * i);
+            const ys = pts.map(pt => pad.top + ph * (1 - pt[1] / 100));
+
+            ctx.moveTo(xs[0], ys[0]);
+
+            for (let i = 0; i < xs.length - 1; i++) {
+                const x0 = i > 0 ? xs[i-1] : xs[0];
+                const y0 = i > 0 ? ys[i-1] : ys[0];
+                const x1 = xs[i];
+                const y1 = ys[i];
+                const x2 = xs[i+1];
+                const y2 = ys[i+1];
+                const x3 = i < xs.length - 2 ? xs[i+2] : xs[i+1];
+                const y3 = i < ys.length - 2 ? ys[i+2] : ys[i+1];
+
+                const cp1x = x1 + (x2 - x0) * tension;
+                const cp1y = y1 + (y2 - y0) * tension;
+                const cp2x = x2 - (x3 - x1) * tension;
+                const cp2y = y2 - (y3 - y1) * tension;
+
+                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x2, y2);
+            }
+
             ctx.stroke();
             ctx.shadowBlur = 0;
         }
