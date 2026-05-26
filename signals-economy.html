@@ -428,6 +428,14 @@ canvas.addEventListener('mouseleave', function() {
 function updateLegend() {
     legendEl.innerHTML = etfs.map(etf => {
         const pts = chartData[etf.code];
+        if (!pts || pts.length === 0) {
+            return `
+                <div class="legend-item" style="opacity:0.25" data-code="${etf.code}">
+                    <div class="legend-dot" style="background:${etf.color};"></div>
+                    <span class="legend-name">${etf.name}</span>
+                    <span class="legend-value">—</span>
+                </div>`;
+        }
         const last = pts[pts.length - 1][1];
         const isActive = activeCode === etf.code;
         const isDimmed = activeCode && !isActive;
