@@ -119,7 +119,7 @@ def fetch_all():
     for i, code in enumerate(codes):
         fetch_one(code)
         if i < len(codes) - 1:
-            time.sleep(60)  # tushare 免费版限流间隔
+            time.sleep(5)  # tushare 免费版: 200次/分钟, 安全间隔
     print(f"\nDone. Updated {success} ETFs.")
 
 
