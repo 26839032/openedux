@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adaptive Species — OpenEdux</title>
+<meta name="description" content="A minimalist civilization simulation exploring how adaptive capital organisms survive different economic climates.">
+<link rel="icon" href="logo-capybara.png" type="image/png">
+<meta property="og:title" content="Adaptive Species — OpenEdux">
+<meta property="og:description" content="A minimalist civilization simulation exploring how adaptive capital organisms survive different economic climates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #070b10;
+    --text: #d3deea;
+    --text-dim: rgba(211,222,234,0.45);
+    --border: rgba(255,255,255,0.06);
+    --accent: #7aa2d4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: radial-gradient(circle at top, rgba(20,40,70,0.35), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(20,70,60,0.18), transparent 35%),
+                var(--bg);
+    color: var(--text);
+    font-family: "Source Sans 3", sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+}
+
+.back-link {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: "Source Sans 3", sans-serif;
+    transition: color 0.3s;
+}
+.back-link:hover { color: var(--accent); }
+
+.sidebar {
+    border-right: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+h1 {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+}
+
+.control {
+    margin-bottom: 1.8rem;
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+    font-size: 0.8rem;
+    font-family: "JetBrains Mono", monospace;
+    color: var(--text-dim);
+}
+.value { color: var(--text); }
+
+input[type="range"] {
+    width: 100%;
+    appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+}
+
+.status {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.02);
+}
+.status-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+.status-text {
+    line-height: 1.8;
+    color: rgba(211,222,234,0.82);
+    font-size: 0.92rem;
+}
+
+.world { position: relative; overflow: hidden; }
+
+.world-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at center, rgba(122,162,212,0.08), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(40,120,90,0.08), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(200,90,60,0.08), transparent 28%);
+    pointer-events: none;
+}
+
+.world-label {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    text-align: right;
+}
+.world-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+.world-state { font-size: 1rem; color: var(--text); }
+
+.species-wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.species {
+    position: relative;
+    border-radius: 50%;
+    transition: all 1.5s ease;
+    box-shadow: 0 0 60px rgba(122,162,212,0.18), 0 0 140px rgba(122,162,212,0.08);
+    animation: breathe 8s ease-in-out infinite;
+}
+.species::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,0.08);
+    opacity: 0.5;
+}
+.species::after {
+    content: "";
+    position: absolute;
+    inset: -48px;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,0.03);
+    opacity: 0.5;
+}
+
+@keyframes breathe {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.metrics {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.metric {
+    min-width: 160px;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+}
+.metric-label {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    margin-bottom: 0.4rem;
+}
+.metric-value { font-size: 1.1rem; font-weight: 300; }
+
+button {
+    width: 100%;
+    margin-top: 1rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: var(--text);
+    padding: 0.9rem;
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    transition: all 0.3s ease;
+}
+button:hover { background: rgba(255,255,255,0.06); }
+
+footer {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(211,222,234,0.15);
+    text-align: center;
+}
+
+@media (max-width: 980px) {
+    main { grid-template-columns: 1fr; }
+    .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+    .species-wrap { height: 70vh; }
+}
+</style>
+</head>
+<body>
+
+<main>
+
+<a class="back-link" href="signals.html">← Signals</a>
+
+<section class="sidebar">
+
+<div class="eyebrow">OpenEdux · Adaptive Species</div>
+<h1>digital survival sandbox</h1>
+
+<div class="subtitle">
+A minimalist civilization simulation exploring how adaptive capital organisms survive different economic climates.
+</div>
+
+<div class="control">
+    <div class="label">
+        <span>baseline exposure</span>
+        <span class="value" id="baseValue">1.0x</span>
+    </div>
+    <input id="baseline" type="range" min="0.2" max="2" step="0.1" value="1">
+</div>
+
+<div class="control">
+    <div class="label">
+        <span>adaptation speed</span>
+        <span class="value" id="adaptValue">slow</span>
+    </div>
+    <input id="adapt" type="range" min="1" max="3" step="1" value="1">
+</div>
+
+<div class="control">
+    <div class="label">
+        <span>survival reserve</span>
+        <span class="value" id="reserveValue">20%</span>
+    </div>
+    <input id="reserve" type="range" min="5" max="40" step="1" value="20">
+</div>
+
+<div class="control">
+    <div class="label">
+        <span>risk appetite</span>
+        <span class="value" id="riskValue">balanced</span>
+    </div>
+    <input id="risk" type="range" min="1" max="3" step="1" value="2">
+</div>
+
+<button id="cycleBtn">simulate next era</button>
+
+<div class="status">
+    <div class="status-title">species interpretation</div>
+    <div class="status-text" id="statusText">
+        A slow-growing allocator prioritizing long-term continuity over aggressive optimization.
+    </div>
+</div>
+
+</section>
+
+<section class="world">
+
+<div class="world-overlay"></div>
+
+<div class="world-label">
+    <div class="world-title">current civilization climate</div>
+    <div class="world-state" id="worldState">liquidity expansion</div>
+</div>
+
+<div class="species-wrap">
+    <div class="species" id="species"></div>
+</div>
+
+<div class="metrics">
+
+    <div class="metric">
+        <div class="metric-label">resilience</div>
+        <div class="metric-value" id="resilience">78%</div>
+    </div>
+
+    <div class="metric">
+        <div class="metric-label">adaptability</div>
+        <div class="metric-value" id="adaptability">61%</div>
+    </div>
+
+    <div class="metric">
+        <div class="metric-label">stress</div>
+        <div class="metric-value" id="stress">24%</div>
+    </div>
+
+    <div class="metric">
+        <div class="metric-label">survival probability</div>
+        <div class="metric-value" id="survival">88%</div>
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+    OpenEdux — Economy Signal V2 · Research & Education Only
+</footer>
+
+<script>
+const baseline = document.getElementById('baseline');
+const adapt = document.getElementById('adapt');
+const reserve = document.getElementById('reserve');
+const risk = document.getElementById('risk');
+const species = document.getElementById('species');
+
+const worldState = document.getElementById('worldState');
+const statusText = document.getElementById('statusText');
+
+const baseValue = document.getElementById('baseValue');
+const adaptValue = document.getElementById('adaptValue');
+const reserveValue = document.getElementById('reserveValue');
+const riskValue = document.getElementById('riskValue');
+
+const resilience = document.getElementById('resilience');
+const adaptability = document.getElementById('adaptability');
+const stress = document.getElementById('stress');
+const survival = document.getElementById('survival');
+
+const climates = [
+    'liquidity expansion',
+    'valuation compression',
+    'AI acceleration',
+    'energy instability',
+    'defensive rotation',
+    'speculative frenzy',
+    'slow growth regime'
+];
+
+let climateIndex = 0;
+
+function updateSpecies() {
+    const base = parseFloat(baseline.value);
+    const adaptSpeed = parseInt(adapt.value);
+    const reservePct = parseInt(reserve.value);
+    const riskLevel = parseInt(risk.value);
+
+    baseValue.textContent = base.toFixed(1) + 'x';
+    adaptValue.textContent = ['slow', 'medium', 'fast'][adaptSpeed - 1];
+    reserveValue.textContent = reservePct + '%';
+    riskValue.textContent = ['defensive', 'balanced', 'aggressive'][riskLevel - 1];
+
+    const size = 120 + (base * 70) + (riskLevel * 20) - (reservePct * 1.2);
+    const glow = 20 + (adaptSpeed * 25) + (riskLevel * 20);
+
+    const hue = riskLevel === 1
+        ? 'rgba(80,180,140,0.85)'
+        : riskLevel === 2
+        ? 'rgba(122,162,212,0.85)'
+        : 'rgba(255,120,80,0.88)';
+
+    species.style.width = size + 'px';
+    species.style.height = size + 'px';
+    species.style.background = `radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), ${hue})`;
+    species.style.boxShadow = `0 0 ${glow}px ${hue}, 0 0 ${glow * 2}px rgba(122,162,212,0.15)`;
+
+    const resilienceScore = Math.min(96, Math.round(55 + reservePct * 0.9 - riskLevel * 8));
+    const adaptabilityScore = Math.min(95, Math.round(40 + adaptSpeed * 18 + riskLevel * 10));
+    const stressScore = Math.max(8, Math.round(12 + riskLevel * 16 - reservePct * 0.4));
+    const survivalScore = Math.min(98, Math.round((resilienceScore + adaptabilityScore) / 2 - stressScore * 0.15));
+
+    resilience.textContent = resilienceScore + '%';
+    adaptability.textContent = adaptabilityScore + '%';
+    stress.textContent = stressScore + '%';
+    survival.textContent = survivalScore + '%';
+
+    let interpretation = '';
+    if (riskLevel === 1 && reservePct > 25) {
+        interpretation = 'A highly defensive allocator optimized for long-duration survival during unstable civilizational climates.';
+    } else if (riskLevel === 3 && adaptSpeed === 3) {
+        interpretation = 'An aggressive adaptive species seeking accelerated expansion across volatile economic environments.';
+    } else if (base > 1.4 && reservePct < 15) {
+        interpretation = 'A growth-focused allocator prioritizing ecosystem expansion over resilience buffering.';
+    } else {
+        interpretation = 'A slow-growing allocator prioritizing long-term continuity over aggressive optimization.';
+    }
+    statusText.textContent = interpretation;
+}
+
+baseline.addEventListener('input', updateSpecies);
+adapt.addEventListener('input', updateSpecies);
+reserve.addEventListener('input', updateSpecies);
+risk.addEventListener('input', updateSpecies);
+updateSpecies();
+
+const cycleBtn = document.getElementById('cycleBtn');
+cycleBtn.addEventListener('click', () => {
+    climateIndex = (climateIndex + 1) % climates.length;
+    worldState.textContent = climates[climateIndex];
+    species.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.12)' },
+        { transform: 'scale(1)' }
+    ], { duration: 1800, easing: 'ease-in-out' });
+});
+</script>
+</body>
+</html>
