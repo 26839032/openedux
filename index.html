@@ -428,6 +428,21 @@
             white-space: nowrap;
             border: 0;
         }
+
+        .breath-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin: 0 auto 1.2rem;
+            opacity: 0.45;
+            animation: breath 12s ease-in-out infinite;
+        }
+
+        @keyframes breath {
+            0%, 100% { opacity: 0.35; transform: scale(1); box-shadow: 0 0 4px var(--accent); }
+            50% { opacity: 0.85; transform: scale(1.6); box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(107,132,163,0.3); }
+        }
     </style>
 </head>
 <body>
@@ -441,6 +456,7 @@
             decoding="async"
             fetchpriority="high"
         >
+        <div class="breath-dot" aria-hidden="true"></div>
         <p class="wordmark">OpenEdux</p>
         <h1 class="slogan">
             <span class="slogan-line">
