@@ -240,7 +240,8 @@
 
         .cell-water,
         .cell-vol,
-        .cell-trend {
+        .cell-trend,
+        .cell-ma250 {
             flex: 1;
             min-width: 7rem;
             text-align: right;
@@ -403,13 +404,15 @@
             .cell-etf { width: auto; flex: 1; }
             .cell-price { width: auto; }
             .cell-water,
-            .cell-vol { display: none; }
+            .cell-vol,
+            .cell-ma250 { display: none; }
             .cell-trend { flex: 1; min-width: auto; }
             .cell-gs { width: auto; }
             .score-bar { width: 32px; }
 
             .rank-header .cell-water,
-            .rank-header .cell-vol { display: none; }
+            .rank-header .cell-vol,
+            .rank-header .cell-ma250 { display: none; }
         }
     </style>
 </head>
@@ -447,21 +450,25 @@
             <p>Grid Score evaluates an ETF&rsquo;s suitability for swing/grid trading over a 30&ndash;90 day horizon. Three dimensions are scored independently, then combined.</p>
 
             <div class="formula">
-                GridScore = WaterLevel &times; 0.4 + Volatility &times; 0.3 + Trend &times; 0.3
+                GridScore = WaterLevel &times; 0.30 + Volatility &times; 0.25 + Trend &times; 0.20 + MA250 &times; 0.25
             </div>
 
             <div class="methodology-grid">
                 <div class="method-card">
-                    <h4>Water Level (40%)</h4>
+                    <h4>Water Level (30%)</h4>
                     <p>Where the current price sits within the 52-week range. 20%&ndash;60% is ideal &mdash; room on both sides. Below 10% or above 80% is penalized.</p>
                 </div>
                 <div class="method-card">
-                    <h4>Volatility (30%)</h4>
+                    <h4>Volatility (25%)</h4>
                     <p>20-day annualized historical volatility. 15%&ndash;40% is ideal &mdash; enough movement for grid profits, not so much that the grid breaks.</p>
                 </div>
                 <div class="method-card">
-                    <h4>Trend (30%)</h4>
-                    <p>MA20 vs MA60 relationship. Sideways markets score highest. Slow uptrends still work. Strong trends (especially down) are penalized &mdash; grid trading works best in ranges.</p>
+                    <h4>Trend (20%)</h4>
+                    <p>MA20 vs MA60 relationship. Sideways markets score highest. Slow uptrends still work. Strong trends are penalized &mdash; grid trading works best in ranges.</p>
+                </div>
+                <div class="method-card">
+                    <h4>Distance to MA250 (25%)</h4>
+                    <p>How far the current price has drifted from the 250-day moving average. The closer, the better &mdash; mean reversion is the grid trader&rsquo;s gravity. Large deviations suggest the ETF has moved too far from its long-term anchor.</p>
                 </div>
             </div>
 
@@ -556,6 +563,7 @@
                 <div class="rank-cell cell-water">Water Lv</div>
                 <div class="rank-cell cell-vol">Volatility</div>
                 <div class="rank-cell cell-trend">Trend</div>
+                <div class="rank-cell cell-ma250">MA250</div>
                 <div class="rank-cell cell-gs">Grid Score</div>
             </div>`;
 
@@ -568,6 +576,9 @@
                 const volPct = etf.annual_vol ? (etf.annual_vol * 100).toFixed(1) : '—';
                 const trPct = etf.trend_ratio !== null
                     ? (etf.trend_ratio > 0 ? '+' : '') + (etf.trend_ratio * 100).toFixed(1) + '%'
+                    : '—';
+                const mdPct = etf.ma250_dist !== null
+                    ? (etf.ma250_dist > 0 ? '+' : '') + (etf.ma250_dist * 100).toFixed(1) + '%'
                     : '—';
 
                 html += `<div class="rank-row ${isTop5 ? 'top-five' : ''}">
@@ -585,6 +596,10 @@
                     <div class="rank-cell cell-trend">
                         <span class="score-bar"><span class="score-bar-fill ${barClass(etf.trend_score)}" style="width:${etf.trend_score}%"></span></span>
                         <span>${trPct}</span>
+                    </div>
+                    <div class="rank-cell cell-ma250">
+                        <span class="score-bar"><span class="score-bar-fill ${barClass(etf.ma250_score)}" style="width:${etf.ma250_score}%"></span></span>
+                        <span>${mdPct}</span>
                     </div>
                     <div class="rank-cell cell-gs">
                         <strong>${etf.grid_score}</strong>
