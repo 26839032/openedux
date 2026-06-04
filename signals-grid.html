@@ -106,8 +106,84 @@
         }
 
         .title-section {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
+
+        /* ─── Market Environment ────────────────── */
+        .env-card {
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .env-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+        }
+
+        .env-title {
+            font-family: "Fraunces", serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .env-desc {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ─── State Summary ─────────────────────── */
+        .state-summary-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .state-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            border: 1px solid;
+        }
+
+        .state-chip .count {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .state-chip.grid_paradise   { color: #22c55e; border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.06); }
+        .state-chip.trend_rider    { color: #3b82f6; border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.06); }
+        .state-chip.falling_knife  { color: #ef4444; border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.06); }
+        .state-chip.mean_reversion { color: #eab308; border-color: rgba(234,179,8,0.25); background: rgba(234,179,8,0.06); }
+        .state-chip.dead_market    { color: #6b7280; border-color: rgba(107,114,128,0.25); background: rgba(107,114,128,0.06); }
+
+        /* ─── State Badge ───────────────────────── */
+        .state-badge {
+            display: inline-block;
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.35rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        .state-badge.falling_knife   { color: #ef4444; background: rgba(239,68,68,0.10); }
+        .state-badge.grid_paradise   { color: #22c55e; background: rgba(34,197,94,0.10); }
+        .state-badge.trend_rider    { color: #3b82f6; background: rgba(59,130,246,0.10); }
+        .state-badge.mean_reversion { color: #eab308; background: rgba(234,179,8,0.10); }
+        .state-badge.dead_market    { color: #6b7280; background: rgba(107,114,128,0.10); }
 
         /* ─── Top 5 Cards ───────────────────────── */
         .section-label {
@@ -432,6 +508,15 @@
             <h1>where the range breathes</h1>
         </div>
 
+        <!-- Market Environment -->
+        <div id="market-env" style="margin-bottom:2.5rem;">
+            <div class="no-data">Loading…</div>
+        </div>
+
+        <!-- State Summary -->
+        <div id="state-summary" style="margin-bottom:2rem;">
+        </div>
+
         <!-- Top 5 -->
         <div class="section-label">Top 5 Grid-Ready ETFs</div>
         <div id="top5" class="top5-grid">
@@ -532,9 +617,43 @@
                 return;
             }
 
+            renderMarketEnv(data);
+            renderStateSummary(data);
             renderTop5(data.etfs.filter(e => e.top5));
             renderTable(data.etfs);
             renderUpdated(data);
+        }
+
+        function renderMarketEnv(data) {
+            if (!data.environment) return;
+            const env = data.environment;
+            const container = document.getElementById('market-env');
+            container.innerHTML = `
+                <div class="env-card">
+                    <div class="env-label">Market Environment</div>
+                    <div class="env-title">${env.label}</div>
+                    <div class="env-desc">${env.description}</div>
+                </div>
+            `;
+        }
+
+        function renderStateSummary(data) {
+            if (!data.state_summary) return;
+            const ss = data.state_summary;
+            const labels = {
+                grid_paradise: 'Grid Paradise',
+                trend_rider: 'Trend Rider',
+                falling_knife: 'Falling Knife',
+                mean_reversion: 'Mean Reversion',
+                dead_market: 'Dead Market',
+            };
+            const container = document.getElementById('state-summary');
+            let chips = '';
+            for (const [key, label] of Object.entries(labels)) {
+                const count = ss[key] || 0;
+                chips += `<span class="state-chip ${key}"><span class="count">${count}</span> ${label}</span>`;
+            }
+            container.innerHTML = `<div class="state-summary-grid">${chips}</div>`;
         }
 
         function renderTop5(top5) {
@@ -543,12 +662,15 @@
                 const cfg = etfConfig[etf.code] || {};
                 const labelClass = 'label-' + etf.label;
                 const labelText = etf.label === 'green' ? 'Good' : etf.label === 'yellow' ? 'Moderate' : 'Caution';
+                const stateClass = etf.state || '';
+                const stateLabel = etf.state_label || '';
                 return `
                     <div class="top5-card">
                         <div class="top5-rank">#${i + 1}</div>
                         <div class="top5-name" style="color:${cfg.color || 'var(--text)'}">${etf.name}</div>
                         <div class="top5-score" style="color:${cfg.color || 'var(--text)'}">${etf.grid_score}</div>
                         <span class="top5-label ${labelClass}">${labelText}</span>
+                        <div class="state-badge ${stateClass}">${stateLabel}</div>
                     </div>
                 `;
             }).join('');
@@ -591,7 +713,7 @@
 
                 html += `<div class="rank-row ${isTop5 ? 'top-five' : ''}">
                     <div class="rank-cell cell-rank">#${etf.rank}</div>
-                    <div class="rank-cell cell-etf" style="color:${cfg.color || 'var(--text)'}">${etf.name}</div>
+                    <div class="rank-cell cell-etf" style="color:${cfg.color || 'var(--text)'}">${etf.name}<br><span class="state-badge ${etf.state || ''}">${etf.state_label || ''}</span></div>
                     <div class="rank-cell cell-price">${etf.price}</div>
                     <div class="rank-cell cell-water">
                         <span class="score-bar"><span class="score-bar-fill ${barClass(etf.water_score)}" style="width:${etf.water_score}%"></span></span>
