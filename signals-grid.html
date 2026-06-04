@@ -241,7 +241,8 @@
         .cell-water,
         .cell-vol,
         .cell-trend,
-        .cell-ma250 {
+        .cell-ma250,
+        .cell-range {
             flex: 1;
             min-width: 7rem;
             text-align: right;
@@ -405,14 +406,16 @@
             .cell-price { width: auto; }
             .cell-water,
             .cell-vol,
-            .cell-ma250 { display: none; }
+            .cell-ma250,
+            .cell-range { display: none; }
             .cell-trend { flex: 1; min-width: auto; }
             .cell-gs { width: auto; }
             .score-bar { width: 32px; }
 
             .rank-header .cell-water,
             .rank-header .cell-vol,
-            .rank-header .cell-ma250 { display: none; }
+            .rank-header .cell-ma250,
+            .rank-header .cell-range { display: none; }
         }
     </style>
 </head>
@@ -450,25 +453,29 @@
             <p>Grid Score evaluates an ETF&rsquo;s suitability for swing/grid trading over a 30&ndash;90 day horizon. Three dimensions are scored independently, then combined.</p>
 
             <div class="formula">
-                GridScore = WaterLevel &times; 0.30 + Volatility &times; 0.25 + Trend &times; 0.20 + MA250 &times; 0.25
+                GridScore = Volatility &times; 0.30 + Trend &times; 0.20 + Range &times; 0.20 + WaterLevel &times; 0.15 + MA250 &times; 0.15
             </div>
 
             <div class="methodology-grid">
                 <div class="method-card">
-                    <h4>Water Level (30%)</h4>
-                    <p>Where the current price sits within the 52-week range. 20%&ndash;60% is ideal &mdash; room on both sides. Below 10% or above 80% is penalized.</p>
-                </div>
-                <div class="method-card">
-                    <h4>Volatility (25%)</h4>
-                    <p>20-day annualized historical volatility. 15%&ndash;40% is ideal &mdash; enough movement for grid profits, not so much that the grid breaks.</p>
+                    <h4>Volatility (30%)</h4>
+                    <p>20-day annualized historical volatility. The highest weight &mdash; grid profits come from movement, not from being cheap. 15%&ndash;40% is ideal.</p>
                 </div>
                 <div class="method-card">
                     <h4>Trend (20%)</h4>
-                    <p>MA20 vs MA60 relationship. Sideways markets score highest. Slow uptrends still work. Strong trends are penalized &mdash; grid trading works best in ranges.</p>
+                    <p>MA20 vs MA60 relationship. Sideways markets score highest. Strong single-direction trends are penalized &mdash; grids work best in ranges.</p>
                 </div>
                 <div class="method-card">
-                    <h4>Distance to MA250 (25%)</h4>
-                    <p>How far the current price has drifted from the 250-day moving average. The closer, the better &mdash; mean reversion is the grid trader&rsquo;s gravity. Large deviations suggest the ETF has moved too far from its long-term anchor.</p>
+                    <h4>Range / Oscillation (20%)</h4>
+                    <p>How many times the price crossed above or below MA20 in the past 90 days. More crossovers = more oscillation = better grid environment. The real grid paradise is ↖↘↖↘, not ↗↗↗↗.</p>
+                </div>
+                <div class="method-card">
+                    <h4>Water Level (15%)</h4>
+                    <p>Where the current price sits within the 52-week range. 20%&ndash;60% is ideal. Downgraded &mdash; position matters less than movement for grid trading.</p>
+                </div>
+                <div class="method-card">
+                    <h4>Distance to MA250 (15%)</h4>
+                    <p>How far the price has drifted from its 250-day moving average. Closer is better &mdash; mean reversion is the grid trader&rsquo;s gravity.</p>
                 </div>
             </div>
 
@@ -564,6 +571,7 @@
                 <div class="rank-cell cell-vol">Volatility</div>
                 <div class="rank-cell cell-trend">Trend</div>
                 <div class="rank-cell cell-ma250">MA250</div>
+                <div class="rank-cell cell-range">Range</div>
                 <div class="rank-cell cell-gs">Grid Score</div>
             </div>`;
 
@@ -600,6 +608,10 @@
                     <div class="rank-cell cell-ma250">
                         <span class="score-bar"><span class="score-bar-fill ${barClass(etf.ma250_score)}" style="width:${etf.ma250_score}%"></span></span>
                         <span>${mdPct}</span>
+                    </div>
+                    <div class="rank-cell cell-range">
+                        <span class="score-bar"><span class="score-bar-fill ${barClass(etf.range_score)}" style="width:${etf.range_score}%"></span></span>
+                        <span>${etf.crosses !== null ? etf.crosses + '×' : '—'}</span>
                     </div>
                     <div class="rank-cell cell-gs">
                         <strong>${etf.grid_score}</strong>
