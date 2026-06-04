@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grid Score — OpenEdux</title>
+    <meta name="description" content="ETF Grid Scores for swing/grid trading — ranking major ETFs by trading suitability.">
+
+    <link rel="icon" href="logo-capybara.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+            --bg: #0a0e13;
+            --text: #c8d6e5;
+            --text-dim: rgba(200, 214, 229, 0.45);
+            --accent: #7aa2d4;
+            --border: rgba(138, 164, 199, 0.08);
+            --green: #22c55e;
+            --yellow: #eab308;
+            --red: #ef4444;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Source Sans 3", sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(
+                    ellipse 120% 80% at 50% -20%,
+                    rgba(30, 50, 80, 0.4),
+                    transparent 55%
+                );
+            min-height: 100vh;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            font-family: "Fraunces", serif;
+            font-size: 0.8125rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .tagline {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.625rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .eyebrow {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-family: "Fraunces", serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-section {
+            margin-bottom: 3rem;
+        }
+
+        /* ─── Top 5 Cards ───────────────────────── */
+        .section-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.625rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top5-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .top5-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .top5-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .top5-rank {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.625rem;
+            letter-spacing: 0.1em;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .top5-name {
+            font-family: "Fraunces", serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .top5-score {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .top5-label {
+            display: inline-block;
+            padding: 0.15rem 0.55rem;
+            border-radius: 0.5rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .label-green { background: rgba(34, 197, 94, 0.12); color: var(--green); }
+        .label-yellow { background: rgba(234, 179, 8, 0.12); color: var(--yellow); }
+        .label-red { background: rgba(239, 68, 68, 0.12); color: var(--red); }
+
+        /* ─── Ranking Table ─────────────────────── */
+        .rank-table {
+            margin-bottom: 3rem;
+        }
+
+        .rank-header {
+            border-bottom: 1px solid var(--border) !important;
+            padding-bottom: 0.75rem;
+        }
+
+        .rank-header .rank-cell {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .rank-row {
+            display: flex;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(138, 164, 199, 0.04);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.8rem;
+            transition: background 0.15s ease;
+        }
+
+        .rank-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .rank-row.top-five {
+            background: rgba(138, 164, 199, 0.04);
+        }
+
+        .rank-cell {
+            padding: 0 0.5rem;
+            white-space: nowrap;
+        }
+
+        .cell-rank {
+            width: 3rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        .cell-etf {
+            width: 7rem;
+            font-weight: 500;
+            font-family: "Source Sans 3", sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .cell-price {
+            width: 5.5rem;
+            text-align: right;
+            opacity: 0.7;
+        }
+
+        .cell-water,
+        .cell-vol,
+        .cell-trend {
+            flex: 1;
+            min-width: 7rem;
+            text-align: right;
+        }
+
+        .cell-gs {
+            width: 8rem;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.4rem;
+        }
+
+        .cell-gs strong {
+            font-size: 0.95rem;
+        }
+
+        /* Score bar inside cells */
+        .score-bar {
+            display: inline-block;
+            width: 48px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: var(--accent);
+            transition: width 0.5s ease;
+        }
+
+        .score-bar-fill.high { background: var(--green); }
+        .score-bar-fill.mid { background: var(--yellow); }
+        .score-bar-fill.low { background: var(--red); }
+
+        .label-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .label-text {
+            font-size: 0.6rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* ─── Methodology ───────────────────────── */
+        .methodology {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .methodology h3 {
+            font-family: "Fraunces", serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .methodology p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .methodology .formula {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.78rem;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .method-card {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .method-card h4 {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .method-card p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        /* ─── Footer ────────────────────────────── */
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .footer-email {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-email:hover {
+            color: var(--accent);
+        }
+
+        .updated-at {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+        }
+
+        /* ─── No data fallback ──────────────────── */
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ─── Responsive ────────────────────────── */
+        @media (max-width: 768px) {
+            .rank-row {
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+                gap: 0.25rem 0.5rem;
+                padding: 0.6rem 0;
+            }
+
+            .cell-etf { width: auto; flex: 1; }
+            .cell-price { width: auto; }
+            .cell-water,
+            .cell-vol { display: none; }
+            .cell-trend { flex: 1; min-width: auto; }
+            .cell-gs { width: auto; }
+            .score-bar { width: 32px; }
+
+            .rank-header .cell-water,
+            .rank-header .cell-vol { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a class="back-link" href="signals.html">← Signals</a>
+
+        <div class="title-section">
+            <div class="tagline">Grid Score</div>
+            <div class="eyebrow">Swing / Grid Trading Suitability</div>
+            <h1>where the range breathes</h1>
+        </div>
+
+        <!-- Top 5 -->
+        <div class="section-label">Top 5 Grid-Ready ETFs</div>
+        <div id="top5" class="top5-grid">
+            <div class="no-data">Loading…</div>
+        </div>
+
+        <!-- Full Ranking -->
+        <div class="section-label" style="margin-top:1rem;">Full Ranking</div>
+        <div id="ranking" class="rank-table">
+            <div class="no-data">Loading…</div>
+        </div>
+
+        <!-- Updated time -->
+        <div id="updated" class="updated-at" style="text-align:right;margin-top:-1.5rem;margin-bottom:2rem;"></div>
+
+        <!-- Methodology -->
+        <div class="methodology">
+            <h3>How Grid Score Works</h3>
+            <p>Grid Score evaluates an ETF&rsquo;s suitability for swing/grid trading over a 30&ndash;90 day horizon. Three dimensions are scored independently, then combined.</p>
+
+            <div class="formula">
+                GridScore = WaterLevel &times; 0.4 + Volatility &times; 0.3 + Trend &times; 0.3
+            </div>
+
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>Water Level (40%)</h4>
+                    <p>Where the current price sits within the 52-week range. 20%&ndash;60% is ideal &mdash; room on both sides. Below 10% or above 80% is penalized.</p>
+                </div>
+                <div class="method-card">
+                    <h4>Volatility (30%)</h4>
+                    <p>20-day annualized historical volatility. 15%&ndash;40% is ideal &mdash; enough movement for grid profits, not so much that the grid breaks.</p>
+                </div>
+                <div class="method-card">
+                    <h4>Trend (30%)</h4>
+                    <p>MA20 vs MA60 relationship. Sideways markets score highest. Slow uptrends still work. Strong trends (especially down) are penalized &mdash; grid trading works best in ranges.</p>
+                </div>
+            </div>
+
+            <p style="margin-top:1rem;font-size:0.75rem;">
+                🟢 Good (&ge;75) &nbsp;·&nbsp; 🟡 Moderate (&ge;50) &nbsp;·&nbsp; 🔴 Caution (&lt;50)
+            </p>
+        </div>
+
+        <footer>
+            www.openedux.ai
+            <p><a class="footer-email" href="mailto:enjoylm2012@gmail.com">enjoylm2012@gmail.com</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+
+        // ── ETF 配置（与 signals-economy.html 一致） ──
+        const etfConfig = {
+            "513180": { name: "恒生科技", color: "#f97316" },
+            "512010": { name: "医药",     color: "#22c55e" },
+            "512880": { name: "证券",     color: "#ef4444" },
+            "159928": { name: "消费",     color: "#f59e0b" },
+            "516160": { name: "新能源",   color: "#06b6d4" },
+            "512480": { name: "半导体",   color: "#8b5cf6" },
+            "510300": { name: "沪深300",  color: "#a1a1aa" },
+            "518880": { name: "黄金",     color: "#fbbf24" },
+            "512800": { name: "银行",     color: "#94a3b8" },
+            "159892": { name: "恒生生物", color: "#34d399" },
+            "QQQ":    { name: "纳指100",  color: "#3b82f6" },
+            "XLV":    { name: "美股医药", color: "#10b981" },
+            "XLK":    { name: "美股科技", color: "#6366f1" },
+        };
+
+        async function loadData() {
+            try {
+                const resp = await fetch('etf_grid_scores.json');
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                const data = await resp.json();
+                renderAll(data);
+            } catch (e) {
+                console.warn('Grid Score data not available:', e.message);
+                document.getElementById('top5').innerHTML =
+                    '<div class="no-data" style="grid-column:1/-1">Grid score data not yet available — check back after market close.</div>';
+                document.getElementById('ranking').innerHTML =
+                    '<div class="no-data" style="grid-column:1/-1">No data to display.</div>';
+            }
+        }
+
+        function renderAll(data) {
+            if (!data || !data.etfs || data.etfs.length === 0) {
+                document.getElementById('top5').innerHTML =
+                    '<div class="no-data" style="grid-column:1/-1">No ETFs scored yet.</div>';
+                return;
+            }
+
+            renderTop5(data.etfs.filter(e => e.top5));
+            renderTable(data.etfs);
+            renderUpdated(data);
+        }
+
+        function renderTop5(top5) {
+            const container = document.getElementById('top5');
+            container.innerHTML = top5.map((etf, i) => {
+                const cfg = etfConfig[etf.code] || {};
+                const labelClass = 'label-' + etf.label;
+                const labelText = etf.label === 'green' ? 'Good' : etf.label === 'yellow' ? 'Moderate' : 'Caution';
+                return `
+                    <div class="top5-card">
+                        <div class="top5-rank">#${i + 1}</div>
+                        <div class="top5-name" style="color:${cfg.color || 'var(--text)'}">${etf.name}</div>
+                        <div class="top5-score" style="color:${cfg.color || 'var(--text)'}">${etf.grid_score}</div>
+                        <span class="top5-label ${labelClass}">${labelText}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function barClass(score) {
+            if (score >= 80) return 'high';
+            if (score >= 50) return 'mid';
+            return 'low';
+        }
+
+        function renderTable(etfs) {
+            const container = document.getElementById('ranking');
+
+            let html = `<div class="rank-row rank-header">
+                <div class="rank-cell cell-rank">#</div>
+                <div class="rank-cell cell-etf">ETF</div>
+                <div class="rank-cell cell-price">Price</div>
+                <div class="rank-cell cell-water">Water Lv</div>
+                <div class="rank-cell cell-vol">Volatility</div>
+                <div class="rank-cell cell-trend">Trend</div>
+                <div class="rank-cell cell-gs">Grid Score</div>
+            </div>`;
+
+            etfs.forEach(etf => {
+                const cfg = etfConfig[etf.code] || {};
+                const isTop5 = etf.top5;
+                const dotColor = etf.label === 'green' ? 'var(--green)' : etf.label === 'yellow' ? 'var(--yellow)' : 'var(--red)';
+                const labelText = etf.label === 'green' ? 'Good' : etf.label === 'yellow' ? 'Moderate' : 'Caution';
+                const wlPct = (etf.water_level * 100).toFixed(1);
+                const volPct = etf.annual_vol ? (etf.annual_vol * 100).toFixed(1) : '—';
+                const trPct = etf.trend_ratio !== null
+                    ? (etf.trend_ratio > 0 ? '+' : '') + (etf.trend_ratio * 100).toFixed(1) + '%'
+                    : '—';
+
+                html += `<div class="rank-row ${isTop5 ? 'top-five' : ''}">
+                    <div class="rank-cell cell-rank">#${etf.rank}</div>
+                    <div class="rank-cell cell-etf" style="color:${cfg.color || 'var(--text)'}">${etf.name}</div>
+                    <div class="rank-cell cell-price">${etf.price}</div>
+                    <div class="rank-cell cell-water">
+                        <span class="score-bar"><span class="score-bar-fill ${barClass(etf.water_score)}" style="width:${etf.water_score}%"></span></span>
+                        <span>${wlPct}%</span>
+                    </div>
+                    <div class="rank-cell cell-vol">
+                        <span class="score-bar"><span class="score-bar-fill ${barClass(etf.vol_score)}" style="width:${etf.vol_score}%"></span></span>
+                        <span>${volPct}%</span>
+                    </div>
+                    <div class="rank-cell cell-trend">
+                        <span class="score-bar"><span class="score-bar-fill ${barClass(etf.trend_score)}" style="width:${etf.trend_score}%"></span></span>
+                        <span>${trPct}</span>
+                    </div>
+                    <div class="rank-cell cell-gs">
+                        <strong>${etf.grid_score}</strong>
+                        <span class="label-dot" style="background:${dotColor}"></span>
+                        <span class="label-text" style="color:${dotColor}">${labelText}</span>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderUpdated(data) {
+            const el = document.getElementById('updated');
+            if (data.date || data.updated) {
+                el.textContent = 'Updated: ' + (data.updated || data.date);
+            }
+        }
+
+        // ── Init ──
+        window.addEventListener('DOMContentLoaded', loadData);
+
+    </script>
+
+</body>
+</html>
