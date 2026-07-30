@@ -760,7 +760,7 @@ function renderSparklines() {
             html += `
                 <div class="spark-card">
                     <div class="spark-card-header">
-                        <span class="spark-card-name">${regionEmoji[etf.region] || ''} ${etf.name}</span>
+                        <span class="spark-card-name">${regionEmoji[etf.region] || ''} ${etf.name} <span style="opacity:0.4;font-size:0.6rem;">${etf.code}</span></span>
                         <span class="spark-card-value">${latest}%</span>
                     </div>
                     <canvas id="${id}" width="300" height="100"></canvas>
