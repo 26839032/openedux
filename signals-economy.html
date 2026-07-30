@@ -689,7 +689,7 @@ function updateLegend() {
             <div class="legend-item${isActive ? ' active' : ''}" style="opacity:${isDimmed ? 0.25 : 1}"
                  data-code="${etf.code}">
                 <div class="legend-dot" style="background:${etf.color};box-shadow:0 0 6px ${etf.color}44"></div>
-                <span class="legend-name">${regionTag} ${etf.name}</span>
+                <span class="legend-name">${regionTag} ${etf.name} <span style="opacity:0.4;font-size:0.65rem;">${etf.code}</span></span>
                 <span class="legend-value">${last}%</span>
             </div>`;
     }).join('');
