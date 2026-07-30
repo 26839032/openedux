@@ -268,6 +268,7 @@ const canvas = document.getElementById('chart');
 const ctx = canvas.getContext('2d');
 const legendEl = document.getElementById('legend');
 let activeCode = null;
+let dotHover = null;  // { x, y, date, value, name }
 
 function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -446,7 +447,75 @@ function draw() {
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1;
     });
+
+    // Draw tooltip if hovering a dot
+    if (dotHover) {
+        const tx = dotHover.x, ty = dotHover.y;
+        ctx.fillStyle = 'rgba(15,23,42,0.95)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+        ctx.lineWidth = 1;
+        const tw = 140, th = 42;
+        let ttx = tx - tw/2;
+        if (ttx < 4) ttx = 4;
+        if (ttx + tw > W - 4) ttx = W - tw - 4;
+        const tty = ty - th - 10;
+        ctx.beginPath();
+        ctx.roundRect(ttx, tty, tw, th, 6);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#f1f5f9';
+        ctx.font = '11px \"Source Sans 3\", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(dotHover.date, ttx + tw/2, tty + 18);
+        ctx.fillStyle = dotHover.color || '#94a3b8';
+        ctx.fillText(dotHover.name + ' · ' + dotHover.value + '%', ttx + tw/2, tty + 34);
+    }
+
+    // Store dot metadata for hover detection
+    return { pad, pw, ph, W, H };
 }
+
+// Recalculate dot positions from chartData for hit-testing
+function getDotAt(mx, my) {
+    const W = canvas.width / (window.devicePixelRatio || 1);
+    const H = canvas.height / (window.devicePixelRatio || 1);
+    const pad = { top: 30, right: 30, bottom: 40, left: 55 };
+    const pw = W - pad.left - pad.right;
+    const ph = H - pad.top - pad.bottom;
+    const threshold = 18;
+
+    let best = null, bestDist = threshold;
+    for (const etf of etfs) {
+        const pts = chartData[etf.code];
+        if (!pts || pts.length === 0) continue;
+        const divisor = Math.max(pts.length - 1, 1);
+        pts.forEach((pt, i) => {
+            const x = pad.left + (pw / divisor) * i;
+            const y = pad.top + ph * (1 - pt[1] / 100);
+            const dist = Math.hypot(mx - x, my - y);
+            if (dist < bestDist) {
+                bestDist = dist;
+                best = { x, y, date: pt[0], value: pt[1], name: etf.name, color: etf.color };
+            }
+        });
+    }
+    return best;
+}
+
+canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const hovered = getDotAt(mx, my);
+    if (JSON.stringify(hovered) !== JSON.stringify(dotHover)) {
+        dotHover = hovered;
+        draw();
+    }
+});
+
+canvas.addEventListener('mouseleave', function() {
+    if (dotHover) { dotHover = null; draw(); }
+});
 
 // ===== Hover interaction =====
 canvas.addEventListener('mousemove', function(e) {
