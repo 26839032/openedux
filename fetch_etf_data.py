@@ -1,7 +1,12 @@
 """
-每日抓取 ETF 价格百分位 (统一标尺)
-数据源: tushare fund_daily (CN) + us_daily (US)
-输出: etf_data.json
+每日抓取 ETF 价格百分位（增量追加）
+数据源: tushare fund_daily (CN) + akshare stock_us_daily (US)
+输出: etf_data.json（追加今日数据，保持最近 90 天）
+重建: rebuild_etf_data.py（全量重算，当数据源/计算逻辑变更时使用）
+
+百分位计算逻辑（与 rebuild_etf_data.py 一致）:
+  - 基于 2024-01-01 至今的全部历史收盘价
+  - 百分位 = (历史价格 <= 当前价格的数量) / 历史总数 * 100
 """
 import json, time, sys
 from datetime import date
@@ -65,11 +70,12 @@ def fetch_price_percentile(code: str, region: str) -> dict | None:
     return {
         "percentile": pct,
         "price": round(cur, 3),
-        "data_points": len(vals),
     }
 
 
 def save(code: str, name: str, region: str, entry: dict):
+    """增量追加今日数据。旧日期的百分位保持不变（一天新数据对历史百分位影响可忽略）。
+    如需完全一致的重算，运行 rebuild_etf_data.py。"""
     today = date.today().isoformat()
     if OUTPUT_FILE.exists():
         hist = json.loads(OUTPUT_FILE.read_text())
