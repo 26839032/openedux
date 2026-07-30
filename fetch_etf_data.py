@@ -32,9 +32,13 @@ def fetch_price_percentile(code: str, region: str) -> dict | None:
     pro = ts.pro_api(TUSHARE_TOKEN)
 
     if region == "US":
-        df = pro.us_daily(ts_code=code, start_date='20240101',
-            end_date=date.today().strftime('%Y%m%d'),
-            fields='ts_code,trade_date,close')
+        import akshare as ak
+        df = ak.stock_us_daily(symbol=code, adjust='')
+        if df is None or df.empty:
+            return None
+        df = df.rename(columns={'date': 'trade_date'})
+        df['close'] = df['close'].astype(float)
+        df = df[df['trade_date'] >= '20240101']
     else:
         # CN ETF: try .SH first, then .SZ
         for mkt in ['.SH', '.SZ']:
