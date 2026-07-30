@@ -148,11 +148,27 @@
         }
 
         .sparklines-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .spark-zone-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 0.3rem;
+        }
+
+        .spark-zone-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .spark-card {
@@ -689,35 +705,79 @@ function updateLegend() {
     });
 }
 
-// ===== Sparkline Cards =====
+// ===== Sparkline Cards (grouped by valuation zone) =====
 function renderSparklines() {
     const grid = document.getElementById('sparklinesGrid');
     const regionEmoji = { US: '🇺🇸', HK: '🇭🇰', CN: '🇨🇳' };
 
-    grid.innerHTML = etfs.map(etf => {
+    // Zone definitions: [min, max, label, labelColor]
+    const zones = [
+        { min: 80, max: 100, label: '🔴 Historically Extended (80–100%)',  color: 'rgba(239,68,68,0.5)' },
+        { min: 60, max: 80,  label: '🟠 Elevated Positioning (60–80%)',    color: 'rgba(251,146,60,0.5)' },
+        { min: 40, max: 60,  label: '⚪ Neutral Zone (40–60%)',            color: 'rgba(148,163,184,0.4)' },
+        { min: 20, max: 40,  label: '🟢 Lower Percentile (20–40%)',        color: 'rgba(34,197,94,0.5)' },
+        { min: 0,  max: 20,  label: '🔵 Historically Cheap (0–20%)',      color: 'rgba(59,130,246,0.5)' },
+    ];
+
+    // Group ETFs by zone, sorted by percentile descending within each
+    const grouped = {};
+    zones.forEach(z => { grouped[z.label] = []; });
+
+    etfs.forEach(etf => {
         const pts = chartData[etf.code];
-        const hasData = pts && pts.length >= 2;
-        const latest = hasData ? pts[pts.length - 1][1] : null;
-        const first = hasData ? pts[0][1] : null;
-        const delta = hasData ? (latest - first).toFixed(1) : null;
-        const changeClass = delta > 0.5 ? 'up' : delta < -0.5 ? 'down' : 'flat';
-        const arrow = delta > 0.5 ? '↑' : delta < -0.5 ? '↓' : '→';
-        const id = 'spark-' + etf.code;
+        if (!pts || pts.length === 0) return;
+        const latest = pts[pts.length - 1][1];
+        for (const z of zones) {
+            if (latest >= z.min && latest < z.max) {
+                grouped[z.label].push({ etf, latest, pts });
+                break;
+            }
+        }
+        // Edge case: exactly 100%
+        if (latest === 100) grouped[zones[0].label].push({ etf, latest, pts: chartData[etf.code] });
+    });
 
-        return `
-            <div class="spark-card">
-                <div class="spark-card-header">
-                    <span class="spark-card-name">${regionEmoji[etf.region] || ''} ${etf.name}</span>
-                    <span class="spark-card-value">${hasData ? latest + '%' : '—'}</span>
-                </div>
-                <canvas id="${id}" width="300" height="100"></canvas>
-                <div class="spark-card-change ${changeClass}">
-                    ${hasData ? arrow + ' ' + delta + '%' : 'no data'}
-                </div>
-            </div>`;
-    }).join('');
+    // Sort each group by percentile descending
+    Object.values(grouped).forEach(arr => arr.sort((a, b) => b.latest - a.latest));
 
-    // Draw each sparkline after DOM insertion
+    // Build HTML
+    let html = '';
+    zones.forEach(z => {
+        const items = grouped[z.label];
+        if (items.length === 0) return;
+
+        const etfCount = items.length;
+        html += `<div class="spark-zone-label" style="color:${z.color}">${z.label} <span style="opacity:0.5">· ${etfCount} ETF</span></div>`;
+        html += '<div class="spark-zone-cards">';
+
+        items.forEach(({ etf, latest, pts }) => {
+            const first = pts[0][1];
+            const delta = (latest - first).toFixed(1);
+            const changeClass = delta > 0.5 ? 'up' : delta < -0.5 ? 'down' : 'flat';
+            const arrow = delta > 0.5 ? '↑' : delta < -0.5 ? '↓' : '→';
+            const id = 'spark-' + etf.code;
+
+            html += `
+                <div class="spark-card">
+                    <div class="spark-card-header">
+                        <span class="spark-card-name">${regionEmoji[etf.region] || ''} ${etf.name}</span>
+                        <span class="spark-card-value">${latest}%</span>
+                    </div>
+                    <canvas id="${id}" width="300" height="100"></canvas>
+                    <div class="spark-card-change ${changeClass}">${arrow} ${delta}%</div>
+                </div>`;
+        });
+
+        html += '</div>';
+    });
+
+    grid.innerHTML = html;
+
+    // Draw each sparkline
+    setTimeout(() => drawSparklines(), 10);
+}
+
+function drawSparklines() {
     etfs.forEach(etf => {
         const pts = chartData[etf.code];
         if (!pts || pts.length < 2) return;
@@ -726,8 +786,8 @@ function renderSparklines() {
         if (!canvas) return;
 
         const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.parentElement.getBoundingClientRect();
-        const W = rect.width - 24; // padding
+        const parent = canvas.parentElement;
+        const W = parent.clientWidth - 24;
         canvas.width = W * dpr;
         canvas.height = 50 * dpr;
         canvas.style.width = W + 'px';
@@ -740,7 +800,6 @@ function renderSparklines() {
         const pw = W - pad.left - pad.right;
         const ph = 50 - pad.top - pad.bottom;
 
-        // Background gradient fill under curve
         const vals = pts.map(p => p[1]);
         const minV = Math.min(...vals);
         const maxV = Math.max(...vals);
@@ -773,10 +832,8 @@ function renderSparklines() {
         ctx.stroke();
 
         // Dot at latest value
-        const lx = xs[xs.length - 1];
-        const ly = ys[ys.length - 1];
         ctx.beginPath();
-        ctx.arc(lx, ly, 2, 0, Math.PI * 2);
+        ctx.arc(xs[xs.length - 1], ys[ys.length - 1], 2, 0, Math.PI * 2);
         ctx.fillStyle = etf.color;
         ctx.fill();
     });
@@ -787,7 +844,7 @@ function renderSparklines() {
     await loadData();
     updateLegend();
     renderSparklines();
-    window.addEventListener('resize', () => { resize(); renderSparklines(); });
+    window.addEventListener('resize', () => { resize(); drawSparklines(); });
     resize();
 })();
 </script>
